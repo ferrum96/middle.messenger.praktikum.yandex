@@ -1,6 +1,7 @@
 import { resolve } from 'path';
 import { defineConfig } from 'vite';
 import checker from 'vite-plugin-checker';
+import handlebars from 'vite-plugin-handlebars';
 
 export default defineConfig({
 	server: {
@@ -22,5 +23,6 @@ export default defineConfig({
 		checker({
 			typescript: true,
 		}),
+		handlebars(),
 	],
 })
