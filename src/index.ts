@@ -26,7 +26,7 @@ function navigate(page: string): void {
 	document.body.innerHTML = handlebarsFunct(args);
 }
 
-document.addEventListener('DOMContentLoaded', () => navigate('500'));
+document.addEventListener('DOMContentLoaded', () => navigate('login'));
 
 document.addEventListener('click', (e: MouseEvent) => {
 	if (e.target instanceof Element) {
