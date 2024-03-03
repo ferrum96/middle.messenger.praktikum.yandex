@@ -1,0 +1,16 @@
+<form class="sign-up-page">
+	<div class="sign-up-page__content">
+		{{> PageTitle className="sign-up-page__title" title="Регистрация" }}
+		{{> InputField className="sign-up-page__input" title="Почта" name="email" value="pochta@yandex.ru"}}
+		{{> InputField className="sign-up-page__input" title="Логин" name="login" value="ivanivanov"}}
+		{{> InputField className="sign-up-page__input" title="Имя" name="first_name" value="Иван"}}
+		{{> InputField className="sign-up-page__input" title="Фамилия" name="second_name" value="Иванов"}}
+		{{> InputField className="sign-up-page__input" title="Телефон" name="phone" value="+7 (123) 456 78 90"}}
+		{{> InputField className="sign-up-page__input" title="Пароль" name="password" type="password" value="1234567890"}}
+		{{> InputField className="sign-up-page__input" title="Пароль (ещё раз)" name="repeat_password" type="password" value="1234567890"}}
+	</div>
+	<div class="sign-up-page__footer">
+		{{> Button text="Зарегистрироваться" page="login" }}
+		{{> Link text="Войти" page="login" }}
+	</div>
+</form>
