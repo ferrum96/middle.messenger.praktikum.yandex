@@ -26,12 +26,8 @@ function navigate(page: string): void {
     document.body.innerHTML = handlebarsFunc(args);
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-    loadPage(window.location.pathname);
-});
-
-function loadPage(path: string = "/login"): void {
-    if (path === "/") {
+function loadPage(path: string): void {
+    if (path === "/" || path === "") {
         window.location.pathname = "/login";
     }
     const page = pages[path];
@@ -42,11 +38,15 @@ function loadPage(path: string = "/login"): void {
     }
 }
 
+document.addEventListener("DOMContentLoaded", () => {
+    loadPage(window.location.pathname);
+});
+
 document.addEventListener('click', (e: MouseEvent) => {
     if (e.target instanceof Element) {
-        const page = e.target.getAttribute("page");
-        if (page) {
-            navigate(page);
+        const pageAttribute = e.target.getAttribute("page") as string | null;
+        if (pageAttribute !== null) {
+            window.location.href = pageAttribute;
             e.preventDefault();
             e.stopImmediatePropagation();
         }
