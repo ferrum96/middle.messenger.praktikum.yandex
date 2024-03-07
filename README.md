@@ -2,7 +2,7 @@
 
 ## Дизайн прототипа
 ### Дизайн можно найти по ссылке:
-- Ссылка на макет [Figma](https://www.figma.com/proto/PCWoIjBK1zEjnN4nkOJDx1/Messenger?page-id=0%3A1&type=design&node-id=1-797&viewport=60%2C176%2C0.19&t=lwHAE0Wwu2VjJ1O9-1&scaling=min-zoom&starting-point-node-id=1%3A797&mode=design).
+- Ссылка на макет [Figma](https://www.figma.com/file/jF5fFFzgGOxQeB4CmKWTiE/Chat_external_link?node-id=0%3A1).
 - Ссылка на деплой [Netlify](https://eclectic-haupia-dd3faf.netlify.app/login)
 
 ## Установка проекта локально
