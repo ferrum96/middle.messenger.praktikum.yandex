@@ -1,3 +1,3 @@
-import './link.sass';
+import './link.sass'
 
-export {default as Link} from './link.hbs?raw';
+export { default as Link } from './link.hbs?raw'
