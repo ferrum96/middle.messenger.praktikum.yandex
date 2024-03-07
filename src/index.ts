@@ -13,8 +13,8 @@ interface Page {
 }
 
 const pages: { [key: string]: Page } = {
-    '/sign_up': {source: LoginPage, args: []},
-    '/login': {source: SignUpPage, args: []},
+    '/sign_up': {source: SignUpPage, args: []},
+    '/login': {source: LoginPage, args: []},
     '/chat': {source: ChatPage, args: []},
     '/404': {source: NotFoundPage, args: []},
     '/500': {source: InternalServerErrorPage, args: []},
