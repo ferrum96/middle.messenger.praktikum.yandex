@@ -1,7 +1,11 @@
 import './index.sass';
 import Handlebars from 'handlebars';
 import * as Components from './components';
-import * as Pages from './pages';
+import {LoginPage, SignUpPage, ChatPage, NotFoundPage, InternalServerErrorPage} from './pages';
+
+Object.entries(Components).forEach(([name, component]) => {
+    Handlebars.registerPartial(name, <Handlebars.TemplateDelegate<any> | string>component);
+});
 
 interface Page {
     source: string;
@@ -9,16 +13,12 @@ interface Page {
 }
 
 const pages: { [key: string]: Page } = {
-    '/sign_up': {source: Pages.SignUpPage, args: []},
-    '/login': {source: Pages.LoginPage, args: []},
-    '/chat': {source: Pages.ChatPage, args: []},
-    '/404': {source: Pages.NotFoundPage, args: []},
-    '/500': {source: Pages.InternalServerErrorPage, args: []},
+    '/sign_up': {source: LoginPage, args: []},
+    '/login': {source: SignUpPage, args: []},
+    '/chat': {source: ChatPage, args: []},
+    '/404': {source: NotFoundPage, args: []},
+    '/500': {source: InternalServerErrorPage, args: []},
 };
-
-Object.entries(Components).forEach(([name, component]) => {
-    Handlebars.registerPartial(name, <Handlebars.TemplateDelegate<any> | string>component);
-});
 
 function navigate(page: string): void {
     const {source, args} = pages[page];
