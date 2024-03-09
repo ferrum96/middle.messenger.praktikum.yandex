@@ -6,8 +6,13 @@ import {
   SignUpPage,
   ChatPage,
   NotFoundPage,
-  InternalServerErrorPage
+  InternalServerErrorPage,
+  ProfilePage,
+  EditProfilePage,
+  EditPasswordPage
 } from './pages'
+import chatPageData from './data/chat-page.json'
+import profilePageData from './data/profile-page.json'
 
 Object.entries(Components).forEach(([name, component]) => {
   Handlebars.registerPartial(
@@ -18,21 +23,23 @@ Object.entries(Components).forEach(([name, component]) => {
 
 interface Page {
   source: string
-  args: any[]
+  args: any
 }
 
 const pages: { [key: string]: Page } = {
   '/sign_up': { source: SignUpPage, args: [] },
   '/login': { source: LoginPage, args: [] },
-  '/chat': { source: ChatPage, args: [] },
+  '/chat': { source: ChatPage, args: chatPageData },
+  '/profile': { source: ProfilePage, args: profilePageData },
+  '/edit_profile': { source: EditProfilePage, args: profilePageData },
+  '/edit_password': { source: EditPasswordPage, args: [] },
   '/404': { source: NotFoundPage, args: [] },
   '/500': { source: InternalServerErrorPage, args: [] }
 }
 
 function navigate(page: string): void {
   const { source, args } = pages[page]
-  const handlebarsFunc = Handlebars.compile(source)
-  document.body.innerHTML = handlebarsFunc(args)
+  document.body.innerHTML = Handlebars.compile(source)(args)
 }
 
 function loadPage(path: string): void {
