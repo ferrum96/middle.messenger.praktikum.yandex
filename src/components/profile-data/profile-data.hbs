@@ -1,0 +1,14 @@
+<div class="profile-data">
+    {{#with profile}}
+        {{> Avatar className="profile-data__avatar" src=avatar}}
+        <div class="profile-data__name">{{first_name}}</div>
+        <div class="profile-data__list">
+            {{> EditTextField className="profile-data__edit-text-field" title="Почта" name="email" value=email}}
+            {{> EditTextField className="profile-data__edit-text-field" title="Логин" name="login" value=login}}
+            {{> EditTextField className="profile-data__edit-text-field" title="Имя" name="first_name" value=first_name}}
+            {{> EditTextField className="profile-data__edit-text-field" title="Фамилия" name="second_name" value=second_name}}
+            {{> EditTextField className="profile-data__edit-text-field" title="Имя в чате" name="display_name" value=display_name}}
+            {{> EditTextField className="profile-data__edit-text-field" title="Телефон" name="phone" value=phone}}
+        </div>
+    {{/with}}
+</div>
