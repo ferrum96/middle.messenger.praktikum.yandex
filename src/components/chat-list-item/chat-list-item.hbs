@@ -1,26 +1,19 @@
-<div class="chat__list-item">
-    {{> Avatar className="list-item__avatar"}}
-    <div class="list-item__content">
-        <div class="list-item__content-column">
-            <div class="list-item__name">{{name}}</div>
-            <div class="list-item__last-message">
-                {{#if lastMessage.personName}}
-                    <h5 class="chat-item__content__last-message-name">
-                        {{ lastMessage.personName }}:
-                    </h5>
-                {{/if}}
-                <div class="chat-item__content__last-message-text">
-                    {{ lastMessage.text }}
-                </div>
+<div class="chat-list-item">
+    {{> Avatar className="chat-list-item__avatar"}}
+    <div class="chat-list-item__content">
+        <div class="chat-list-item__content-column">
+            <div class="chat-list-item__name">{{lastMessage.name}}</div>
+            <div class="chat-list-item__last-message">
+                {{ lastMessage.text }}
             </div>
         </div>
-        <div class="list-item__content-column">
-            <div class="list-item__time">
+        <div class="chat-list-item__content-column">
+            <div class="chat-list-item__time">
                 {{ lastMessage.time }}
             </div>
-            {{#if countUnreadMessages}}
-                <div class="list-item__unread-message">
-                    {{ countUnreadMessages }}
+            {{#if lastMessage.countUnreadMessages}}
+                <div class="chat-list-item__unread-message">
+                    {{ lastMessage.countUnreadMessages }}
                 </div>
             {{/if}}
         </div>
