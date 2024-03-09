@@ -1,0 +1,28 @@
+@import "./src/sass/variables"
+
+.profile
+  position: relative
+  display: flex
+  justify-content: center
+  align-items: center
+
+  &__content
+    width: 510px
+    padding-top: 60px
+    align-self: center
+    display: flex
+    justify-content: center
+    align-items: center
+    flex-direction: column
+
+  &__panel-control
+    width: 100%
+
+    & > a
+      padding: 10px 0
+      border-bottom: 1px solid $divider-line-color
+      text-align: start
+
+    & a:last-child
+      color: $text-red
+      border-bottom: none

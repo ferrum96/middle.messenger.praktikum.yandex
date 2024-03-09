@@ -1,0 +1,11 @@
+<div class="profile">
+    {{> PanelBack }}
+    <div class="profile__content">
+        {{> ProfileData }}
+        <div class="profile__panel-control">
+            {{> Link text="Изменить данные" page="/edit_profile" }}
+            {{> Link text="Изменить пароль" page="/edit_password" }}
+            {{> Link text="Выйти" page="/login" }}
+        </div>
+    </div>
+</div>

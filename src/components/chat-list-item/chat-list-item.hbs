@@ -1,0 +1,21 @@
+<div class="chat-list-item">
+    {{> Avatar className="chat-list-item__avatar"}}
+    <div class="chat-list-item__content">
+        <div class="chat-list-item__content-column">
+            <div class="chat-list-item__name">{{lastMessage.name}}</div>
+            <div class="chat-list-item__last-message">
+                {{ lastMessage.text }}
+            </div>
+        </div>
+        <div class="chat-list-item__content-column">
+            <div class="chat-list-item__time">
+                {{ lastMessage.time }}
+            </div>
+            {{#if lastMessage.countUnreadMessages}}
+                <div class="chat-list-item__unread-message">
+                    {{ lastMessage.countUnreadMessages }}
+                </div>
+            {{/if}}
+        </div>
+    </div>
+</div>

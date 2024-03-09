@@ -1,3 +1,3 @@
-import './input.sass';
+import './input.sass'
 
-export { default as Input } from './input.hbs?raw';
+export { default as Input } from './input.hbs?raw'
