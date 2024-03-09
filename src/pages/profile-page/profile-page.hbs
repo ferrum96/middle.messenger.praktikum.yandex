@@ -1,0 +1,22 @@
+<div class="profile">
+    <div class="profile__panel-back">
+        {{> Button className="button_round" text="←" page="/chat" }}
+    </div>
+    <div class="profile__content">
+        {{> Avatar className="profile__avatar" src="../../icons/Union.svg"}}
+        <div class="profile__name">Name</div>
+        <div class="profile__data-list">
+            {{> EditTextField className="profile__edit-text-field edit-text-field_disabled" title="Почта" name="email" value="pochta@yandex.ru"}}
+            {{> EditTextField className="profile__edit-text-field edit-text-field_disabled" title="Логин" name="login" value="ivanivanov"}}
+            {{> EditTextField className="profile__edit-text-field edit-text-field_disabled" title="Имя" name="first_name" value="Иван"}}
+            {{> EditTextField className="profile__edit-text-field edit-text-field_disabled" title="Фамилия" name="second_name" value="Иванов"}}
+            {{> EditTextField className="profile__edit-text-field edit-text-field_disabled" title="Имя в чате" name="display_name" value="Иван"}}
+            {{> EditTextField className="profile__edit-text-field edit-text-field_disabled" title="Телефон" name="phone" value="+7 (909) 967 30 30"}}
+        </div>
+        <div class="profile__panel-control">
+            {{> Link text="Изменить данные" page="/profile" }}
+            {{> Link text="Изменить пароль" page="/profile" }}
+            {{> Link text="Выйти" page="/login" }}
+        </div>
+    </div>
+</div>
