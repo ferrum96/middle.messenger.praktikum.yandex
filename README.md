@@ -42,6 +42,12 @@ npm run start
 - [/sign_up](http://localhost:3000/sign_up)
 #### Страница "Чат" (Заглушка)
 - [/chat](http://localhost:3000/chat)
+#### Страница "Профиль"
+- [/profile](http://localhost:3000/profile)
+#### Страница "Изменить данные"
+- [/edit_profile](http://localhost:3000/edit_profile)
+#### Страница "Изменить пароль"
+- [/edit_password](http://localhost:3000/edit_password)
 #### Страница "Не найдено"
 - [/404](http://localhost:3000/404)
 #### Страница "Ошибка сервера"
