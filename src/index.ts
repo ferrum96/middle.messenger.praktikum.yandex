@@ -39,7 +39,8 @@ const pages: { [key: string]: Page } = {
 
 function navigate(page: string): void {
   const { source, args } = pages[page]
-  document.body.innerHTML = Handlebars.compile(source)(args)
+  const rootDiv = document.querySelector('#app') as Element
+  rootDiv.innerHTML = Handlebars.compile(source)(args)
 }
 
 function loadPage(path: string): void {
