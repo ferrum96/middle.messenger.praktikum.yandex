@@ -13,6 +13,8 @@ import {
 } from './pages'
 import chatPageData from './data/chat-page.json'
 import profilePageData from './data/profile-page.json'
+import editPasswordData from './data/edit-password.json'
+import editProfileData from './data/edit-profile.json'
 
 Object.entries(Components).forEach(([name, component]) => {
   Handlebars.registerPartial(
@@ -31,8 +33,8 @@ const pages: { [key: string]: Page } = {
   '/login': { source: LoginPage, args: [] },
   '/chat': { source: ChatPage, args: chatPageData },
   '/profile': { source: ProfilePage, args: profilePageData },
-  '/edit_profile': { source: EditProfilePage, args: profilePageData },
-  '/edit_password': { source: EditPasswordPage, args: [] },
+  '/edit_profile': { source: EditProfilePage, args: editProfileData },
+  '/edit_password': { source: EditPasswordPage, args: editPasswordData },
   '/404': { source: NotFoundPage, args: [] },
   '/500': { source: InternalServerErrorPage, args: [] }
 }
