@@ -1,7 +1,7 @@
 <div class="profile-data">
     {{#with profile}}
         {{> Avatar className="profile-data__avatar" src=avatar}}
-        <div class="profile-data__name">{{first_name}}</div>
+        <h2 class="profile-data__name">{{first_name}}</h2>
         <div class="profile-data__list">
             {{> EditTextField className="profile-data__edit-text-field" title="Почта" name="email" value=email}}
             {{> EditTextField className="profile-data__edit-text-field" title="Логин" name="login" value=login}}

@@ -2,19 +2,19 @@
     {{> Avatar className="chat-list-item__avatar"}}
     <div class="chat-list-item__content">
         <div class="chat-list-item__content-column">
-            <div class="chat-list-item__name">{{lastMessage.name}}</div>
-            <div class="chat-list-item__last-message">
+            <h3 class="chat-list-item__name">{{lastMessage.name}}</h3>
+            <h4 class="chat-list-item__last-message">
                 {{ lastMessage.text }}
-            </div>
+            </h4>
         </div>
         <div class="chat-list-item__content-column">
-            <div class="chat-list-item__time">
+            <h6 class="chat-list-item__time">
                 {{ lastMessage.time }}
-            </div>
+            </h6>
             {{#if lastMessage.countUnreadMessages}}
-                <div class="chat-list-item__unread-message">
+                <h5 class="chat-list-item__unread-message">
                     {{ lastMessage.countUnreadMessages }}
-                </div>
+                </h5>
             {{/if}}
         </div>
     </div>
