@@ -1,0 +1,55 @@
+@import "./src/sass/variables"
+
+.profile
+  position: relative
+  display: flex
+  justify-content: center
+  align-items: center
+
+  &__content
+    width: 51rem
+    padding-top: 6rem
+    align-self: center
+    display: flex
+    justify-content: center
+    align-items: center
+    flex-direction: column
+
+  &__avatar
+    width: 13rem
+    height: 13rem
+    margin-bottom: 2rem
+
+  &__form
+    width: 100%
+    display: flex
+    flex-direction: column
+    align-items: center
+
+  &__name
+    margin-bottom: 6rem
+
+  &__list
+    width: 100%
+    margin-bottom: 6rem
+
+  &__edit-text-field
+    padding: 1rem 0
+
+    &:last-child
+      border-bottom: none
+
+  &__panel-control
+    width: 100%
+
+    & > a
+      padding: 1rem 0
+      border-bottom: $divider-line-color
+      text-align: start
+
+    & a:last-child
+      color: $text-red
+      border-bottom: none
+
+  &__save-button
+    width: 28rem

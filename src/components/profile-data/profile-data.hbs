@@ -1,0 +1,60 @@
+<div class="profile-data">
+    {{#if profile-data}}
+        {{#with profile-data}}
+            <div class="profile__content">
+                {{> Avatar className="profile__avatar" src=avatar}}
+                <h2 class="profile__name">{{first_name}}</h2>
+                <div class="profile__list">
+                    {{> EditTextField className="profile__edit-text-field" title="Почта" name="email" value=email readonly=true}}
+                    {{> EditTextField className="profile__edit-text-field" title="Логин" name="login" value=login readonly=true}}
+                    {{> EditTextField className="profile__edit-text-field" title="Имя" name="first_name" value=first_name readonly=true}}
+                    {{> EditTextField className="profile__edit-text-field" title="Фамилия" name="second_name" value=second_name readonly=true}}
+                    {{> EditTextField className="profile__edit-text-field" title="Имя в чате" name="display_name" value=display_name readonly=true}}
+                    {{> EditTextField className="profile__edit-text-field" title="Телефон" name="phone" value=phone readonly=true}}
+                </div>
+                <div class="profile__panel-control">
+                    {{> Link text="Изменить данные" page="/edit_profile" }}
+                    {{> Link text="Изменить пароль" page="/edit_password" }}
+                    {{> Link text="Выйти" page="/login" }}
+                </div>
+            </div>
+        {{/with}}
+    {{/if}}
+
+    {{#if edit-profile-data}}
+        {{#with edit-profile-data}}
+            <div class="profile__content">
+                {{> Avatar className="profile__avatar" src=avatar}}
+                <h2 class="profile__name">{{first_name}}</h2>
+                <form class="profile__form">
+                    <div class="profile__list">
+                        {{> EditTextField className="profile__edit-text-field" title="Почта" name="email" value=email}}
+                        {{> EditTextField className="profile__edit-text-field" title="Логин" name="login" value=login}}
+                        {{> EditTextField className="profile__edit-text-field" title="Имя" name="first_name" value=first_name}}
+                        {{> EditTextField className="profile__edit-text-field" title="Фамилия" name="second_name" value=second_name}}
+                        {{> EditTextField className="profile__edit-text-field" title="Имя в чате" name="display_name" value=display_name}}
+                        {{> EditTextField className="profile__edit-text-field" title="Телефон" name="phone" value=phone}}
+                    </div>
+                    {{> Button className="profile__save-button" text="Сохранить" page="/profile" }}
+                </form>
+            </div>
+        {{/with}}
+    {{/if}}
+
+    {{#if profile-credentials}}
+        {{#with profile-credentials}}
+            <div class="profile__content">
+                {{> Avatar className="profile__avatar" src=avatar}}
+                <form class="profile__form">
+                    <h2 class="profile__name">{{first_name}} </h2>
+                    <div class="profile__list">
+                        {{> EditTextField className="profile__edit-text-field" title="Старый пароль" name="oldPassword" value="12345678" type="password"}}
+                        {{> EditTextField className="profile__edit-text-field" title="Новый пароль" name="newPassword" value="1qaz2wsx3edc" type="password"}}
+                        {{> EditTextField className="profile__edit-text-field" title="Повторите новый пароль" name="newPassword" value="1qaz2wsx3edc" type="password"}}
+                    </div>
+                    {{> Button className="profile__save-button" text="Сохранить" page="/profile" }}
+                </form>
+            </div>
+        {{/with}}
+    {{/if}}
+</div>

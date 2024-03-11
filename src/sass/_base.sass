@@ -1,0 +1,46 @@
+@import "variables"
+
+*, ::after, ::before
+  margin: 0
+  padding: 0
+
+html
+  font-size: 62.5%
+
+body
+  font: $font-medium-regular
+  font-weight: 400
+  background-color: $text-bgcolor
+  color: $text-color
+
+a
+  color: $link-color
+  text-decoration: none
+
+  &:hover
+    text-decoration: underline
+
+button
+  font-size: inherit
+  line-height: inherit
+
+h1
+  font: $font-large-semibold
+
+h2
+  font: $font-title-regular
+
+h3
+  font: $font-medium-semibold
+
+h4
+  font: $font-small-regular
+
+h5
+  font: $font-micro-regular
+
+h6
+  font: $font-nano-regular
+
+p
+  font: $font-medium-regular

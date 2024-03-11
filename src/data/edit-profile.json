@@ -1,0 +1,13 @@
+{
+  "edit-profile-data" : {
+    "avatar": "../../icons/Union.svg",
+    "email": "ivanivanov@yndex.ru",
+    "login": "ivanivanov",
+    "first_name": "Иван",
+    "second_name": "Иванов",
+    "display_name": "Иван",
+    "phone": "+7 (909) 967 30 30",
+    "oldPassword": "1234345",
+    "newPassword": "1qaz2wsx3edc"
+  }
+}
