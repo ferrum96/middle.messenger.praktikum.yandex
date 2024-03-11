@@ -29,12 +29,12 @@ interface Page {
 }
 
 const pages: { [key: string]: Page } = {
-  '/sign_up': { source: SignUpPage, args: [] },
+  '/sign-up': { source: SignUpPage, args: [] },
   '/login': { source: LoginPage, args: [] },
-  '/chat': { source: ChatPage, args: chatPageData },
+  '/chats': { source: ChatPage, args: chatPageData },
   '/profile': { source: ProfilePage, args: profilePageData },
-  '/edit_profile': { source: EditProfilePage, args: editProfileData },
-  '/edit_password': { source: EditPasswordPage, args: editPasswordData },
+  '/edit-profile': { source: EditProfilePage, args: editProfileData },
+  '/edit-password': { source: EditPasswordPage, args: editPasswordData },
   '/404': { source: NotFoundPage, args: [] },
   '/500': { source: InternalServerErrorPage, args: [] }
 }
