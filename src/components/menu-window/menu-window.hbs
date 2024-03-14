@@ -1,0 +1,9 @@
+<div class="menu-window">
+    {{#each settings}}
+        {{#each (lookup this ../setting)}}
+            {{> MenuItem }}
+        {{/each}}
+    {{/each}}
+</div>
+
+
