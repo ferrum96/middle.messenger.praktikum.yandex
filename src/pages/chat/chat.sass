@@ -2,11 +2,81 @@
 
 .chat
   display: flex
+  height: 100vh
+  overflow: hidden
 
 .chat-window
   cursor: default
-  color: $text-light-color
+  padding: 1rem 2rem
   display: flex
   flex: 1
-  align-items: center
-  justify-content: center
+  flex-direction: column
+
+  &__header
+    display: flex
+    justify-content: space-between
+    align-items: center
+    padding-bottom: 1rem
+    border-bottom: $divider-line-color
+
+  &__avatar-group
+    display: flex
+    align-items: center
+    gap: 1rem
+
+  &__avatar
+    width: 3.4rem
+    height: 3.4rem
+
+  &__custom-button
+    width: 2.5rem
+    height: 2.5rem
+    border-radius: 50%
+    background: url("../../icons/Kebab-menu.svg") center center no-repeat
+    text-align: end
+
+    &:hover
+      background-color: $menu-button-bgcolor
+
+  &__content
+    flex: 1
+    height: 95%
+    overflow: auto
+    scrollbar-width: thin
+    padding: 1rem .5rem
+
+
+  &__footer
+    display: flex
+    align-items: center
+    gap: 1rem
+    padding-top: 1rem
+    border-top: $divider-line-color
+
+    & > button
+      width: 2.8rem
+      height: 2.8rem
+
+  &__send-message
+    flex: 1
+    background-color: $gray-light-color
+    height: 1.5rem
+    padding: 1rem
+    border-radius: 3rem
+
+    & > input
+      padding-left: 1rem
+      font-weight: 500
+      background-color: $gray-light-color
+      text-align: start
+      color: $title-color
+
+  &__upload-button
+    width: 3.2rem
+    height: 3.2rem
+    background: url("../../icons/Upload-menu.jpg") center center no-repeat
+
+    &:hover
+      color: #FF0000
+      background-color: #FF0000
+

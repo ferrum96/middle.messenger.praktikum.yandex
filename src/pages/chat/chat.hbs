@@ -1,6 +1,38 @@
 <div class="chat">
     {{> ChatList}}
-    <h4 class="chat-window">
-        Выберите чат чтобы отправить сообщение
-    </h4>
+    <!--        <h4 class="chat-window__caption">-->
+    <!--            Выберите чат, чтобы отправить сообщение-->
+    <!--        </h4>-->
+    <div class="chat-window">
+        <div class="chat-window__header">
+            <div class="chat-window__avatar-group">
+                {{> Avatar className="chat-window__avatar" }}
+                <h3 class="chat-window__username">Иван</h3>
+            </div>
+            <div class="chat-window__custom-button"></div>
+        </div>
+        <div class="chat-window__content">
+            {{> MenuWindow setting="customSetting"}}
+            {{> MenuWindow setting="fileSetting"}}
+            {{> MenuWindow setting="fileSetting"}}
+            {{> MenuWindow setting="fileSetting"}}
+            {{> MenuWindow setting="fileSetting"}}
+            {{> MenuWindow setting="fileSetting"}}
+            {{> MenuWindow setting="fileSetting"}}
+            {{> MenuWindow setting="fileSetting"}}
+            {{> MenuWindow setting="fileSetting"}}
+            {{> MenuWindow setting="fileSetting"}}
+            {{> MenuWindow setting="fileSetting"}}
+            {{> MenuWindow setting="fileSetting"}}
+            {{> MenuWindow setting="fileSetting"}}
+            {{> MenuWindow setting="fileSetting"}}
+            {{> MenuWindow setting="fileSetting"}}
+
+        </div>
+        <div class="chat-window__footer">
+            <div class="chat-window__upload-button"></div>
+            {{> Input className="chat-window__send-message" name="login" placeholder="Сообщение"}}
+            {{> Button className="button_round" text="→" }}
+        </div>
+    </div>
 </div>

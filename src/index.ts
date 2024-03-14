@@ -23,20 +23,20 @@ Object.entries(Components).forEach(([name, component]) => {
   )
 })
 
-interface Page {
+type Page = {
   source: string
-  args: any
+  args?: object
 }
 
 const pages: { [key: string]: Page } = {
-  '/sign-up': { source: SignUpPage, args: [] },
-  '/login': { source: LoginPage, args: [] },
+  '/sign-up': { source: SignUpPage },
+  '/login': { source: LoginPage },
   '/chats': { source: ChatPage, args: chatPageData },
   '/profile': { source: ProfilePage, args: profilePageData },
   '/edit-profile': { source: EditProfilePage, args: editProfileData },
   '/edit-password': { source: EditPasswordPage, args: editPasswordData },
-  '/404': { source: NotFoundPage, args: [] },
-  '/500': { source: InternalServerErrorPage, args: [] }
+  '/404': { source: NotFoundPage },
+  '/500': { source: InternalServerErrorPage }
 }
 
 function navigate(page: string): void {
@@ -73,3 +73,27 @@ document.addEventListener('click', (e: MouseEvent) => {
     }
   }
 })
+
+// type Nullable<T> = T | null
+//
+// const text: Nullable<HTMLDivElement> = document.getElementById(
+//   'text'
+// ) as HTMLDivElement
+// const input: Nullable<HTMLInputElement> = document.getElementById(
+//   'input'
+// ) as HTMLInputElement
+//
+// if (!text || !input) {
+//   throw new Error('нет полей')
+// }
+//
+// const data = {
+//   title: ''
+// }
+//
+// Object.defineProperty(data, 'title', {})
+//
+// input.addEventListener('keyup', (event: KeyboardEvent) => {
+//   data.title = (event.target as HTMLInputElement).value
+//   text.innerText = data.title
+// })
