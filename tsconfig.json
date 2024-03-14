@@ -11,14 +11,20 @@
 		"skipLibCheck": true,
 		"outDir": "dist",
 		"declaration": false,
+		"strictNullChecks": true,
+		"sourceMap": true,
+
+		/* Bundler mode */
+		"moduleResolution": "bundler",
+		"allowImportingTsExtensions": true,
+		"resolveJsonModule": true,
+		"isolatedModules": true,
+		"noEmit": true,
 
 		/* Linting */
 		"strict": true,
 		"noUnusedLocals": true,
 		"noUnusedParameters": true,
-		"noFallthroughCasesInSwitch": true,
-		"strictNullChecks": true,
-		"sourceMap": true,
-		"noImplicitAny": true,
+		"noFallthroughCasesInSwitch": true
 	},
 }
