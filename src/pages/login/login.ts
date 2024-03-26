@@ -6,7 +6,7 @@ import InputField from '../../components/input-field/input-field';
 import Button from '../../components/button/button';
 import Link from '../../components/link/link';
 import Input from '../../components/input/input';
-import { ErrorText } from '../../utils/validateField.ts';
+import { ErrorText } from '../../utils/ErrorText.ts';
 
 interface LoginPageProps {
   pageTitle: PageTitle;

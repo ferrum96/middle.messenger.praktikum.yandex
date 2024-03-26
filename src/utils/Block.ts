@@ -81,8 +81,6 @@ export default abstract class Block<Props extends Record<string, any> = {}> {
         child.dispatchComponentDidMount();
       }
     });
-
-    // console.log('_componentDidMount()');
   }
 
   componentDidMount(): void {}

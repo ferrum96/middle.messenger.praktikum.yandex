@@ -3,7 +3,7 @@ import Input from '../input/input';
 import Block from '../../utils/Block';
 import './edit-text-field.sass';
 import editTextField from './edit-text-field.hbs?raw';
-import { ErrorText } from '../../utils/validateField.ts';
+import { ErrorText } from '../../utils/ValidatePattern.ts';
 
 interface EditTextFieldProps {
   className?: string;

@@ -1,7 +1,7 @@
 import './input.sass';
 import input from './input.hbs?raw';
 import Block from '../../utils/Block';
-import { ValidatePatterns } from '../../utils/validateField.ts';
+import { ValidatePattern } from '../../utils/ValidatePattern.ts';
 
 interface InputProps {
   className?: string;
@@ -30,10 +30,7 @@ export default class Input extends Block<InputProps> {
     });
   }
 
-  private _validate(
-    value: string | undefined,
-    pattern: ValidatePatterns
-  ): void {
+  private _validate(value: string | undefined, pattern: ValidatePattern): void {
     const parentElement: HTMLElement | null = this.getContent().parentElement;
     const isValid: boolean = new RegExp(pattern).test(<string>value);
 
@@ -51,31 +48,31 @@ export default class Input extends Block<InputProps> {
 
     switch (this.props.name) {
       case 'email':
-        this._validate(value, ValidatePatterns.EmailPattern);
+        this._validate(value, ValidatePattern.EmailPattern);
         break;
       case 'first_name':
-        this._validate(value, ValidatePatterns.NamePattern);
+        this._validate(value, ValidatePattern.NamePattern);
         break;
       case 'second_name':
-        this._validate(value, ValidatePatterns.NamePattern);
+        this._validate(value, ValidatePattern.NamePattern);
         break;
       case 'login':
-        this._validate(value, ValidatePatterns.LoginPattern);
+        this._validate(value, ValidatePattern.LoginPattern);
         break;
       case 'password':
-        this._validate(value, ValidatePatterns.PasswordPattern);
+        this._validate(value, ValidatePattern.PasswordPattern);
         break;
       case 'oldPassword':
-        this._validate(value, ValidatePatterns.PasswordPattern);
+        this._validate(value, ValidatePattern.PasswordPattern);
         break;
       case 'newPassword':
-        this._validate(value, ValidatePatterns.PasswordPattern);
+        this._validate(value, ValidatePattern.PasswordPattern);
         break;
       case 'repeatNewPassword':
-        this._validate(value, ValidatePatterns.PasswordPattern);
+        this._validate(value, ValidatePattern.PasswordPattern);
         break;
       case 'phone':
-        this._validate(value, ValidatePatterns.PhonePattern);
+        this._validate(value, ValidatePattern.PhonePattern);
         break;
     }
   }
