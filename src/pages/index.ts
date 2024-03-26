@@ -1,8 +1,0 @@
-export { LoginPage } from './login/login'
-export { SignUpPage } from './sign-up/sign-up'
-export { ChatPage } from './chat/chat'
-export { NotFoundPage } from './404/404'
-export { InternalServerErrorPage } from './500/500'
-export { ProfilePage } from './profile/profile'
-export { EditProfilePage } from './edit-profile/edit-profile'
-export { EditPasswordPage } from './edit-password/edit-password'

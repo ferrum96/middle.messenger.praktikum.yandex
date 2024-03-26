@@ -5,10 +5,17 @@
   justify-content: space-between
   align-items: center
   border-bottom: $divider-line-color
+  position: relative
+  margin-bottom: 1rem
+  transition: all .3s ease
 
   &__title
     color: $title-color
 
-  &__element > input
+  &_invalid
+    border-bottom: 1px solid $text-red
+
+  & > input
     text-align: end
     color: $text-light-color
+    width: 20rem

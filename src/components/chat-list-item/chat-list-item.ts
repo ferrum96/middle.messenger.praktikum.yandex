@@ -1,3 +1,25 @@
-import './chat-list-item.sass'
+import './chat-list-item.sass';
+import chatListItem from './chat-list-item.hbs?raw';
+import Block from '../../utils/Block';
+import Avatar from '../avatar/avatar';
 
-export { default as ChatListItem } from './chat-list-item.hbs?raw'
+interface ChatListItemProps {
+  avatar: Avatar;
+  name: string;
+  text: string;
+  time: string;
+  countUnreadMessages?: number;
+  selected?: boolean;
+}
+
+export default class ChatListItem extends Block<ChatListItemProps> {
+  constructor(props: ChatListItemProps) {
+    super({
+      ...props
+    });
+  }
+
+  render() {
+    return chatListItem;
+  }
+}

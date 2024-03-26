@@ -1,0 +1,82 @@
+@import "src/sass/variables"
+
+.chats
+  display: flex
+  height: 100vh
+  overflow: hidden
+
+.chats-window
+  cursor: default
+  display: flex
+  flex: 1
+  flex-direction: column
+
+  &__caption
+    display: flex
+    align-items: center
+    justify-content: center
+    flex: 1
+    color: $text-light-color
+
+  &__header
+    display: flex
+    justify-content: space-between
+    align-items: center
+    border-bottom: $divider-line-color
+    padding: 1rem 2rem
+
+  &__avatar-group
+    display: flex
+    align-items: center
+    gap: 1rem
+
+  &__avatar
+    width: 3.4rem
+    height: 3.4rem
+
+  &__custom-button
+    width: 3.5rem
+    height: 3.5rem
+    border-radius: 50%
+    background: url("../../icons/Kebab-menu.svg") center center no-repeat
+    text-align: end
+
+    &:hover
+      background-color: $menu-button-bgcolor
+
+  &__content
+    flex: 1
+    height: 95%
+    overflow: auto
+    scrollbar-width: thin
+    padding: 0 2rem
+
+
+  &__footer
+    display: flex
+    align-items: center
+    gap: 1rem
+    padding: 1rem 2rem
+    border-top: $divider-line-color
+
+    & > button
+      width: 2.8rem
+      height: 2.8rem
+
+  &__send-message
+    flex: 1
+    background-color: $gray-light-color
+    height: 3.2rem
+    padding: 1rem 1rem 1rem 2rem
+    border-radius: 3rem
+    font-weight: 500
+    text-align: start
+    color: $title-color
+
+  &__upload-button
+    width: 3.2rem
+    height: 3.2rem
+    background: url("../../icons/Upload-menu.jpg") center center no-repeat
+
+    &:hover
+      background-color: #FF0000

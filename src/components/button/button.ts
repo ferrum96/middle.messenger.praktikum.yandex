@@ -1,3 +1,27 @@
-import './button.sass'
+import Block from '../../utils/Block';
+import './button.sass';
+import button from './button.hbs?raw';
+import './button.sass';
+import { EventHandlers } from '../../utils/EventHandlers.ts';
 
-export { default as Button } from './button.hbs?raw'
+interface ButtonProps {
+  text: string;
+  className?: string;
+  page?: string;
+  events?: {};
+}
+
+export default class Button extends Block<ButtonProps> {
+  constructor(props: ButtonProps) {
+    super({
+      ...props,
+      events: {
+        click: (event: Event) => EventHandlers.onClickRoute(event)
+      }
+    });
+  }
+
+  render() {
+    return button;
+  }
+}

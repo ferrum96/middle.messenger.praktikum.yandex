@@ -1,13 +1,13 @@
 <div class="center-container">
     <form class="login">
         <div class="login__content">
-            {{> PageTitle className="login__title" title="Вход" }}
-            {{> InputField className="login__input" title="Логин" name="login" value="ivanivanov"}}
-            {{> InputField className="login__input" title="Пароль" name="password" type="password" value="1234567890"}}
+            {{{ pageTitle }}}
+            {{{ loginInputField }}}
+            {{{ passwordInputField }}}
         </div>
         <div class="login__footer">
-            {{> Button text="Авторизоваться" page="/chat" }}
-            {{> Link text="Нет аккаунта?" page="/sign_up" }}
+            {{{ loginButton }}}
+            {{{ registerLink }}}
         </div>
     </form>
 </div>
