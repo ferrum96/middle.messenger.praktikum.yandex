@@ -1,7 +1,5 @@
-<div class="chat__list">
-    {{> Link className="chat__profile-link" text="Профиль >" page="/profile"}}
-    {{> Input className="chat__search-items" name="login" placeholder="Поиск"}}
-    {{#each messages}}
-        {{> ChatListItem}}
-    {{/each}}
+<div class="chat-list">
+    {{{profileLink}}}
+    {{{searchInput}}}
+    {{{chatListItem}}}
 </div>

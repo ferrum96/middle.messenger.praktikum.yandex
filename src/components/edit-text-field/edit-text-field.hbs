@@ -1,4 +1,5 @@
-<div class="edit-text-field{{#if className}} {{ className }} {{/if}}">
+<div class="edit-text-field{{#if className}} {{ className }}{{/if}}">
     <h3 class="edit-text-field__title">{{ title }}</h3>
-    {{> Input className="edit-text-field__element" type=type title=title name=name}}
+    {{{ input }}}
+    {{#if error}}<h5 class="error-text">{{error}}</h5>{{/if}}
 </div>
