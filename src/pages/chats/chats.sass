@@ -1,16 +1,23 @@
 @import "./src/sass/variables"
 
-.chat
+.chats
   display: flex
   height: 100vh
   overflow: hidden
 
-.chat-window
+.chats-window
   cursor: default
   padding: 1rem 2rem
   display: flex
   flex: 1
   flex-direction: column
+
+  &__caption
+    display: flex
+    align-items: center
+    justify-content: center
+    flex: 1
+    color: $text-light-color
 
   &__header
     display: flex
@@ -60,16 +67,12 @@
   &__send-message
     flex: 1
     background-color: $gray-light-color
-    height: 1.5rem
-    padding: 1rem
+    height: 3.2rem
+    padding: 1rem 1rem 1rem 2rem
     border-radius: 3rem
-
-    & > input
-      padding-left: 1rem
-      font-weight: 500
-      background-color: $gray-light-color
-      text-align: start
-      color: $title-color
+    font-weight: 500
+    text-align: start
+    color: $title-color
 
   &__upload-button
     width: 3.2rem
