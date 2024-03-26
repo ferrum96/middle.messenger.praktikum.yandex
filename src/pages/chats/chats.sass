@@ -7,7 +7,6 @@
 
 .chats-window
   cursor: default
-  padding: 1rem 2rem
   display: flex
   flex: 1
   flex-direction: column
@@ -23,8 +22,8 @@
     display: flex
     justify-content: space-between
     align-items: center
-    padding-bottom: 1rem
     border-bottom: $divider-line-color
+    padding: 1rem 2rem
 
   &__avatar-group
     display: flex
@@ -36,8 +35,8 @@
     height: 3.4rem
 
   &__custom-button
-    width: 2.5rem
-    height: 2.5rem
+    width: 3.5rem
+    height: 3.5rem
     border-radius: 50%
     background: url("../../icons/Kebab-menu.svg") center center no-repeat
     text-align: end
@@ -50,14 +49,14 @@
     height: 95%
     overflow: auto
     scrollbar-width: thin
-    padding: 1rem .5rem
+    padding: 0 2rem
 
 
   &__footer
     display: flex
     align-items: center
     gap: 1rem
-    padding-top: 1rem
+    padding: 1rem 2rem
     border-top: $divider-line-color
 
     & > button
@@ -80,6 +79,4 @@
     background: url("../../icons/Upload-menu.jpg") center center no-repeat
 
     &:hover
-      color: #FF0000
       background-color: #FF0000
-
