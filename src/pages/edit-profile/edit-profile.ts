@@ -6,7 +6,7 @@ import EditTextField from '../../components/edit-text-field/edit-text-field';
 import Input from '../../components/input/input';
 import Button from '../../components/button/button';
 import ProfileComponent from '../../components/profile-component/profile-component';
-import { ErrorText } from '../../utils/validateField.ts';
+import { ErrorText } from '../../utils/ErrorText.ts';
 
 const avatarProps = {
     className: 'profile-form__avatar',

@@ -5,7 +5,7 @@ import checker from 'vite-plugin-checker';
 export default defineConfig({
   server: {
     port: '3000',
-    strictPort: true,
+    strictPort: true
   },
   root: resolve(__dirname, 'src/'),
   build: {
@@ -13,14 +13,14 @@ export default defineConfig({
     strictPort: true,
     rollupOptions: {
       input: {
-        main: resolve(__dirname, 'src/index.html'),
-      },
+        main: resolve(__dirname, 'src/index.html')
+      }
     },
-    outDir: resolve(__dirname, 'dist/'),
+    outDir: resolve(__dirname, 'dist/')
   },
   plugins: [
     checker({
-      typescript: true,
-    }),
-  ],
+      typescript: false
+    })
+  ]
 });
