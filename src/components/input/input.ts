@@ -30,17 +30,24 @@ export default class Input extends Block<InputProps> {
     });
   }
 
-  public getValue(): string {
-    return <string>this.props.value;
+  public get value(): string {
+    if (!this.props.value) {
+      return '';
+    }
+    return this.props.value;
   }
 
-  public getName(): string {
+  public get name(): string {
     return this.props.name;
   }
 
-  private _validate(value: string | undefined, pattern: ValidatePattern): void {
+  private _validate(value: string | undefined, pattern: RegExp | string): void {
     const parentElement: HTMLElement | null = this.getContent().parentElement;
-    const isValid: boolean = new RegExp(pattern).test(<string>value);
+
+    const isValid: boolean =
+      typeof pattern === 'object'
+        ? new RegExp(pattern).test(<string>value)
+        : pattern === value;
 
     if (!isValid) {
       parentElement?.classList.add(`${parentElement?.classList[1]}_invalid`);
@@ -56,7 +63,13 @@ export default class Input extends Block<InputProps> {
   }
 
   private _handleBlur(): void {
-    const value = this.getValue()?.trim();
+    const value = this.value?.trim();
+    const passwordInput = document.querySelector(
+      'input[name="password"], input[name="new_password"]'
+    );
+    const passwordValue = passwordInput
+      ? (passwordInput as HTMLInputElement).value
+      : '';
 
     switch (this.props.name) {
       case 'email':
@@ -69,12 +82,16 @@ export default class Input extends Block<InputProps> {
         this._validate(value, ValidatePattern.NamePattern);
         break;
       case 'login':
+      case 'display_name':
         this._validate(value, ValidatePattern.LoginPattern);
         break;
       case 'password':
-      case 'oldPassword':
-      case 'newPassword':
+      case 'old_password':
+      case 'new_password':
         this._validate(value, ValidatePattern.PasswordPattern);
+        break;
+      case 'repeat_password':
+        this._validate(value, passwordValue);
         break;
       case 'phone':
         this._validate(value, ValidatePattern.PhonePattern);

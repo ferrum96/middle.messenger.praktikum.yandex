@@ -17,17 +17,8 @@ const avatar = new Avatar({
       className: 'profile-form__input-field',
       title: 'Старый пароль',
       input: new Input({
-        name: 'oldPassword',
-        type: 'password',
-        placeholder: 'Введите старый пароль'
-      }),
-      error: ErrorText.PasswordErrorText
-    }),
-    new InputField({
-      className: 'profile-form__input-field',
-      title: 'Старый пароль',
-      input: new Input({
-        name: 'oldPassword',
+        name: 'old_password',
+        value: '12345678Q',
         type: 'password',
         placeholder: 'Введите старый пароль'
       }),
@@ -37,11 +28,23 @@ const avatar = new Avatar({
       className: 'profile-form__input-field',
       title: 'Новый пароль',
       input: new Input({
-        name: 'newPassword',
+        name: 'new_password',
+        value: '12345678Qq',
         type: 'password',
         placeholder: 'Введите новый пароль'
       }),
       error: ErrorText.PasswordErrorText
+    }),
+    new InputField({
+      className: 'profile-form__input-field',
+      title: 'Повторите новый пароль',
+      input: new Input({
+        name: 'repeat_password',
+        value: '12345678Qq',
+        type: 'password',
+        placeholder: 'Повторите новый пароль'
+      }),
+      error: ErrorText.RepeatPasswordErrorText
     })
   ],
   saveProfileButton = new Button({

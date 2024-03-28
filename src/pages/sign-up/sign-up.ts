@@ -64,8 +64,8 @@ const formTitle = 'Регистрация',
       input: new Input({
         type: 'text',
         name: 'phone',
-        value: '+7(123)-456-78-90',
-        placeholder: '+7(###)-##-##'
+        value: '+71234567890',
+        placeholder: '+71234567890'
       }),
       error: ErrorText.PhoneErrorText
     }),
@@ -89,7 +89,7 @@ const formTitle = 'Регистрация',
         value: '1234567890',
         placeholder: 'Повторите пароль'
       }),
-      error: ErrorText.PasswordErrorText
+      error: ErrorText.RepeatPasswordErrorText
     })
   ],
   submitButton = new Button({
