@@ -17,7 +17,7 @@ const profileLink = new Link({
     page: '/profile'
   }),
   searchInput = new Input({
-    className: 'chat-list__search-items',
+    className: 'chat-list__search',
     name: 'search',
     placeholder: 'Поиск'
   });
