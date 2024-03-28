@@ -4,20 +4,20 @@ import Block from '../../utils/Block';
 import InputField from '../../components/input-field/input-field';
 import Button from '../../components/button/button';
 import Link from '../../components/link/link';
-import Input from '../../components/input/input';
 import { ErrorText } from '../../utils/ErrorText.ts';
 import Form from '../../components/form/form.ts';
+import Input from '../../components/input/input.ts';
 
 interface SignUpPageProps {
   signUpForm: Form;
 }
 
-const inputFieldsProps = [
+const formTitle = 'Регистрация',
+  inputFields = [
     new InputField({
-      className: 'form__input',
+      className: 'form__input-field',
       title: 'Почта',
       input: new Input({
-        className: 'input-field__element',
         type: 'text',
         name: 'email',
         value: 'pochta@yandex.ru',
@@ -26,10 +26,9 @@ const inputFieldsProps = [
       error: ErrorText.EmailErrorText
     }),
     new InputField({
-      className: 'form__input',
+      className: 'form__input-field',
       title: 'Логин',
       input: new Input({
-        className: 'input-field__element',
         type: 'text',
         name: 'login',
         value: 'ivanivanov',
@@ -38,10 +37,9 @@ const inputFieldsProps = [
       error: ErrorText.LoginErrorText
     }),
     new InputField({
-      className: 'form__input',
+      className: 'form__input-field',
       title: 'Имя',
       input: new Input({
-        className: 'input-field__element',
         type: 'text',
         name: 'first_name',
         value: 'Иван',
@@ -50,10 +48,9 @@ const inputFieldsProps = [
       error: ErrorText.NameErrorText
     }),
     new InputField({
-      className: 'form__input',
+      className: 'form__input-field',
       title: 'Фамилия',
       input: new Input({
-        className: 'input-field__element',
         type: 'text',
         name: 'second_name',
         value: 'Иванов',
@@ -62,10 +59,9 @@ const inputFieldsProps = [
       error: ErrorText.NameErrorText
     }),
     new InputField({
-      className: 'form__input',
+      className: 'form__input-field',
       title: 'Телефон',
       input: new Input({
-        className: 'input-field__element',
         type: 'text',
         name: 'phone',
         value: '+7(123)-456-78-90',
@@ -74,10 +70,9 @@ const inputFieldsProps = [
       error: ErrorText.PhoneErrorText
     }),
     new InputField({
-      className: 'form__input',
+      className: 'form__input-field',
       title: 'Пароль',
       input: new Input({
-        className: 'input-field__element',
         type: 'password',
         name: 'password',
         value: '1234567890',
@@ -86,10 +81,9 @@ const inputFieldsProps = [
       error: ErrorText.PasswordErrorText
     }),
     new InputField({
-      className: 'form__input',
+      className: 'form__input-field',
       title: 'Пароль (ещё раз)',
       input: new Input({
-        className: 'input-field__element',
         type: 'password',
         name: 'repeat_password',
         value: '1234567890',
@@ -98,23 +92,23 @@ const inputFieldsProps = [
       error: ErrorText.PasswordErrorText
     })
   ],
-  registerButtonProps = {
+  submitButton = new Button({
     text: 'Зарегистрироваться',
     page: '/login'
-  },
-  loginLinkProps = {
+  }),
+  alternativeLink = new Link({
     text: 'Войти',
     page: '/chats'
-  };
+  });
 
 export default class SignUpPage extends Block<SignUpPageProps> {
   constructor() {
     super({
       signUpForm: new Form({
-        formTitle: 'Регистрация',
-        inputFields: inputFieldsProps,
-        submitButton: new Button(registerButtonProps),
-        alternativeLink: new Link(loginLinkProps)
+        formTitle,
+        inputFields,
+        submitButton,
+        alternativeLink
       })
     });
   }

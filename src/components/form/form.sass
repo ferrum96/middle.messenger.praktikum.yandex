@@ -13,8 +13,20 @@
     margin-bottom: 4rem
     text-align: center
 
-  &__input
-    margin-bottom: 2.4rem
+  &__input-field
+    margin-bottom: 2.8rem
+    border-bottom: 1px solid $link-color
+
+    & > label
+      font: $font-nano-regular
+      color: $text-light-color
+
+    & > input
+      height: 3.5rem
+      padding-left: .5rem
+
+    &_invalid
+      border-bottom: 1px solid $text-red
 
   &__footer > button
     margin-bottom: 1.4rem

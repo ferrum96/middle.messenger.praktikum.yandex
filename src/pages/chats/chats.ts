@@ -169,6 +169,7 @@ const chatListProps = {
     alt: ''
   },
   sendMessageInputProps = {
+    name: 'sendMessage',
     className: 'chats-window__send-message',
     placeholder: 'Сообщение'
   },

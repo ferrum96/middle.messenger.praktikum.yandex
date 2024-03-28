@@ -1,8 +1,8 @@
 import './input-field.sass';
 import Block from '../../utils/Block';
 import inputField from './input-field.hbs?raw';
-import Input from '../input/input';
 import './input-field.sass';
+import Input from '../input/input.ts';
 
 interface InputFieldProps {
   className?: string;
@@ -21,9 +21,5 @@ export default class InputField extends Block<InputFieldProps> {
 
   render() {
     return inputField;
-  }
-
-  acs() {
-    this.props.input.setProps({ error: this.props.error });
   }
 }

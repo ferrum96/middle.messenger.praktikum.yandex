@@ -4,17 +4,18 @@ import login from './login.hbs?raw';
 import InputField from '../../components/input-field/input-field';
 import Button from '../../components/button/button';
 import Link from '../../components/link/link';
-import Input from '../../components/input/input';
 import { ErrorText } from '../../utils/ErrorText.ts';
 import Form from '../../components/form/form.ts';
+import Input from '../../components/input/input.ts';
 
 interface LoginPageProps {
   loginForm: Form;
 }
 
-const inputFieldsProps = [
+const formTitle = 'Вход',
+  inputFields = [
     new InputField({
-      className: 'form__input',
+      className: 'form__input-field',
       title: 'Логин',
       input: new Input({
         type: 'text',
@@ -24,7 +25,7 @@ const inputFieldsProps = [
       error: ErrorText.LoginErrorText
     }),
     new InputField({
-      className: 'form__input',
+      className: 'form__input-field',
       title: 'Пароль',
       input: new Input({
         type: 'password',
@@ -34,23 +35,23 @@ const inputFieldsProps = [
       error: ErrorText.PasswordErrorText
     })
   ],
-  authButtonProps = {
+  submitButton = new Button({
     text: 'Авторизация',
     page: '/chats'
-  },
-  registerLinkProps = {
+  }),
+  alternativeLink = new Link({
     text: 'Нет аккаунта?',
     page: '/sign-up'
-  };
+  });
 
 export default class LoginPage extends Block<LoginPageProps> {
   constructor() {
     super({
       loginForm: new Form({
-        formTitle: 'Вход',
-        inputFields: inputFieldsProps,
-        submitButton: new Button(authButtonProps),
-        alternativeLink: new Link(registerLinkProps)
+        formTitle,
+        inputFields,
+        submitButton,
+        alternativeLink
       })
     });
   }

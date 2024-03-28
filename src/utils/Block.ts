@@ -118,7 +118,7 @@ export default abstract class Block<Props extends Record<string, any> = {}> {
     };
     Object.keys(events).forEach(eventName => {
       if (this._element) {
-        this._element?.removeEventListener(eventName, events[eventName]);
+        this._element.removeEventListener(eventName, events[eventName]);
       }
     });
   }

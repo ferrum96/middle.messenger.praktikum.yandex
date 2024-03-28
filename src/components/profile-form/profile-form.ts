@@ -3,21 +3,13 @@ import profileForm from './profile-form.hbs?raw';
 import Button from '../button/button';
 import Block from '../../utils/Block';
 import Avatar from '../avatar/avatar';
-import EditTextField from '../edit-text-field/edit-text-field';
 import Link from '../link/link';
+import InputField from '../input-field/input-field.ts';
 
 interface ProfileFormProps {
   avatar: Avatar;
   userName?: string;
-  emailEditTextField?: EditTextField;
-  loginEditTextField?: EditTextField;
-  firstNameEditTextField?: EditTextField;
-  secondNameEditTextField?: EditTextField;
-  displayNameEditTextField?: EditTextField;
-  phoneEditTextField?: EditTextField;
-  oldPasswordTextField?: EditTextField;
-  newPasswordEditTextField?: EditTextField;
-  repeatNewPasswordEditTextField?: EditTextField;
+  inputFields: InputField[];
   editProfileLink?: Link;
   editPasswordLink?: Link;
   logoutLink?: Link;
