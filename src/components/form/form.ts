@@ -4,6 +4,7 @@ import Block from '../../utils/Block';
 import Button from '../button/button.ts';
 import InputField from '../input-field/input-field.ts';
 import Link from '../link/link.ts';
+import { EventHandlers } from '../../utils/EventHandlers.ts';
 
 interface FormProps {
   formTitle: string;
@@ -18,23 +19,13 @@ export default class Form extends Block<FormProps> {
     super({
       ...props,
       events: {
-        // click: (event: Event) => this.handleSubmit(event)
+        submit: (event: Event) => {
+          EventHandlers.validateForm(this);
+          EventHandlers.sendFormData(event, this);
+        }
       }
     });
   }
-
-  // handleSubmit(event: Event): void {
-  //   event.preventDefault(); // Отменяем стандартное действие отправки формы
-  //
-  //   const formData: InputField[] = this.children['inputFields'] as InputField[];
-  //   const formValues: Record<string, string> = {};
-  //
-  //   formData.forEach(inputField => {
-  //     console.log(inputField.getValue());
-  //   });
-  //
-  //   console.log(formValues);
-  // }
 
   render() {
     return form;

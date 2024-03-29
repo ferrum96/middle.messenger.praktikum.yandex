@@ -20,6 +20,7 @@ const formTitle = 'Вход',
       input: new Input({
         type: 'text',
         name: 'login',
+        value: '',
         placeholder: 'Введите логин'
       }),
       error: ErrorText.LoginErrorText

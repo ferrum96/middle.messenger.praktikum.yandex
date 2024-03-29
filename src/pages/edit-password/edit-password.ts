@@ -18,7 +18,6 @@ const avatar = new Avatar({
       title: 'Старый пароль',
       input: new Input({
         name: 'old_password',
-        value: '12345678Q',
         type: 'password',
         placeholder: 'Введите старый пароль'
       }),
@@ -29,7 +28,6 @@ const avatar = new Avatar({
       title: 'Новый пароль',
       input: new Input({
         name: 'new_password',
-        value: '12345678Qq',
         type: 'password',
         placeholder: 'Введите новый пароль'
       }),
@@ -40,7 +38,6 @@ const avatar = new Avatar({
       title: 'Повторите новый пароль',
       input: new Input({
         name: 'repeat_password',
-        value: '12345678Qq',
         type: 'password',
         placeholder: 'Повторите новый пароль'
       }),

@@ -5,6 +5,7 @@ import Block from '../../utils/Block';
 import Avatar from '../avatar/avatar';
 import Link from '../link/link';
 import InputField from '../input-field/input-field.ts';
+import { EventHandlers } from '../../utils/EventHandlers.ts';
 
 interface ProfileFormProps {
   avatar: Avatar;
@@ -14,11 +15,20 @@ interface ProfileFormProps {
   editPasswordLink?: Link;
   logoutLink?: Link;
   saveProfileButton?: Button;
+  events?: {};
 }
 
 export default class ProfileForm extends Block<ProfileFormProps> {
   constructor(props: ProfileFormProps) {
-    super({ ...props });
+    super({
+      ...props,
+      events: {
+        submit: (event: Event) => {
+          EventHandlers.validateForm(this);
+          EventHandlers.sendFormData(event, this);
+        }
+      }
+    });
   }
 
   render() {

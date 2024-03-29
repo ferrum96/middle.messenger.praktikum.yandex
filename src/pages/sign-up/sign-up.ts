@@ -20,7 +20,6 @@ const formTitle = 'Регистрация',
       input: new Input({
         type: 'text',
         name: 'email',
-        value: 'pochta@yandex.ru',
         placeholder: 'Введите почту'
       }),
       error: ErrorText.EmailErrorText
@@ -31,7 +30,6 @@ const formTitle = 'Регистрация',
       input: new Input({
         type: 'text',
         name: 'login',
-        value: 'ivanivanov',
         placeholder: 'Введите логин'
       }),
       error: ErrorText.LoginErrorText
@@ -42,7 +40,6 @@ const formTitle = 'Регистрация',
       input: new Input({
         type: 'text',
         name: 'first_name',
-        value: 'Иван',
         placeholder: 'Введите имя'
       }),
       error: ErrorText.NameErrorText
@@ -53,7 +50,6 @@ const formTitle = 'Регистрация',
       input: new Input({
         type: 'text',
         name: 'second_name',
-        value: 'Иванов',
         placeholder: 'Введите фамилию'
       }),
       error: ErrorText.NameErrorText
@@ -64,7 +60,6 @@ const formTitle = 'Регистрация',
       input: new Input({
         type: 'text',
         name: 'phone',
-        value: '+71234567890',
         placeholder: '+71234567890'
       }),
       error: ErrorText.PhoneErrorText
@@ -75,7 +70,6 @@ const formTitle = 'Регистрация',
       input: new Input({
         type: 'password',
         name: 'password',
-        value: '1234567890',
         placeholder: 'Введите пароль'
       }),
       error: ErrorText.PasswordErrorText
@@ -86,7 +80,6 @@ const formTitle = 'Регистрация',
       input: new Input({
         type: 'password',
         name: 'repeat_password',
-        value: '1234567890',
         placeholder: 'Повторите пароль'
       }),
       error: ErrorText.RepeatPasswordErrorText
