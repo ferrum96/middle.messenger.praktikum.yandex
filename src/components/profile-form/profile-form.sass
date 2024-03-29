@@ -27,9 +27,25 @@
     width: 100%
     margin-bottom: 6rem
 
-  &__edit-text-field
-    padding: 1rem 1rem 1rem 0
-    color: $gray-light-color
+  &__input-field
+    margin-bottom: 2.8rem
+    display: flex
+    justify-content: space-between
+    align-items: center
+    border-bottom: $divider-line-color
+    position: relative
+
+    & > label
+      font: $font-medium-regular
+
+    & > input
+      height: 3.5rem
+      text-align: end
+      color: $text-light-color
+      width: 20rem
+
+    &_invalid
+      border-bottom: 1px solid $text-red
 
   &__panel-control
     width: 100%

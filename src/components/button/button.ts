@@ -1,6 +1,6 @@
-import Block from '../../utils/Block';
 import './button.sass';
 import button from './button.hbs?raw';
+import Block from '../../utils/Block';
 import './button.sass';
 import { EventHandlers } from '../../utils/EventHandlers.ts';
 
@@ -16,7 +16,7 @@ export default class Button extends Block<ButtonProps> {
     super({
       ...props,
       events: {
-        click: (event: Event) => EventHandlers.onClickRoute(event)
+        mouseup: (event: Event) => EventHandlers.onClickRoute(event)
       }
     });
   }

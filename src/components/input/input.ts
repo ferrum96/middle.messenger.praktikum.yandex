@@ -19,61 +19,86 @@ export default class Input extends Block<InputProps> {
     super({
       ...props,
       events: {
-        blur: () => this._handleBlur(),
+        blur: () => {
+          this._setState();
+        },
         change: (event: Event) => {
           const target = event.target as HTMLInputElement;
           if (target) {
-            this.props.value = target.value;
+            this.setProps({
+              value: target.value
+            });
           }
         }
       }
     });
   }
 
-  private _validate(value: string | undefined, pattern: ValidatePattern): void {
-    const parentElement: HTMLElement | null = this.getContent().parentElement;
-    const isValid: boolean = new RegExp(pattern).test(<string>value);
-
-    if (!isValid) {
-      parentElement?.classList.add(`${parentElement?.classList[0]}_invalid`);
-      parentElement?.children?.item(2)?.classList.add('error-text_active');
-    } else {
-      parentElement?.classList.remove(`${parentElement?.classList[0]}_invalid`);
-      parentElement?.children?.item(2)?.classList.remove('error-text_active');
+  public get value(): string {
+    if (this.props.value !== undefined && this.props.value !== null) {
+      return this.props.value;
     }
+    return '';
   }
 
-  private _handleBlur(): void {
-    const value = this.props.value?.trim();
+  public get name(): string {
+    if (this.props.name !== undefined && this.props.name !== null) {
+      return this.props.name;
+    }
+    return '';
+  }
+
+  private _validate(value: string, pattern: RegExp | string): boolean {
+    return typeof pattern === 'object'
+      ? new RegExp(pattern).test(value)
+      : pattern === value;
+  }
+
+  public get isValid(): boolean {
+    const value = this.value.trim();
+    const passwordInput = document.querySelector(
+      'input[name="password"], input[name="new_password"]'
+    );
+    const passwordValue = passwordInput
+      ? (passwordInput as HTMLInputElement).value
+      : '';
 
     switch (this.props.name) {
       case 'email':
-        this._validate(value, ValidatePattern.EmailPattern);
-        break;
+        return this._validate(value, ValidatePattern.EmailPattern);
       case 'first_name':
-        this._validate(value, ValidatePattern.NamePattern);
-        break;
+        return this._validate(value, ValidatePattern.NamePattern);
       case 'second_name':
-        this._validate(value, ValidatePattern.NamePattern);
-        break;
+        return this._validate(value, ValidatePattern.NamePattern);
       case 'login':
-        this._validate(value, ValidatePattern.LoginPattern);
-        break;
+      case 'display_name':
+        return this._validate(value, ValidatePattern.LoginPattern);
       case 'password':
-        this._validate(value, ValidatePattern.PasswordPattern);
-        break;
-      case 'oldPassword':
-        this._validate(value, ValidatePattern.PasswordPattern);
-        break;
-      case 'newPassword':
-        this._validate(value, ValidatePattern.PasswordPattern);
-        break;
-      case 'repeatNewPassword':
-        this._validate(value, ValidatePattern.PasswordPattern);
-        break;
+      case 'old_password':
+      case 'new_password':
+        return this._validate(value, ValidatePattern.PasswordPattern);
+      case 'repeat_password':
+        return this._validate(value, passwordValue);
       case 'phone':
-        this._validate(value, ValidatePattern.PhonePattern);
-        break;
+        return this._validate(value, ValidatePattern.PhonePattern);
+      default:
+        return true;
+    }
+  }
+
+  private _setState(): void {
+    const parentElement = this.getContent().parentElement;
+
+    if (!this.isValid) {
+      parentElement?.classList.add(`${parentElement?.classList[1]}_invalid`);
+      parentElement?.children
+        ?.item(2)
+        ?.classList.add('input-field__error-text_active');
+    } else {
+      parentElement?.classList.remove(`${parentElement?.classList[1]}_invalid`);
+      parentElement?.children
+        ?.item(2)
+        ?.classList.remove('input-field__error-text_active');
     }
   }
 

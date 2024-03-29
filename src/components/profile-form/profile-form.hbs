@@ -3,15 +3,7 @@
         {{{avatar}}}
         {{#if userName}}<h2 class="profile-form__name">{{{userName}}}</h2> {{/if}}
         <div class="profile-form__list">
-            {{#if emailEditTextField}} {{{emailEditTextField}}} {{/if}}
-            {{#if loginEditTextField}} {{{loginEditTextField}}} {{/if}}
-            {{#if firstNameEditTextField}} {{{firstNameEditTextField}}} {{/if}}
-            {{#if secondNameEditTextField}} {{{secondNameEditTextField}}} {{/if}}
-            {{#if displayNameEditTextField}} {{{displayNameEditTextField}}} {{/if}}
-            {{#if phoneEditTextField}} {{{phoneEditTextField}}} {{/if}}
-            {{#if oldPasswordTextField}} {{{oldPasswordTextField}}} {{/if}}
-            {{#if newPasswordEditTextField}} {{{newPasswordEditTextField}}} {{/if}}
-            {{#if repeatNewPasswordEditTextField}} {{{repeatNewPasswordEditTextField}}} {{/if}}
+            {{{inputFields}}}
         </div>
         <div class="profile-form__panel-control">
             {{#if editProfileLink}} {{{editProfileLink}}} {{/if}}

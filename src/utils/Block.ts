@@ -15,7 +15,7 @@ export default abstract class Block<Props extends Record<string, any> = {}> {
   public readonly eventBus: () => EventBus;
   private _id: string = uuid();
   protected props: Props;
-  protected children: Record<string, Block | Block[]> = {};
+  children: Record<string, Block | Block[]> = {};
 
   protected constructor(propsWithChildren: Props) {
     const eventBus = new EventBus();
@@ -118,7 +118,7 @@ export default abstract class Block<Props extends Record<string, any> = {}> {
     };
     Object.keys(events).forEach(eventName => {
       if (this._element) {
-        this._element?.removeEventListener(eventName, events[eventName]);
+        this._element.removeEventListener(eventName, events[eventName]);
       }
     });
   }
