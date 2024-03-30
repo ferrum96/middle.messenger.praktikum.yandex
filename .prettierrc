@@ -4,5 +4,6 @@
   "arrowParens": "avoid",
   "semi": true,
   "trailingComma": "none",
-  "useTabs": false
+  "useTabs": false,
+  "endOfLine": "auto"
 }
