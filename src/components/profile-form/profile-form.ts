@@ -6,6 +6,7 @@ import Avatar from '../avatar/avatar';
 import Link from '../link/link';
 import InputField from '../input-field/input-field.ts';
 import { EventHandlers } from '../../utils/EventHandlers.ts';
+import validateForm from '../../utils/validateForm.ts';
 
 interface ProfileFormProps {
   avatar: Avatar;
@@ -24,7 +25,7 @@ export default class ProfileForm extends Block<ProfileFormProps> {
       ...props,
       events: {
         submit: (event: Event) => {
-          EventHandlers.validateForm(this);
+          validateForm(this);
           EventHandlers.sendFormData(event, this);
         }
       }

@@ -19,9 +19,6 @@ export default class Input extends Block<InputProps> {
     super({
       ...props,
       events: {
-        blur: () => {
-          this._setState();
-        },
         change: (event: Event) => {
           const target = event.target as HTMLInputElement;
           if (target) {
@@ -29,6 +26,9 @@ export default class Input extends Block<InputProps> {
               value: target.value
             });
           }
+        },
+        blur: () => {
+          this._setState();
         }
       }
     });
@@ -52,6 +52,10 @@ export default class Input extends Block<InputProps> {
     return typeof pattern === 'object'
       ? new RegExp(pattern).test(value)
       : pattern === value;
+  }
+
+  componentDidUpdate(_oldProps: InputProps, newProps: InputProps): boolean {
+    return this.value !== newProps.value;
   }
 
   public get isValid(): boolean {

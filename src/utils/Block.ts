@@ -1,7 +1,6 @@
 import EventBus from './EventBus';
 import Handlebars from 'handlebars';
 import { v4 as uuid } from 'uuid';
-import { isDeepEqual } from './object.ts';
 
 export default abstract class Block<Props extends Record<string, any> = {}> {
   static EVENTS = {
@@ -90,14 +89,14 @@ export default abstract class Block<Props extends Record<string, any> = {}> {
   }
 
   private _componentDidUpdate(oldProps: Props, newProps: Props): void {
-    console.log('_componentDidUpdate');
     if (this.componentDidUpdate(oldProps, newProps)) {
+      console.log('componentDidUpdate');
       this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
     }
   }
 
   public componentDidUpdate(oldProps: Props, newProps: Props) {
-    return isDeepEqual(oldProps, newProps);
+    return oldProps !== newProps;
   }
 
   private _addEvents(): void {

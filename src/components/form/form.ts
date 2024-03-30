@@ -5,6 +5,7 @@ import Button from '../button/button.ts';
 import InputField from '../input-field/input-field.ts';
 import Link from '../link/link.ts';
 import { EventHandlers } from '../../utils/EventHandlers.ts';
+import validateForm from '../../utils/validateForm.ts';
 
 interface FormProps {
   formTitle: string;
@@ -20,7 +21,7 @@ export default class Form extends Block<FormProps> {
       ...props,
       events: {
         submit: (event: Event) => {
-          EventHandlers.validateForm(this);
+          validateForm(this);
           EventHandlers.sendFormData(event, this);
         }
       }

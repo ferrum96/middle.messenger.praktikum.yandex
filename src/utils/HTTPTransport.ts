@@ -23,7 +23,7 @@ type Options = {
 
 type HTTPMethod = (url: string, options: Options) => Promise<unknown>;
 
-class HTTP implements IHTTP {
+class HTTPTransport implements IHTTP {
   get: HTTPMethod = (url, options) => {
     let resUrl = url;
     const { data } = options;
@@ -93,11 +93,11 @@ function fetchWithRetry(url: string, options: Options): unknown {
     throw new Error('The number of attempts has been exhausted');
   }
 
-  return new HTTP()
+  return new HTTPTransport()
     .get(url, options)
     .catch(() => fetchWithRetry(url, { ...options, retries: retries - 1 }));
 }
 
-export default HTTP;
+export default HTTPTransport;
 
 export { fetchWithRetry };
