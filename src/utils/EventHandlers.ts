@@ -25,28 +25,4 @@ export class EventHandlers {
 
     console.log(formValues);
   }
-
-  public static validateForm(form: Block): void {
-    const formData = form.children['inputFields'] as InputField[];
-
-    formData.forEach(inputField => {
-      if (!inputField.isValid) {
-        inputField
-          .getContent()
-          .classList.add(`${inputField.getContent().classList[1]}_invalid`);
-        inputField
-          .getContent()
-          .children.item(2)
-          ?.classList.add('input-field__error-text_active');
-      } else {
-        inputField
-          .getContent()
-          .classList.remove(`${inputField.getContent().classList[1]}_invalid`);
-        inputField
-          .getContent()
-          .children.item(2)
-          ?.classList.remove('input-field__error-text_active');
-      }
-    });
-  }
 }

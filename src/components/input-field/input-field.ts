@@ -50,7 +50,6 @@ export default class InputField extends Block<InputFieldProps> {
   }
 
   public get isValid(): boolean {
-    console.log(`isValid  ${this.props.isValid}`);
     return <boolean>this.props.isValid;
   }
 
