@@ -1,3 +1,21 @@
-import './avatar.sass'
+import './avatar.sass';
+import Block from '../../utils/Block';
+import avatar from './avatar.hbs?raw';
 
-export { default as Avatar } from './avatar.hbs?raw'
+interface AvatarProps {
+  className?: string;
+  src?: string;
+  alt: string;
+}
+
+export default class Avatar extends Block<AvatarProps> {
+  constructor(props: AvatarProps) {
+    super({
+      ...props
+    });
+  }
+
+  render() {
+    return avatar;
+  }
+}
