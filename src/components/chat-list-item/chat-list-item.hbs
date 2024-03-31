@@ -1,19 +1,20 @@
 <div class="chat-list-item">
-    {{> Avatar className="chat-list-item__avatar"}}
+<!--    {{{ Avatar alt="" src="" }}}-->
+    {{{avatar}}}
     <div class="chat-list-item__content">
         <div class="chat-list-item__content-column">
-            <h3 class="chat-list-item__name">{{lastMessage.name}}</h3>
+            <h3 class="chat-list-item__name">{{{name}}}</h3>
             <h4 class="chat-list-item__last-message">
-                {{ lastMessage.text }}
+                {{{ text }}}
             </h4>
         </div>
         <div class="chat-list-item__content-column">
             <h6 class="chat-list-item__time">
-                {{ lastMessage.time }}
+                {{{ time }}}
             </h6>
-            {{#if lastMessage.countUnreadMessages}}
+            {{#if countUnreadMessages}}
                 <h5 class="chat-list-item__unread-message">
-                    {{ lastMessage.countUnreadMessages }}
+                    {{{ countUnreadMessages }}}
                 </h5>
             {{/if}}
         </div>

@@ -1,6 +1,6 @@
-@import "./src/sass/variables"
+@import './src/sass/variables'
 
-.profile
+.profile-form
   position: relative
   display: flex
   justify-content: center
@@ -20,12 +20,6 @@
     height: 13rem
     margin-bottom: 2rem
 
-  &__form
-    width: 100%
-    display: flex
-    flex-direction: column
-    align-items: center
-
   &__name
     margin-bottom: 6rem
 
@@ -33,14 +27,29 @@
     width: 100%
     margin-bottom: 6rem
 
-  &__edit-text-field
-    padding: 1rem 0
+  &__input-field
+    margin-bottom: 2.8rem
+    display: flex
+    justify-content: space-between
+    align-items: center
+    border-bottom: $divider-line-color
+    position: relative
 
-    &:last-child
-      border-bottom: none
+    & > label
+      font: $font-medium-regular
+
+    & > input
+      height: 3.5rem
+      text-align: end
+      color: $text-light-color
+      width: 20rem
+
+    &_invalid
+      border-bottom: 1px solid $text-red
 
   &__panel-control
     width: 100%
+    display: contents
 
     & > a
       padding: 1rem 0
