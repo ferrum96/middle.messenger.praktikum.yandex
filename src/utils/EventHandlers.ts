@@ -1,12 +1,15 @@
 import InputField from '../components/input-field/input-field.ts';
 import Block from './Block.ts';
+import Router from './Router.ts';
 
 export class EventHandlers {
   public static onClickRoute(event: Event): void {
+    const router = new Router();
+
     if (event.target instanceof Element) {
       const pageAttribute = event.target.getAttribute('page') as string | null;
       if (pageAttribute !== null) {
-        window.location.href = pageAttribute;
+        router.go(pageAttribute);
         event.preventDefault();
         event.stopImmediatePropagation();
       }
