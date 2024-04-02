@@ -1,23 +1,25 @@
-<div class="chats">
-    {{{chatList}}}
-<!--    <h3 class="chats-window__caption">-->
-<!--        Выберите чат, чтобы отправить сообщение-->
-<!--    </h3>-->
-    <div class="chats-window">
-        <div class="chats-window__header">
-            <div class="chats-window__avatar-group">
-                {{{avatar}}}
-                <h3 class="chats-window__username">{{userName}}</h3>
+<div class="wrapper">
+    <div class="chats">
+        {{{chatList}}}
+        <!--    <h3 class="chats-window__caption">-->
+        <!--        Выберите чат, чтобы отправить сообщение-->
+        <!--    </h3>-->
+        <div class="chats-window">
+            <div class="chats-window__header">
+                <div class="chats-window__avatar-group">
+                    {{{avatar}}}
+                    <h3 class="chats-window__username">{{userName}}</h3>
+                </div>
+                <div class="chats-window__custom-button"></div>
             </div>
-            <div class="chats-window__custom-button"></div>
-        </div>
-        <div class="chats-window__content">
-            {{{chatMessages}}}
-        </div>
-        <div class="chats-window__footer">
-            <div class="chats-window__upload-button"></div>
-            {{{sendMessageInput}}}
-            {{{sendMessageButton}}}
+            <div class="chats-window__content">
+                {{{chatMessages}}}
+            </div>
+            <div class="chats-window__footer">
+                <div class="chats-window__upload-button"></div>
+                {{{sendMessageInput}}}
+                {{{sendMessageButton}}}
+            </div>
         </div>
     </div>
 </div>
