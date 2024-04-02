@@ -56,6 +56,7 @@ export default class Router {
 
   getRoute(pathname: string): Route {
     const route = this.routes.find(route => route.match(pathname));
+
     if (route !== undefined) {
       return route;
     } else {
