@@ -9,14 +9,37 @@ interface ChatListItemProps {
   text: string;
   time: string;
   countUnreadMessages?: number;
-  selected?: boolean;
+  events?: {};
 }
 
 export default class ChatListItem extends Block<ChatListItemProps> {
+  private static activeItem: ChatListItem | null = null;
   constructor(props: ChatListItemProps) {
     super({
-      ...props
+      ...props,
+      events: {
+        click: () => this.handleItemClick()
+      }
     });
+  }
+
+  handleItemClick() {
+    if (ChatListItem.activeItem) {
+      ChatListItem.activeItem.setActive(false);
+    }
+
+    this.setActive(true);
+    ChatListItem.activeItem = this;
+  }
+
+  setActive(active: boolean) {
+    const content = this.getContent();
+
+    if (active) {
+      content.classList.add(`${this.getContent().classList[0]}_active`);
+    } else {
+      content.classList.remove(`${this.getContent().classList[0]}_active`);
+    }
   }
 
   render() {

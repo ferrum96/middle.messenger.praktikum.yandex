@@ -1,3 +1,7 @@
-<button class="button{{#if className}} {{className}} {{/if}}" page="{{page}}">
-    {{text}}
-</button>
+<div class="button__container">
+    <button class="button{{#if className}} {{className}} {{/if}}" {{#if page}}page={{page}}{{/if}}>
+        {{text}}
+        {{#if icon}}<img class="button__icon" src={{icon}} alt={{icon}}>{{/if}}
+    </button>
+    {{{menu}}}
+</div>

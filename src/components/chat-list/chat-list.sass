@@ -3,7 +3,6 @@
 .chat-list
   height: 100vh
   width: 31rem
-  padding: 0 1rem
   background-color: $chat-list-bgcolor
   overflow: auto
   scrollbar-width: none
@@ -12,9 +11,10 @@
   border-right: $divider-line-color
 
   &__header
+    width: 29rem
+    padding: 0 1rem
     background-color: $chat-list-bgcolor
     position: fixed
-    width: 31rem
     z-index: 2
 
   &__profile-link
@@ -23,16 +23,31 @@
     color: $text-light-color
     margin: 2.1rem 0 2.3rem 0
 
-  &__search
+  &__search-container
+    position: relative
+
+  &__search-input
     background-color: $gray-light-color
     height: 3.2rem
     margin-bottom: 1.4rem
-    padding: .5rem
+    padding: .5rem .5rem .5rem 45%
     border-radius: .5rem
-    font-size: 1.4rem
+    font-size: 1.2rem
     font-weight: 500
-    text-align: center
-    color: $text-light-color
+    transition: all .3s
+
+    &:focus
+      padding-left: 10%
+
+      & + .chat-list__search-icon
+        transform: translate(20%, 35%)
+
+  &__search-icon
+    position: absolute
+    left: 0
+    top: 0
+    transform: translate(520%, 35%)
+    transition: all .3s
 
   &__messages
     margin-top: 11rem

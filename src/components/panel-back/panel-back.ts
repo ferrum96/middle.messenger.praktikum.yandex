@@ -12,7 +12,7 @@ export default class PanelBack extends Block<PanelBackProps> {
     super({
       backButton: new Button({
         className: 'button_round',
-        text: '←',
+        icon: 'icons/Left-arrow.svg',
         page: '/chats'
       })
     });

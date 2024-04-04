@@ -4,6 +4,7 @@ import Block from '../../utils/Block';
 import MenuItem from '../menu-item/menu-item';
 
 interface MenuWindowProps {
+  className?: string;
   menuItems: MenuItem[];
 }
 

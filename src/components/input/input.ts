@@ -11,6 +11,7 @@ interface InputProps {
   placeholder?: string;
   readonly?: boolean;
   error?: string;
+  icon?: string;
   events?: {};
 }
 
@@ -29,6 +30,9 @@ export default class Input extends Block<InputProps> {
         },
         blur: () => {
           this._setState();
+          if (this.value !== '' && this.name === 'search') {
+            this.getContent().focus();
+          }
         }
       }
     });

@@ -3,18 +3,28 @@
 .chat-list-item
   cursor: pointer
   display: flex
-  gap: 1rem
-  border-top: $divider-line-color
-  padding: 1.2rem 1rem
+  justify-content: center
+  transition: all .2s ease
+
+  &_active
+    background-color: $chat-list-current-bgcolor
 
   &:hover
     background-color: $chat-list-current-bgcolor
+
+  &__container
+    width: 29rem
+    display: flex
+    gap: 1rem
+    border-top: $divider-line-color
+    padding: .8rem 0
 
   &__content
     display: flex
     flex: 1
     justify-content: space-between
     text-align: start
+    gap: 1.7rem
 
   &__content-column
     display: flex

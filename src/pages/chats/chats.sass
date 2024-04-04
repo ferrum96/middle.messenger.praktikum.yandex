@@ -37,12 +37,16 @@
   &__custom-button
     width: 3.5rem
     height: 3.5rem
-    border-radius: 50%
-    background: url("../../icons/Kebab-menu.svg") center center no-repeat
     text-align: end
+    background-color: $text-bgcolor
 
     &:hover
       background-color: $menu-button-bgcolor
+
+  &__user-settings
+    position: absolute
+    right: 3rem
+    transform: translate(0, 30%)
 
   &__content
     flex: 1
@@ -51,6 +55,9 @@
     scrollbar-width: thin
     padding: 0 2rem
 
+  &__file-settings
+    position: absolute
+    bottom: 7rem
 
   &__footer
     display: flex
@@ -59,7 +66,7 @@
     padding: 1rem 2rem
     border-top: $divider-line-color
 
-    & > button
+    & button
       width: 2.8rem
       height: 2.8rem
 
@@ -76,7 +83,3 @@
   &__upload-button
     width: 3.2rem
     height: 3.2rem
-    background: url("../../icons/Upload-menu.jpg") center center no-repeat
-
-    &:hover
-      background-color: #FF0000

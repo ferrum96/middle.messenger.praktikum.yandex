@@ -20,4 +20,4 @@ router
   .use('/500', new InternalServerErrorPage())
   .start();
 
-router.go('/login');
+router.go('/chats');

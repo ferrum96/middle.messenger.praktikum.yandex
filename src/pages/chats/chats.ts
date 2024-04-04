@@ -7,18 +7,22 @@ import Input from '../../components/input/input';
 import Button from '../../components/button/button';
 import ChatListItem from '../../components/chat-list-item/chat-list-item';
 import Message from '../../components/message/message.ts';
-import MessagesContainer from '../../components/messagesContainer/messages-container.ts';
+import MessagesContainer from '../../components/messages-container/messages-container.ts';
+import MenuWindow from '../../components/menu-window/menu-window.ts';
+import MenuItem from '../../components/menu-item/menu-item.ts';
 
 interface ChatsPageProps {
   chatList: ChatList;
   avatar: Avatar;
   userName: string;
+  customUserButton: Button;
+  uploadButton: Button;
   chatMessages?: MessagesContainer[];
   sendMessageInput: Input;
   sendMessageButton: Button;
 }
 
-const chatListProps = {
+const chatList = new ChatList({
     chatListItem: [
       new ChatListItem({
         avatar: new Avatar({ className: 'chats-list-item__avatar', alt: '' }),
@@ -163,21 +167,60 @@ const chatListProps = {
         countUnreadMessages: 4
       })
     ]
-  },
-  avatarProps = {
+  }),
+  avatar = new Avatar({
     className: 'chat-window__avatar',
     alt: ''
-  },
-  sendMessageInputProps = {
+  }),
+  userName = 'Иван',
+  customUsersButton = new Button({
+    className: 'button_round chats-window__custom-button',
+    icon: '/icons/Kebab-menu.svg',
+    menu: new MenuWindow({
+      className: 'chats-window__user-settings',
+      menuItems: [
+        new MenuItem({
+          icon: 'icons/Add.svg',
+          title: 'Добавить пользователя'
+        }),
+        new MenuItem({
+          icon: 'icons/Delete.svg',
+          title: 'Удалить пользователя'
+        })
+      ]
+    })
+  }),
+  uploadButton = new Button({
+    className: 'chats-window__upload-button',
+    icon: '/icons/Upload-menu.jpg',
+    menu: new MenuWindow({
+      className: 'chats-window__file-settings',
+      menuItems: [
+        new MenuItem({
+          icon: 'icons/Upload-photo.svg',
+          title: 'Фото или Видео'
+        }),
+        new MenuItem({
+          icon: 'icons/Upload-file.svg',
+          title: 'Файл'
+        }),
+        new MenuItem({
+          icon: 'icons/Location.svg',
+          title: 'Локация'
+        })
+      ]
+    })
+  }),
+  sendMessageInput = new Input({
     name: 'sendMessage',
     className: 'chats-window__send-message',
     placeholder: 'Сообщение'
-  },
-  sendMessageButtonProps = {
+  }),
+  sendMessageButton = new Button({
     className: 'button_round',
-    text: '→'
-  },
-  chatMessagesProps = [
+    icon: '/icons/Right-arrow.svg'
+  }),
+  chatMessages = [
     new MessagesContainer({
       date: '19 июня',
       messagesList: [
@@ -232,12 +275,16 @@ const chatListProps = {
 export default class ChatsPage extends Block<ChatsPageProps> {
   constructor() {
     super({
-      chatList: new ChatList(chatListProps),
-      avatar: new Avatar(avatarProps),
-      userName: 'Иван',
-      chatMessages: chatMessagesProps,
-      sendMessageInput: new Input(sendMessageInputProps),
-      sendMessageButton: new Button(sendMessageButtonProps)
+      chatList,
+      avatar,
+      userName,
+      customUserButton: customUsersButton,
+      // userSettings,
+      uploadButton,
+      // fileSettings,
+      chatMessages,
+      sendMessageInput,
+      sendMessageButton
     });
   }
 
