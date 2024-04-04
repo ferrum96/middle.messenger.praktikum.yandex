@@ -42,7 +42,7 @@ export default class Router {
   }
 
   go(pathname: string): void {
-    this._history.pushState({}, '/login', pathname);
+    this._history.pushState({}, '/', pathname);
     this._onRoute(pathname);
   }
 

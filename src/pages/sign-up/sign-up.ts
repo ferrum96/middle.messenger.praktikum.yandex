@@ -87,7 +87,7 @@ const formTitle = 'Регистрация',
   ],
   submitButton = new Button({
     text: 'Зарегистрироваться',
-    page: '/login'
+    page: '/'
   }),
   alternativeLink = new Link({
     text: 'Войти',

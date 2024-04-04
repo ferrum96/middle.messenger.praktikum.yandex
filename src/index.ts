@@ -11,7 +11,7 @@ import Router from './utils/Router.ts';
 const router: Router = new Router();
 
 router
-  .use('/login', new LoginPage())
+  .use('/', new LoginPage())
   .use('/sign-up', new SignUpPage())
   .use('/chats', new ChatsPage())
   .use('/profile', new Profile())
@@ -19,5 +19,3 @@ router
   .use('/edit-password', new EditPasswordPage())
   .use('/500', new InternalServerErrorPage())
   .start();
-
-router.go('/chats');

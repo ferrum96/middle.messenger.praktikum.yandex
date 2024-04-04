@@ -90,7 +90,7 @@ const avatar = new Avatar({
   }),
   logoutLink = new Link({
     text: 'Выйти',
-    page: '/login'
+    page: '/'
   });
 
 export default class ProfilePage extends ProfileComponent {
