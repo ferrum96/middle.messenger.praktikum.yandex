@@ -2,7 +2,7 @@ import EventBus from './EventBus';
 import Handlebars from 'handlebars';
 import { v4 as uuid } from 'uuid';
 
-export default abstract class Block<Props extends Record<string, any> = {}> {
+export default class Block<Props extends Record<string, any> = {}> {
   static EVENTS = {
     INIT: 'init',
     FLOW_CDM: 'flow:component-did-mount',
@@ -16,7 +16,7 @@ export default abstract class Block<Props extends Record<string, any> = {}> {
   protected props: Props;
   children: Record<string, Block | Block[]> = {};
 
-  protected constructor(propsWithChildren: Props) {
+  constructor(propsWithChildren: Props) {
     const eventBus = new EventBus();
     const { props, children } =
       this._getChildrenPropsAndProps(propsWithChildren);
@@ -69,7 +69,6 @@ export default abstract class Block<Props extends Record<string, any> = {}> {
 
   private _componentDidMount(): void {
     this.componentDidMount();
-    console.log('componentDidMount()');
 
     Object.values(this.children).forEach(child => {
       if (Array.isArray(child)) {
@@ -90,7 +89,6 @@ export default abstract class Block<Props extends Record<string, any> = {}> {
 
   private _componentDidUpdate(oldProps: Props, newProps: Props): void {
     if (this.componentDidUpdate(oldProps, newProps)) {
-      console.log('componentDidUpdate');
       this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
     }
   }
@@ -209,17 +207,9 @@ export default abstract class Block<Props extends Record<string, any> = {}> {
     return { children, props };
   }
 
-  show(): void {
-    const content = this.getContent();
-    if (content) {
-      content.style.display = 'block';
-    }
-  }
-
-  hide(): void {
-    const content = this.getContent();
-    if (content) {
-      content.style.display = 'none';
+  remove(): void {
+    if (this.element) {
+      this.element.remove();
     }
   }
 }

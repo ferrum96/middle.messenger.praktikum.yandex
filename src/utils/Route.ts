@@ -19,7 +19,7 @@ export default class Route {
 
   leave(): void {
     if (this._page) {
-      this._page.hide();
+      this._page.remove();
     }
   }
 
@@ -29,6 +29,5 @@ export default class Route {
 
   render(): void {
     renderDOM('#app', this._page as unknown as Block);
-    this._page.show();
   }
 }

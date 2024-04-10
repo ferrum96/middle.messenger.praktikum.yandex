@@ -2,7 +2,7 @@ import Route from './Route.ts';
 import Block from './Block.ts';
 import NotFoundPage from '../pages/404/404.ts';
 
-export default class Router {
+class Router {
   private static __instance: Router;
   private _routes: Route[] = [];
   private _history: History = window.history;
@@ -30,7 +30,7 @@ export default class Router {
     this._onRoute(window.location.pathname);
   }
 
-  _onRoute(pathname: string): void {
+  private _onRoute(pathname: string): void {
     const route = this.getRoute(pathname);
 
     if (this._currentRoute && this._currentRoute !== route) {
@@ -64,3 +64,5 @@ export default class Router {
     }
   }
 }
+
+export default new Router();
