@@ -6,9 +6,7 @@ import Profile from './pages/profile/profile';
 import ChatsPage from './pages/chats/chats';
 import EditProfilePage from './pages/edit-profile/edit-profile';
 import EditPasswordPage from './pages/edit-password/edit-password';
-import Router from './utils/Router.ts';
-
-const router: Router = new Router();
+import router from './utils/Router.ts';
 
 router
   .use('/', new LoginPage())
