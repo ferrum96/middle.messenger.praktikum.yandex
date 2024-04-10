@@ -19,6 +19,7 @@ export default class InputField extends Block<InputFieldProps> {
   constructor(props: InputFieldProps) {
     super({
       ...props,
+      value: props.input?.value,
       name: props?.input?.name,
       isValid: props?.input?.isValid,
       events: {

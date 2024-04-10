@@ -2,11 +2,13 @@ import Block from './Block.ts';
 import InputField from '../components/input-field/input-field.ts';
 import Input from '../components/input/input.ts';
 
-export default function validateForm(form: Block): void {
-  const formData = form.children['inputFields'] as InputField[];
+export default function validateForm(form: Block): boolean {
+  const formData: InputField[] = form.children['inputFields'] as InputField[];
+  const isValidValues: boolean[] = [];
 
   formData.forEach(inputField => {
     const input = inputField.children['input'] as Input;
+    isValidValues.push(input.isValid);
     if (!input.isValid) {
       inputField
         .getContent()
@@ -25,4 +27,6 @@ export default function validateForm(form: Block): void {
         ?.classList.remove('input-field__error-text_active');
     }
   });
+
+  return !isValidValues.some(isValid => !isValid);
 }

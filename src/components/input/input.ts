@@ -19,6 +19,7 @@ export default class Input extends Block<InputProps> {
   constructor(props: InputProps) {
     super({
       ...props,
+      value: props.value,
       events: {
         change: (event: Event) => {
           const target = event.target as HTMLInputElement;
