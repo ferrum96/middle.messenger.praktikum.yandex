@@ -9,6 +9,7 @@ interface LinkProps {
   page: string;
   text: string;
   events?: {};
+  onClick?: (event?: Event | undefined) => void;
 }
 
 export default class Link extends Block<LinkProps> {
@@ -16,7 +17,12 @@ export default class Link extends Block<LinkProps> {
     super({
       ...props,
       events: {
-        click: (event: Event) => EventHandlers.onClickRoute(event)
+        click: (event: Event) => {
+          if (props.onClick) {
+            props.onClick(event);
+          }
+          EventHandlers.onClickRoute(event);
+        }
       }
     });
   }

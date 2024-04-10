@@ -20,10 +20,10 @@ export default class Button extends Block<ButtonProps> {
       ...props,
       events: {
         mouseup: (event: Event) => {
-          this.setProps({
-            menu: props.menu
-          });
-          this.toggleMenu();
+          // this.setProps({
+          //   menu: props.menu
+          // });
+          // this._toggleMenu();
           if (this.props.page !== undefined) {
             EventHandlers.onClickRoute(event);
           }
@@ -32,11 +32,11 @@ export default class Button extends Block<ButtonProps> {
     });
   }
 
-  private toggleMenu() {
-    if (this.props.menu !== undefined) {
-      this.props.menu.getContent().classList.toggle('menu-window_hide');
-    }
-  }
+  // private _toggleMenu() {
+  //   if (this.props.menu !== undefined) {
+  //     this.props.menu.getContent().classList.toggle('menu-window_hide');
+  //   }
+  // }
 
   render() {
     return button;

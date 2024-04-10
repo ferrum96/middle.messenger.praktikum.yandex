@@ -7,6 +7,10 @@ import Link from '../../components/link/link';
 import { ErrorText } from '../../utils/ErrorText.ts';
 import Form from '../../components/form/form.ts';
 import Input from '../../components/input/input.ts';
+import connect from '../../utils/connect.ts';
+import authController from '../../controllers/auth-controller.ts';
+import { LoginRequestData } from '../../utils/types.ts';
+import store from '../../utils/Store.ts';
 
 interface LoginPageProps {
   loginForm: Form;
@@ -20,7 +24,7 @@ const formTitle = 'Вход',
       input: new Input({
         type: 'text',
         name: 'login',
-        value: '',
+        value: 'qaz',
         placeholder: 'Введите логин'
       }),
       error: ErrorText.LoginErrorText
@@ -31,28 +35,31 @@ const formTitle = 'Вход',
       input: new Input({
         type: 'password',
         name: 'password',
+        value: '12345678qQ',
         placeholder: 'Введите пароль'
       }),
       error: ErrorText.PasswordErrorText
     })
   ],
   submitButton = new Button({
-    text: 'Авторизация',
-    page: '/chats'
+    text: 'Авторизация'
   }),
   alternativeLink = new Link({
     text: 'Нет аккаунта?',
     page: '/sign-up'
   });
 
-export default class LoginPage extends Block<LoginPageProps> {
+class LoginPage extends Block<LoginPageProps> {
   constructor() {
     super({
       loginForm: new Form({
         formTitle,
         inputFields,
         submitButton,
-        alternativeLink
+        alternativeLink,
+        onSubmit: () => {
+          authController.login(store.getState().formData as LoginRequestData);
+        }
       })
     });
   }
@@ -61,3 +68,5 @@ export default class LoginPage extends Block<LoginPageProps> {
     return login;
   }
 }
+
+export default connect(LoginPage);

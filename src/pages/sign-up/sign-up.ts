@@ -7,6 +7,10 @@ import Link from '../../components/link/link';
 import { ErrorText } from '../../utils/ErrorText.ts';
 import Form from '../../components/form/form.ts';
 import Input from '../../components/input/input.ts';
+import connect from '../../utils/connect.ts';
+import authController from '../../controllers/auth-controller.ts';
+import store from '../../utils/Store.ts';
+import { CreateUser } from '../../utils/types.ts';
 
 interface SignUpPageProps {
   signUpForm: Form;
@@ -20,6 +24,7 @@ const formTitle = 'Регистрация',
       input: new Input({
         type: 'text',
         name: 'email',
+        value: 'qaz1@qaz.qaz',
         placeholder: 'Введите почту'
       }),
       error: ErrorText.EmailErrorText
@@ -30,6 +35,7 @@ const formTitle = 'Регистрация',
       input: new Input({
         type: 'text',
         name: 'login',
+        value: 'qaz1',
         placeholder: 'Введите логин'
       }),
       error: ErrorText.LoginErrorText
@@ -40,6 +46,7 @@ const formTitle = 'Регистрация',
       input: new Input({
         type: 'text',
         name: 'first_name',
+        value: 'Qaza',
         placeholder: 'Введите имя'
       }),
       error: ErrorText.NameErrorText
@@ -50,6 +57,7 @@ const formTitle = 'Регистрация',
       input: new Input({
         type: 'text',
         name: 'second_name',
+        value: 'Qaza',
         placeholder: 'Введите фамилию'
       }),
       error: ErrorText.NameErrorText
@@ -60,6 +68,7 @@ const formTitle = 'Регистрация',
       input: new Input({
         type: 'text',
         name: 'phone',
+        value: '+71234567890',
         placeholder: '+71234567890'
       }),
       error: ErrorText.PhoneErrorText
@@ -70,6 +79,7 @@ const formTitle = 'Регистрация',
       input: new Input({
         type: 'password',
         name: 'password',
+        value: '12345678qQQ',
         placeholder: 'Введите пароль'
       }),
       error: ErrorText.PasswordErrorText
@@ -80,28 +90,31 @@ const formTitle = 'Регистрация',
       input: new Input({
         type: 'password',
         name: 'repeat_password',
+        value: '12345678qQQ',
         placeholder: 'Повторите пароль'
       }),
       error: ErrorText.RepeatPasswordErrorText
     })
   ],
   submitButton = new Button({
-    text: 'Зарегистрироваться',
-    page: '/'
+    text: 'Зарегистрироваться'
   }),
   alternativeLink = new Link({
     text: 'Войти',
-    page: '/chats'
+    page: '/'
   });
 
-export default class SignUpPage extends Block<SignUpPageProps> {
+class SignUpPage extends Block<SignUpPageProps> {
   constructor() {
     super({
       signUpForm: new Form({
         formTitle,
         inputFields,
         submitButton,
-        alternativeLink
+        alternativeLink,
+        onSubmit: () => {
+          authController.createUser(store.getState().formData as CreateUser);
+        }
       })
     });
   }
@@ -110,3 +123,5 @@ export default class SignUpPage extends Block<SignUpPageProps> {
     return signUp;
   }
 }
+
+export default connect(SignUpPage);

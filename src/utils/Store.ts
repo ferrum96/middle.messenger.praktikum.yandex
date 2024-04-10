@@ -20,6 +20,7 @@ export type State = {
     chat: null | ChatsPage;
     messages: Array<ChatListItem> | null;
   };
+  formData: {};
 };
 
 // наследуем Store от EventBus, чтобы его методы были сразу доступны у экземпляра Store
@@ -36,7 +37,8 @@ class Store extends EventBus {
       scroll: 0,
       chat: null,
       messages: null
-    }
+    },
+    formData: {}
   };
 
   public getState(): State {
@@ -63,7 +65,8 @@ class Store extends EventBus {
           scroll: 0,
           chat: null,
           messages: null
-        }
+        },
+        formData: {}
       };
       this.emit(StoreEvents.Updated);
     } catch (e) {
