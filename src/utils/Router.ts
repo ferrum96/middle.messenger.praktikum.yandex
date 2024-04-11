@@ -1,6 +1,18 @@
 import Route from './Route.ts';
 import Block from './Block.ts';
-import NotFoundPage from '../pages/404/404.ts';
+import { notFoundPage } from '../pages/404/404.ts';
+import store from './Store.ts';
+
+export enum Routes {
+  AUTH = '/',
+  SIGNUP = '/sign-up',
+  CHATS = '/chats',
+  SETTINGS = '/settings',
+  EDIT_PROFILE = '/edit-profile',
+  EDIT_PASSWORD = '/edit-password',
+  NOT_FOUND_ERROR = '/404',
+  INTERNAL_SERVER_ERROR = '/500'
+}
 
 class Router {
   private static __instance: Router;
@@ -31,6 +43,19 @@ class Router {
   }
 
   private _onRoute(pathname: string): void {
+    if (store.getState().auth) {
+      if (pathname === Routes.AUTH || pathname === Routes.SIGNUP) {
+        pathname = Routes.CHATS;
+        this._history.pushState({}, '', Routes.CHATS);
+      }
+    }
+    if (!store.getState().auth) {
+      if (pathname !== Routes.AUTH && pathname !== Routes.SIGNUP) {
+        pathname = Routes.AUTH;
+        this._history.pushState({}, '', Routes.AUTH);
+      }
+    }
+
     const route = this.getRoute(pathname);
 
     if (this._currentRoute && this._currentRoute !== route) {
@@ -60,7 +85,7 @@ class Router {
     if (route !== undefined) {
       return route;
     } else {
-      return new Route(pathname, new NotFoundPage());
+      return new Route(pathname, notFoundPage);
     }
   }
 }

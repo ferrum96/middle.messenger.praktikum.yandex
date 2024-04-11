@@ -1,19 +1,21 @@
 import './index.sass';
-import SignUpPage from './pages/sign-up/sign-up';
-import LoginPage from './pages/login/login';
-import InternalServerErrorPage from './pages/500/500';
-import Profile from './pages/profile/profile';
-import ChatsPage from './pages/chats/chats';
-import EditProfilePage from './pages/edit-profile/edit-profile';
-import EditPasswordPage from './pages/edit-password/edit-password';
-import router from './utils/Router.ts';
+import { loginPage } from './pages/login/login.ts';
+import { signUpPage } from './pages/sign-up/sign-up.ts';
+import { chatsPage } from './pages/chats/chats.ts';
+import { settingsPage } from './pages/settings/settings.ts';
+import { editProfilePage } from './pages/edit-profile/edit-profile.ts';
+import { editPasswordPage } from './pages/edit-password/edit-password.ts';
+import { internalServerErrorPage } from './pages/500/500.ts';
+import router, { Routes } from './utils/Router.ts';
+import { initApp } from './utils/initApp.ts';
 
 router
-  .use('/', new LoginPage())
-  .use('/sign-up', new SignUpPage())
-  .use('/chats', new ChatsPage())
-  .use('/profile', new Profile())
-  .use('/edit-profile', new EditProfilePage())
-  .use('/edit-password', new EditPasswordPage())
-  .use('/500', new InternalServerErrorPage())
-  .start();
+  .use(Routes.AUTH, loginPage)
+  .use(Routes.SIGNUP, signUpPage)
+  .use(Routes.CHATS, chatsPage)
+  .use(Routes.SETTINGS, settingsPage)
+  .use(Routes.EDIT_PROFILE, editProfilePage)
+  .use(Routes.EDIT_PASSWORD, editPasswordPage)
+  .use(Routes.INTERNAL_SERVER_ERROR, internalServerErrorPage);
+
+document.addEventListener('DOMContentLoaded', () => initApp());

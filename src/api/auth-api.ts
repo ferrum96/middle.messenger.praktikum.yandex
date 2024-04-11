@@ -1,11 +1,11 @@
-import { CreateUser, LoginRequestData } from '../utils/types.ts';
 import HTTP from '../utils/HTTP.ts';
+import { CreateUser, LoginRequestData } from './types.ts';
 
 class AuthApi {
-  private _authAPIInstance = new HTTP('/auth');
+  private _authApiInstance = new HTTP('/auth');
 
   public async signIn(data: LoginRequestData): Promise<XMLHttpRequest> {
-    return await this._authAPIInstance.post('/signin', {
+    return this._authApiInstance.post('/signin', {
       data,
       headers: {
         'Content-type': 'application/json; charset=UTF-8'
@@ -14,7 +14,7 @@ class AuthApi {
   }
 
   public async signUp(data: CreateUser): Promise<XMLHttpRequest> {
-    return await this._authAPIInstance.post('/signup', {
+    return this._authApiInstance.post('/signup', {
       data,
       headers: {
         'Content-type': 'application/json; charset=UTF-8'
@@ -22,12 +22,12 @@ class AuthApi {
     });
   }
 
-  async user(): Promise<XMLHttpRequest> {
-    return await this._authAPIInstance.get('/user');
+  public async user(): Promise<XMLHttpRequest> {
+    return this._authApiInstance.get('/user');
   }
 
-  async logout(): Promise<XMLHttpRequest> {
-    return await this._authAPIInstance.post('/logout');
+  public async logout(): Promise<XMLHttpRequest> {
+    return this._authApiInstance.post('/logout');
   }
 }
 

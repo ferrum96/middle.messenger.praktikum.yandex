@@ -7,51 +7,17 @@ import Input from '../input/input.ts';
 interface InputFieldProps {
   className?: string;
   title?: string;
-  value?: string;
-  name?: string;
   input?: Input;
   error?: string;
-  isValid?: boolean;
   events?: {};
+  onChange?: () => void;
 }
 
-export default class InputField extends Block<InputFieldProps> {
+export default class InputField extends Block {
   constructor(props: InputFieldProps) {
     super({
-      ...props,
-      value: props.input?.value,
-      name: props?.input?.name,
-      isValid: props?.input?.isValid,
-      events: {
-        change: () => {
-          if (props.input) {
-            this.setProps({ value: props.input.value });
-          }
-        }
-      }
+      ...props
     });
-
-    if (!props.input) {
-      this.props.input = new Input({});
-    }
-  }
-
-  public get value(): string {
-    if (this.props.value !== undefined && this.props.value !== null) {
-      return this.props.value;
-    }
-    return '';
-  }
-
-  public get name(): string {
-    if (this.props.name !== undefined && this.props.name !== null) {
-      return this.props.name;
-    }
-    return '';
-  }
-
-  public get isValid(): boolean {
-    return <boolean>this.props.isValid;
   }
 
   render() {

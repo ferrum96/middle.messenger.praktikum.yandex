@@ -6,13 +6,13 @@ import { EventHandlers } from '../../utils/EventHandlers.ts';
 interface LinkProps {
   className?: string;
   url?: string;
-  page: string;
+  page?: string;
   text: string;
   events?: {};
-  onClick?: (event?: Event | undefined) => void;
+  onClick?: (event?: Event) => void;
 }
 
-export default class Link extends Block<LinkProps> {
+export default class Link extends Block {
   constructor(props: LinkProps) {
     super({
       ...props,
@@ -21,7 +21,9 @@ export default class Link extends Block<LinkProps> {
           if (props.onClick) {
             props.onClick(event);
           }
-          EventHandlers.onClickRoute(event);
+          if (props.page !== undefined) {
+            EventHandlers.onClickRoute(event);
+          }
         }
       }
     });

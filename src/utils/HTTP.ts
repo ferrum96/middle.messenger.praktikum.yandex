@@ -10,14 +10,15 @@ enum Methods {
 export interface RequestOptions {
   method: Methods;
   headers?: Record<string, string>;
-  data?: Record<string, unknown>;
+  data?: Record<string, unknown> | FormData;
   timeout?: number;
 }
 
 type OptionsWithoutMethod = Omit<RequestOptions, 'method'>;
 
+export const HOST = 'https://ya-praktikum.tech/api/v2';
+
 export default class HTTP {
-  private _host = 'https://ya-praktikum.tech/api/v2';
   public _path: string = '';
 
   constructor(path?: string | undefined) {
@@ -26,52 +27,58 @@ export default class HTTP {
     }
   }
 
-  get = <TResponse>(
+  get = (
     endpoint: string,
     options: OptionsWithoutMethod = {}
-  ): Promise<TResponse> =>
-    this.request<TResponse>(
+  ): Promise<XMLHttpRequest> =>
+    this.request(
       endpoint,
       { ...options, method: Methods.GET },
       options.timeout
     );
 
-  post = <TResponse>(
+  post = (
     endpoint: string,
     options: OptionsWithoutMethod = {}
-  ): Promise<TResponse> =>
-    this.request<TResponse>(
+  ): Promise<XMLHttpRequest> =>
+    this.request(
       endpoint,
       { ...options, method: Methods.POST },
       options.timeout
     );
 
-  put = <TResponse>(
+  put = (
     endpoint: string,
     options: OptionsWithoutMethod = {}
-  ): Promise<TResponse> =>
-    this.request<TResponse>(
+  ): Promise<XMLHttpRequest> =>
+    this.request(
       endpoint,
       { ...options, method: Methods.PUT },
       options.timeout
     );
 
-  delete = <TResponse>(
+  delete = (
     endpoint: string,
     options: OptionsWithoutMethod = {}
-  ): Promise<TResponse> =>
-    this.request<TResponse>(
+  ): Promise<XMLHttpRequest> =>
+    this.request(
       endpoint,
       { ...options, method: Methods.DELETE },
       options.timeout
     );
 
-  request = <TResponse>(
+  request = (
     endpoint: string,
     options: RequestOptions = { method: Methods.GET },
     timeout: number = 5000
-  ): Promise<TResponse> => {
-    const { headers = {}, method, data } = options;
+  ): Promise<XMLHttpRequest> => {
+    const {
+      headers = {
+        'Access-Control-Allow-Origin': 'http://localhost:3000'
+      },
+      method,
+      data
+    } = options;
 
     return new Promise((resolve, reject) => {
       if (!method) {
@@ -79,30 +86,29 @@ export default class HTTP {
         return;
       }
 
-      const xhr = new XMLHttpRequest();
+      const xhr: XMLHttpRequest = new XMLHttpRequest();
       const isGet = method === Methods.GET;
 
       xhr.open(
         method,
         isGet && !!data
-          ? `${this._host}${this._path}${endpoint}${queryStringify(data)}`
-          : `${this._host}${this._path}${endpoint}`
+          ? `${HOST}${this._path}${endpoint}${queryStringify(data)}`
+          : `${HOST}${this._path}${endpoint}`
       );
+      xhr.withCredentials = true;
+
+      // if (data instanceof FormData) {
+      //   // xhr.setRequestHeader('Accept', 'application/json');
+      // } else {
+      //   xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
+      // }
 
       Object.keys(headers).forEach(key => {
         xhr.setRequestHeader(key, headers[key]);
       });
 
-      xhr.onload = () => {
-        if (xhr.status !== 200) {
-          reject(
-            new Error(
-              `Ошибка ${xhr.status}: ${xhr?.response?.reason || xhr.statusText}`
-            )
-          );
-        } else {
-          resolve(xhr.response);
-        }
+      xhr.onload = function () {
+        resolve(xhr);
       };
 
       xhr.onabort = reject;
@@ -112,6 +118,8 @@ export default class HTTP {
 
       if (method === Methods.GET || !data) {
         xhr.send();
+      } else if (data instanceof FormData) {
+        xhr.send(data);
       } else {
         xhr.send(JSON.stringify(data));
       }

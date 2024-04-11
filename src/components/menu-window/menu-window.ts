@@ -8,7 +8,7 @@ interface MenuWindowProps {
   menuItems: MenuItem[];
 }
 
-export default class MenuWindow extends Block<MenuWindowProps> {
+export default class MenuWindow extends Block {
   constructor(props: MenuWindowProps) {
     super({
       ...props

@@ -17,27 +17,17 @@ export type UserDTO = {
   login: string;
   first_name: string;
   second_name: string;
-  display_name: string;
-  avatar: string;
+  display_name: string | null;
+  avatar: string | null;
   phone: string;
   email: string;
+  reason?: string;
 };
 
-export type DeleteChatData = {
-  chatId: number;
-};
+export type ChatUserDTO = Omit<UserDTO, 'id' | 'phone' | 'email'>;
 
 export type DataToken = {
   token: string;
-};
-
-export type Login = {
-  login: string;
-};
-
-export type DataAddingUsersToChat = {
-  users: number[];
-  chatId: number;
 };
 
 export type DeleteChat = {
@@ -74,8 +64,9 @@ export type LoginRequestData = {
   password: string;
 };
 
-type LastMessage = {
-  user: UserDTO;
+export type LastMessage = {
+  id: number;
+  user: ChatUserDTO;
   time: string;
   content: string;
 };
@@ -85,5 +76,13 @@ export type ChatDTO = {
   title: string;
   avatar: string | null;
   unread_count: number;
+  created_by: number;
   last_message: LastMessage | null;
+};
+
+export type MessageProps = {
+  content: string;
+  time: string;
+  user_id: number;
+  type: string;
 };

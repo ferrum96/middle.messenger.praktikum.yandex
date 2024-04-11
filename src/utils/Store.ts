@@ -1,7 +1,6 @@
 import EventBus from './EventBus.ts';
 import set from './set.ts';
-import ChatListItem from '../components/chat-list-item/chat-list-item.ts';
-import ChatsPage from '../pages/chats/chats.ts';
+import { Chat, ChatUser, MessageProps, User } from './types.ts';
 
 export enum StoreEvents {
   Updated = 'updated'
@@ -9,44 +8,50 @@ export enum StoreEvents {
 
 export type State = {
   auth: boolean;
-  user: null | Record<string, string | number>;
-  isLoading: false;
-  getPage: string;
-  chats: Array<ChatListItem>;
-  currentChat: {
-    isLoading: boolean;
-    isLoadingOldMsg: boolean;
-    scroll: number;
-    chat: null | ChatsPage;
-    messages: Array<ChatListItem> | null;
-  };
+  user: User | null;
+  chats: Chat[] | null;
+  currentChat: Chat | null;
+  currentChatUsers: ChatUser[];
+  searchChatUsers: User[] | null;
+  isSearchChats: boolean;
+  currentChatMessages: MessageProps[];
+  isLoadedFile: boolean;
+  fileName: string;
   formData: {};
 };
+
+function set<K extends keyof State>(
+  object: State,
+  path: K,
+  value: State[K]
+): State {
+  if (path in object) {
+    object[path] = value;
+  }
+  return object;
+}
 
 // наследуем Store от EventBus, чтобы его методы были сразу доступны у экземпляра Store
 class Store extends EventBus {
   private _state: State = {
     auth: false,
     user: null,
-    isLoading: false,
-    getPage: '/',
-    chats: [],
-    currentChat: {
-      isLoading: false,
-      isLoadingOldMsg: false,
-      scroll: 0,
-      chat: null,
-      messages: null
-    },
+    chats: null,
+    currentChat: null,
+    currentChatUsers: [],
+    isSearchChats: false,
+    searchChatUsers: null,
+    currentChatMessages: [],
+    isLoadedFile: false,
+    fileName: '',
     formData: {}
   };
 
   public getState(): State {
-    console.log(this._state);
     return this._state;
   }
 
-  public set(path: string, value: unknown): void {
+  public set(path: string, value: unknown) {
     set(this._state, path, value);
     this.emit(StoreEvents.Updated);
   }
@@ -56,17 +61,15 @@ class Store extends EventBus {
       this._state = {
         auth: false,
         user: null,
-        isLoading: false,
-        getPage: '/',
-        chats: [],
-        currentChat: {
-          isLoading: false,
-          isLoadingOldMsg: false,
-          scroll: 0,
-          chat: null,
-          messages: null
-        },
-        formData: {}
+        chats: null,
+        currentChat: null,
+        currentChatUsers: [],
+        searchChatUsers: null,
+        formData: {},
+        currentChatMessages: [],
+        isSearchChats: false,
+        isLoadedFile: false,
+        fileName: ''
       };
       this.emit(StoreEvents.Updated);
     } catch (e) {

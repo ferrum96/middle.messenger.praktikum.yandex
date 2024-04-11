@@ -1,7 +1,7 @@
 import './404.sass';
 import ErrorPage from '../../components/error-page/error-page';
 
-export default class NotFoundPage extends ErrorPage {
+class NotFoundPage extends ErrorPage {
   constructor() {
     super({
       title: '404',
@@ -9,3 +9,5 @@ export default class NotFoundPage extends ErrorPage {
     });
   }
 }
+
+export const notFoundPage: NotFoundPage = new NotFoundPage();

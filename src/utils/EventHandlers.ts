@@ -1,6 +1,6 @@
 import Block from './Block.ts';
 import router from './Router.ts';
-import getFormData from './getFormData.ts';
+import { getFormData } from './getFormData.ts';
 
 export class EventHandlers {
   public static onClickRoute(event: Event): void {
@@ -17,5 +17,26 @@ export class EventHandlers {
   public static sendFormData(event: Event, form: Block): void {
     event.preventDefault();
     console.log(getFormData(form));
+  }
+
+  public static setModalWindowActive(selector: string) {
+    const modalWindow = document.querySelector(selector);
+    if (modalWindow !== null) {
+      modalWindow.classList.add('modal-window_active');
+    }
+  }
+
+  public static setActiveChat(chatId: number) {
+    const chatListItems = document.querySelectorAll('.chats-list-item');
+
+    chatListItems.forEach(item => {
+      item.classList.remove('chats-list-item_active');
+    });
+
+    const activeChatListItem = [...chatListItems].filter(
+      item => Number(item.getAttribute('id')) === chatId
+    );
+
+    activeChatListItem[0].classList.add('chats-list-item_active');
   }
 }

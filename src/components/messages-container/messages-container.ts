@@ -8,7 +8,7 @@ interface MessagesContainerProps {
   messagesList: Message[];
 }
 
-export default class MessagesContainer extends Block<MessagesContainerProps> {
+export default class MessagesContainer extends Block {
   constructor(props: MessagesContainerProps) {
     super({
       ...props

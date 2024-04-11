@@ -1,0 +1,32 @@
+@import "./src/sass/variables"
+
+.chats-dialog-header
+  display: flex
+  justify-content: space-between
+  align-items: center
+  border-bottom: $divider-line-color
+  padding: 1rem 2rem
+
+  &__avatar-group
+    display: flex
+    align-items: center
+    gap: 1rem
+
+  &__avatar
+    width: 3.4rem
+    height: 3.4rem
+
+  &__custom-button
+    width: 3.5rem
+    height: 3.5rem
+    text-align: end
+    background-color: $text-bgcolor
+    transition: all .5s ease
+
+    &:hover
+      background-color: $menu-button-bgcolor
+
+  &__user-settings
+    position: absolute
+    right: 3rem
+    transform: translate(0, 30%)

@@ -11,19 +11,24 @@ interface ButtonProps {
   page?: string;
   icon?: string;
   menu?: MenuWindow;
+  type?: string;
   events?: {};
+  onClick?: () => void;
 }
 
-export default class Button extends Block<ButtonProps> {
+export default class Button extends Block {
   constructor(props: ButtonProps) {
     super({
       ...props,
       events: {
         mouseup: (event: Event) => {
-          // this.setProps({
-          //   menu: props.menu
-          // });
-          // this._toggleMenu();
+          if (props.onClick) {
+            props.onClick();
+          }
+          this.setProps({
+            menu: props.menu
+          });
+          this._toggleMenu();
           if (this.props.page !== undefined) {
             EventHandlers.onClickRoute(event);
           }
@@ -32,11 +37,11 @@ export default class Button extends Block<ButtonProps> {
     });
   }
 
-  // private _toggleMenu() {
-  //   if (this.props.menu !== undefined) {
-  //     this.props.menu.getContent().classList.toggle('menu-window_hide');
-  //   }
-  // }
+  private _toggleMenu() {
+    if (this.props.menu !== undefined) {
+      this.props.menu.getContent().classList.toggle('menu-window_hide');
+    }
+  }
 
   render() {
     return button;
