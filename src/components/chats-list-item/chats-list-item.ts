@@ -14,7 +14,6 @@ interface ChatListItemProps {
   unreadCount?: number;
   createdBy: number;
   lastMessage: LastMessage | null;
-  events?: {};
 }
 
 export default class ChatsListItem extends Block {
@@ -28,7 +27,7 @@ export default class ChatsListItem extends Block {
   }
 
   private _setCurrentChat() {
-    EventHandlers.setActiveChat(this.props.id);
+    EventHandlers.setActiveItem(this.props.id, '.chats-list-item');
     chatsController.setCurrentChat(this.props.id);
     chatsController.getChatUsers(this.props.id);
 

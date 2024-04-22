@@ -12,7 +12,6 @@ import getTimeFromDate from '../../utils/getTimeFromDate.ts';
 import Button from '../button/button.ts';
 import ModalWindow from '../modal-window/modal-window.ts';
 import InputField from '../input-field/input-field.ts';
-import { ErrorText } from '../../utils/ErrorText.ts';
 import { EventHandlers } from '../../utils/EventHandlers.ts';
 import chatsController from '../../controllers/chats-controller.ts';
 
@@ -21,7 +20,7 @@ interface ChatsListProps {
   searchInput: Input;
   addChatButton: Button;
   chatListItems?: ChatsListItem[];
-  modalWindow: ModalWindow;
+  modalWindow?: ModalWindow;
 }
 
 export default class ChatsList extends Block {
@@ -43,46 +42,47 @@ export default class ChatsList extends Block {
         onClick: () => {
           EventHandlers.setModalWindowActive('.modal-window_create-chat');
         }
-      }),
-      modalWindow: new ModalWindow({
-        className: 'modal-window_create-chat',
-        title: 'Введите имя чата',
-        content: [
-          new InputField({
-            className: 'form__input-field',
-            title: 'Название чата',
-            input: new Input({
-              type: 'text',
-              name: 'login',
-              placeholder: 'Введите название чата'
-            }),
-            error: ErrorText.LoginErrorText
-          })
-        ],
-        actionButton: new Button({
-          className: 'modal-window__action-button',
-          text: ' Создать чат',
-          onClick: () => {
-            const modalWindow = (
-              this.children instanceof Array ? this.children[0] : this.children
-            )?.modalWindow;
-            const newChatInput = modalWindow?.children?.content[0]?.children
-              ?.input as Input;
-
-            if (newChatInput.value === '') {
-              alert('Название не может быть пустое');
-            } else {
-              chatsController.createChat(newChatInput.value);
-              setInterval(() => {
-                newChatInput.clearInput();
-              }, 2000);
-            }
-          }
-        })
       })
     };
 
     super(props);
+  }
+
+  componentDidMount() {
+    this.children.modalWindow = new ModalWindow({
+      className: 'modal-window_create-chat',
+      title: 'Введите имя чата',
+      content: [
+        new InputField({
+          className: 'form__input-field',
+          title: 'Название чата',
+          input: new Input({
+            type: 'text',
+            name: 'new_chat',
+            placeholder: 'Введите название чата'
+          })
+        })
+      ],
+      actionButton: new Button({
+        className: 'modal-window__action-button',
+        text: ' Создать чат',
+        onClick: () => {
+          const modalWindow = (
+            this.children instanceof Array ? this.children[0] : this.children
+          )?.modalWindow;
+          const newChatInput = modalWindow?.children?.content[0]?.children
+            ?.input as Input;
+
+          if (newChatInput.value === '') {
+            alert('Название не может быть пустое');
+          } else {
+            chatsController.createChat(newChatInput.value);
+          }
+        }
+      })
+    });
+
+    super.componentDidMount();
   }
 
   componentDidUpdate(oldProps: Props, newProps: Props): boolean {

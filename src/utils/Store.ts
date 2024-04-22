@@ -1,5 +1,4 @@
 import EventBus from './EventBus.ts';
-import set from './set.ts';
 import { Chat, ChatUser, MessageProps, User } from './types.ts';
 
 export enum StoreEvents {
@@ -11,13 +10,15 @@ export type State = {
   user: User | null;
   chats: Chat[] | null;
   currentChat: Chat | null;
-  currentChatUsers: ChatUser[];
-  searchChatUsers: User[] | null;
-  isSearchChats: boolean;
+  currentChatUsers: ChatUser[] | null;
   currentChatMessages: MessageProps[];
+  searchingUsers: User[] | null;
+  currentUser: User | null;
   isLoadedFile: boolean;
   fileName: string;
   formData: {};
+  searchingLogin: string | null;
+  isSearchingUsers: boolean;
 };
 
 function set<K extends keyof State>(
@@ -38,13 +39,15 @@ class Store extends EventBus {
     user: null,
     chats: null,
     currentChat: null,
-    currentChatUsers: [],
-    isSearchChats: false,
-    searchChatUsers: null,
+    currentChatUsers: null,
+    searchingUsers: null,
+    currentUser: null,
     currentChatMessages: [],
     isLoadedFile: false,
     fileName: '',
-    formData: {}
+    formData: {},
+    searchingLogin: null,
+    isSearchingUsers: false
   };
 
   public getState(): State {
@@ -64,12 +67,14 @@ class Store extends EventBus {
         chats: null,
         currentChat: null,
         currentChatUsers: [],
-        searchChatUsers: null,
+        searchingUsers: null,
+        currentUser: null,
         formData: {},
         currentChatMessages: [],
-        isSearchChats: false,
         isLoadedFile: false,
-        fileName: ''
+        fileName: '',
+        searchingLogin: null,
+        isSearchingUsers: false
       };
       this.emit(StoreEvents.Updated);
     } catch (e) {

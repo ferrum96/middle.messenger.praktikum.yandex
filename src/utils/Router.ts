@@ -6,7 +6,7 @@ import store from './Store.ts';
 export enum Routes {
   AUTH = '/',
   SIGNUP = '/sign-up',
-  CHATS = '/chats',
+  MESSENGER = '/messenger',
   SETTINGS = '/settings',
   EDIT_PROFILE = '/edit-profile',
   EDIT_PASSWORD = '/edit-password',
@@ -45,8 +45,8 @@ class Router {
   private _onRoute(pathname: string): void {
     if (store.getState().auth) {
       if (pathname === Routes.AUTH || pathname === Routes.SIGNUP) {
-        pathname = Routes.CHATS;
-        this._history.pushState({}, '', Routes.CHATS);
+        pathname = Routes.MESSENGER;
+        this._history.pushState({}, '', Routes.MESSENGER);
       }
     }
     if (!store.getState().auth) {

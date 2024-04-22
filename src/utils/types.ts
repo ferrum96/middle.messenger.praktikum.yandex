@@ -12,7 +12,7 @@ export type SignUpResponse = {
   id: number;
 };
 
-export type UserDTO = {
+export type User = {
   id: number;
   login: string;
   first_name: string;
@@ -24,7 +24,7 @@ export type UserDTO = {
   reason?: string;
 };
 
-export type ChatUserDTO = Omit<UserDTO, 'id' | 'phone' | 'email'>;
+export type ChatUser = Omit<User, 'phone' | 'email'>;
 
 export type DataToken = {
   token: string;
@@ -40,15 +40,15 @@ export type DeleteChat = {
   };
 };
 
-export type UserDTCO = Omit<UserDTO, 'phone' | 'email'> & {
+export type UserDTCO = Omit<User, 'phone' | 'email'> & {
   role: string;
 };
 
-export type CreateUser = Omit<UserDTO, 'avatar' | 'display_name' | 'id'> & {
+export type CreateUser = Omit<User, 'avatar' | 'display_name' | 'id'> & {
   password: string;
 };
 
-export type ChangeUser = Omit<UserDTO, 'avatar' | 'id'>;
+export type ChangeUser = Omit<User, 'avatar' | 'id'>;
 
 export type ChangePassword = {
   oldPassword: string;
@@ -66,12 +66,12 @@ export type LoginRequestData = {
 
 export type LastMessage = {
   id: number;
-  user: ChatUserDTO;
+  user: ChatUser;
   time: string;
   content: string;
 };
 
-export type ChatDTO = {
+export type Chat = {
   id: number;
   title: string;
   avatar: string | null;

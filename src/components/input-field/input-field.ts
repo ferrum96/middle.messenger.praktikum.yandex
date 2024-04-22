@@ -10,7 +10,6 @@ interface InputFieldProps {
   input?: Input;
   error?: string;
   events?: {};
-  onChange?: () => void;
 }
 
 export default class InputField extends Block {

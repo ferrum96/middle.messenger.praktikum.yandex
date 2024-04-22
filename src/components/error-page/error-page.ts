@@ -16,7 +16,7 @@ export default abstract class ErrorPage extends Block {
       ...props,
       chatLink: new Link({
         text: 'Назад к чатам',
-        page: '/chats'
+        page: '/messenger'
       })
     });
   }

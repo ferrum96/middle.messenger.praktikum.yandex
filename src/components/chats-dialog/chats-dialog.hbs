@@ -1,16 +1,14 @@
 <div class="chats-dialog">
   {{#if currentChat}}
     {{{chatsDialogHeader}}}
+    {{{addUserModalWindow}}}
+    {{{deleteUserModalWindow}}}
     <div class="chats-dialog__content">
       {{{chatMessages}}}
     </div>
-    <div class="chats-dialog__footer">
-      {{{uploadButton}}}
-      {{{sendMessageInput}}}
-      {{{sendMessageButton}}}
-    </div>
+    {{{chatsDialogFooter}}}
   {{else}}
-    <h3 class="chats-dialog__caption"> Выберите чат, чтобы отправить сообщение </h3>
+    <h3 class="chats-dialog__choose-chat"> Выберите чат, чтобы отправить сообщение </h3>
   {{/if}}
 
 </div>

@@ -13,7 +13,7 @@ export default class PanelBack extends Block {
       backButton: new Button({
         className: 'button_round',
         icon: 'icons/Left-arrow.svg',
-        page: '/chats'
+        page: '/messenger'
       })
     };
 

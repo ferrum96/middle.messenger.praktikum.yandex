@@ -26,17 +26,19 @@ export class EventHandlers {
     }
   }
 
-  public static setActiveChat(chatId: number) {
-    const chatListItems = document.querySelectorAll('.chats-list-item');
+  public static setActiveItem(chatId: number, selector: string) {
+    const chatListItems = document.querySelectorAll(selector);
 
     chatListItems.forEach(item => {
-      item.classList.remove('chats-list-item_active');
+      item.classList.remove(`${item.classList[0]}_active`);
     });
 
     const activeChatListItem = [...chatListItems].filter(
       item => Number(item.getAttribute('id')) === chatId
     );
 
-    activeChatListItem[0].classList.add('chats-list-item_active');
+    activeChatListItem[0].classList.add(
+      `${activeChatListItem[0].classList[0]}_active`
+    );
   }
 }

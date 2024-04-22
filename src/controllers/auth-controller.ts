@@ -13,7 +13,7 @@ class AuthController {
         store.set('auth', true);
         await this.getUserInfo();
         await chatsController.getChats();
-        router.go(Routes.CHATS);
+        router.go(Routes.MESSENGER);
       } else if (status === 500) {
         router.go(Routes.INTERNAL_SERVER_ERROR);
       } else {
@@ -31,7 +31,7 @@ class AuthController {
         store.set('auth', true);
         await this.getUserInfo();
         await chatsController.getChats();
-        router.go(Routes.CHATS);
+        router.go(Routes.MESSENGER);
       } else if (status === 500) {
         router.go(Routes.INTERNAL_SERVER_ERROR);
       } else {

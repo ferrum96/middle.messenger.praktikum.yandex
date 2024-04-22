@@ -11,14 +11,19 @@ interface InputProps {
   placeholder?: string;
   readonly?: boolean;
   events?: {};
+  onInput?: (event?: Event) => void;
 }
 
 export default class Input extends Block {
   constructor(props: InputProps) {
     super({
       ...props,
-      value: props.value,
       events: {
+        input: (event?: Event) => {
+          if (props.onInput) {
+            props.onInput(event);
+          }
+        },
         change: (event: Event) => {
           const target = event.target as HTMLInputElement;
           if (target) {

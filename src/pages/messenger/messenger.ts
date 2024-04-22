@@ -1,6 +1,6 @@
-import './chats.sass';
+import './messenger.sass';
 import Block from '../../utils/Block';
-import chatsTemplate from './chats.hbs?raw';
+import messengerTemplate from './messenger.hbs?raw';
 import ChatsList, { chatList } from '../../components/chats-list/chats-list.ts';
 import ChatsDialog, {
   chatsDialog
@@ -11,7 +11,7 @@ interface ChatsPageProps {
   chatsDialog?: ChatsDialog;
 }
 
-class ChatsPage extends Block {
+class MessengerPage extends Block {
   constructor() {
     const props: ChatsPageProps = {
       chatsList: new chatList(),
@@ -22,8 +22,8 @@ class ChatsPage extends Block {
   }
 
   render() {
-    return chatsTemplate;
+    return messengerTemplate;
   }
 }
 
-export const chatsPage: ChatsPage = new ChatsPage();
+export const messengerPage: MessengerPage = new MessengerPage();

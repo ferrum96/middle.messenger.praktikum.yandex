@@ -5,18 +5,23 @@ import Avatar from '../avatar/avatar.ts';
 import Button from '../button/button.ts';
 import MenuWindow from '../menu-window/menu-window.ts';
 import MenuItem from '../menu-item/menu-item.ts';
+import chatsController from '../../controllers/chats-controller.ts';
+import { EventHandlers } from '../../utils/EventHandlers.ts';
+import store from '../../utils/Store.ts';
 
 interface ChatsDialogHeaderProps {
   avatar: Avatar;
   title: string;
+  usersCount?: number;
   customUsersButton?: Button;
 }
 
 export default class ChatsDialogHeader extends Block {
-  constructor({ avatar, title }: ChatsDialogHeaderProps) {
+  constructor({ avatar, title, usersCount }: ChatsDialogHeaderProps) {
     const props: ChatsDialogHeaderProps = {
       avatar,
       title,
+      usersCount,
       customUsersButton: new Button({
         className: 'button_round chats-dialog-header__custom-button',
         icon: '/icons/Kebab-menu.svg',
@@ -27,21 +32,31 @@ export default class ChatsDialogHeader extends Block {
               icon: 'icons/Add.svg',
               title: 'Добавить пользователя',
               events: {
-                click: () => console.log('Добавить пользователя')
+                click: () => {
+                  store.set('isSearchingUsers', true);
+                  EventHandlers.setModalWindowActive('.modal-window_add-user');
+                }
               }
             }),
             new MenuItem({
               icon: 'icons/Delete.svg',
               title: 'Удалить пользователя',
               events: {
-                click: () => console.log('Удалить пользователя')
+                click: () => {
+                  store.set('isSearchingUsers', false);
+                  EventHandlers.setModalWindowActive(
+                    '.modal-window_delete-user'
+                  );
+                }
               }
             }),
             new MenuItem({
               icon: 'icons/Trash.svg',
               title: 'Удалить чат',
               events: {
-                click: () => console.log('Удалить чат')
+                click: () => {
+                  chatsController.deleteCurrentChat();
+                }
               }
             })
           ]

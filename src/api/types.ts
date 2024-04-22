@@ -1,11 +1,11 @@
-import { UserDTO } from '../utils/types.ts';
+import { User } from '../utils/types.ts';
 
 export type LoginRequestData = {
   login: string;
   password: string;
 };
 
-export type CreateUser = Omit<UserDTO, 'avatar' | 'display_name' | 'id'> & {
+export type CreateUser = Omit<User, 'avatar' | 'display_name' | 'id'> & {
   password: string;
 };
 
@@ -22,7 +22,7 @@ export type DataAddingUsersToChat = {
   chatId: number;
 };
 
-export type ChangeUser = Omit<UserDTO, 'avatar' | 'id'>;
+export type ChangeUser = Omit<User, 'avatar' | 'id'>;
 
 export type ChangePassword = {
   oldPassword: string;

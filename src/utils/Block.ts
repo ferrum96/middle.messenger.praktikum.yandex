@@ -6,6 +6,7 @@ import deepClone from './deepClone';
 
 export interface Props {
   [index: string]: any;
+  events?: {};
 }
 
 export default class Block {

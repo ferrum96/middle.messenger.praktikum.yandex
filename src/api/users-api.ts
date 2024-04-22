@@ -30,7 +30,7 @@ class UsersApi {
 
   public async searchUser(data: Login): Promise<XMLHttpRequest> {
     return this._userApiInstance.post('/search', {
-      data: { data },
+      data,
       headers: {
         'Content-type': 'application/json; charset=UTF-8'
       }

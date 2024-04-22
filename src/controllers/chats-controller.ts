@@ -4,7 +4,7 @@ import router, { Routes } from '../utils/Router.ts';
 import chatsApi from '../api/chats-api.ts';
 import store from '../utils/Store.ts';
 import { Chat, UserDTCO } from '../utils/types.ts';
-import { CreateChat } from '../api/types.ts';
+import { ChatData, CreateChat, DataAddingUsersToChat } from '../api/types.ts';
 import { EventHandlers } from '../utils/EventHandlers.ts';
 
 class ChatsController {
@@ -67,8 +67,12 @@ class ChatsController {
       if (status === 200) {
         await this.getChats();
         await this.setCurrentChat(JSON.parse(response).id);
-        router.go(Routes.CHATS);
-        EventHandlers.setActiveChat(JSON.parse(response).id);
+        await this.getChatUsers(JSON.parse(response).id);
+        router.go(Routes.MESSENGER);
+        EventHandlers.setActiveItem(
+          JSON.parse(response).id,
+          '.chats-list-item'
+        );
       } else if (status === 500) {
         router.go(Routes.INTERNAL_SERVER_ERROR);
       } else {
@@ -79,72 +83,83 @@ class ChatsController {
     }
   }
 
-  //
-  // public async deleteChats(): Promise<void> {
-  //   try {
-  //     const chatId = store.getState().currentChat.chat.id;
-  //     if (typeof chatId !== 'number') return;
-  //     const { status, response } = await ChatsApi.deleteChat({ chatId });
-  //     if (status === 200) {
-  //       this.getChats();
-  //       this.store.set('currentChat', {
-  //         isLoading: false,
-  //         isLoadingOldMsg: false,
-  //         scroll: 0,
-  //         chat: null,
-  //         messages: null
-  //       });
-  //     } else if (status === 500) {
-  //       this.router.go('/500');
-  //     } else {
-  //       alert(JSON.parse(response).reason ?? 'Ошибочный запрос');
-  //     }
-  //   } catch (e) {
-  //     console.log(e);
-  //   }
-  // }
-  //
-  // public async addUser(id: number, user: number): Promise<boolean> {
-  //   if (!id || !user) return false;
-  //   try {
-  //     const { status, response } = await ChatsApi.addUsers(id, [user]);
-  //     if (status === 200) {
-  //       return true;
-  //     }
-  //     if (status === 500) {
-  //       this.router.go('/500');
-  //       return false;
-  //     }
-  //     alert(JSON.parse(response).reason ?? 'Ошибочный запрос');
-  //     return false;
-  //   } catch (e) {
-  //     console.log(e);
-  //   }
-  //   return false;
-  // }
-  //
-  // public async addNewChatUser(
-  //   user: Record<string, string | number>
-  // ): Promise<boolean | void> {
-  //   const { display_name, login, id } = user;
-  //   let chat = this?.store?.getState()?.currentChat?.chat?.id;
-  //   if (
-  //     !confirm(
-  //       `Вы хотите ${chat ? 'добавить в текущий чат ' : 'создать новый чат с '}${login}`
-  //     )
-  //   ) {
-  //     return;
-  //   }
-  //   if (!chat) {
-  //     const title = display_name ?? login;
-  //     chat = await this.createChat(String(title));
-  //     return;
-  //   }
-  //   if (!chat) return;
-  //   const result = await this.addUser(Number(chat), Number(id));
-  //   // eslint-disable-next-line consistent-return
-  //   return result;
-  // }
+  public async deleteCurrentChat(): Promise<void> {
+    try {
+      const chatId = store.getState().currentChat?.id;
+      const confirmDelete = confirm('Уверены, что хотите удалить чат?');
+
+      if (!confirmDelete) {
+        return;
+      }
+
+      const { status, response } = await chatsApi.deleteChatById({
+        chatId
+      } as ChatData);
+
+      if (status === 200) {
+        await this.getChats();
+        store.set('currentChat', null);
+      } else if (status === 500) {
+        router.go(Routes.INTERNAL_SERVER_ERROR);
+      } else {
+        alert(JSON.parse(response).reason ?? 'Ошибочный запрос');
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  public async addUserToChat(chatId: number, userId: number): Promise<void> {
+    try {
+      const { status, response } = await chatsApi.addUserToChat({
+        users: [userId],
+        chatId
+      } as DataAddingUsersToChat);
+
+      if (status === 200) {
+        alert('Пользователь успешно добавлен!');
+        await this.getChatUsers(chatId);
+        router.go(Routes.MESSENGER);
+        EventHandlers.setActiveItem(chatId, '.chats-list-item');
+      } else if (status === 500) {
+        router.go(Routes.INTERNAL_SERVER_ERROR);
+      } else {
+        alert(JSON.parse(response).reason ?? 'Ошибочный запрос');
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  public async deleteUserFromChat(
+    chatId: number,
+    userId: number
+  ): Promise<void> {
+    try {
+      const { status, response } = await chatsApi.deleteUserFromChat({
+        users: [userId],
+        chatId
+      } as DataAddingUsersToChat);
+
+      if (status === 200) {
+        alert('Пользователь успешно удалён!');
+        await this.getChatUsers(chatId);
+        router.go(Routes.MESSENGER);
+        if (store.getState().currentChatUsers === null) {
+          await this.getChats();
+          store.set('currentChat', null);
+        } else {
+          EventHandlers.setActiveItem(chatId, '.chats-list-item');
+        }
+      } else if (status === 500) {
+        router.go(Routes.INTERNAL_SERVER_ERROR);
+      } else {
+        alert(JSON.parse(response).reason ?? 'Ошибочный запрос');
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  }
 }
 
 export default new ChatsController();
