@@ -16,9 +16,33 @@
     flex-direction: column
 
   &__avatar
-    width: 13rem
-    height: 13rem
+    position: relative
     margin-bottom: 2rem
+    
+    & > img
+      transition: all .4s ease
+
+    &:hover > img
+      transform: scale(1.15)
+      filter: brightness(.95) blur(.1rem)
+      cursor: pointer
+
+    &:after
+      opacity: 0
+      position: absolute
+      content: "Поменять аватар"
+      text-align: center
+      font: $font-medium-semibold
+      top: 50%
+      left: 50%
+      transform: translate(-50%, 10%)
+      color: $text-bgcolor
+      transition: all .4s ease
+      cursor: pointer
+
+    &:hover::after
+      transform: translate(-50%, -20%)
+      opacity: 1
 
   &__name
     margin-bottom: 6rem
@@ -62,3 +86,4 @@
 
   &__save-button
     width: 28rem
+    margin-bottom: 2rem

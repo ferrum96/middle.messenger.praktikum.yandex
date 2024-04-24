@@ -4,10 +4,11 @@ import Block from '../../utils/Block';
 import MenuItem from '../menu-item/menu-item';
 
 interface MenuWindowProps {
+  className?: string;
   menuItems: MenuItem[];
 }
 
-export default class MenuWindow extends Block<MenuWindowProps> {
+export default class MenuWindow extends Block {
   constructor(props: MenuWindowProps) {
     super({
       ...props

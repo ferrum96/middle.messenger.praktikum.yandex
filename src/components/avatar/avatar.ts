@@ -4,11 +4,12 @@ import avatar from './avatar.hbs?raw';
 
 interface AvatarProps {
   className?: string;
-  src?: string;
+  src: string;
   alt: string;
+  events?: {};
 }
 
-export default class Avatar extends Block<AvatarProps> {
+export default class Avatar extends Block {
   constructor(props: AvatarProps) {
     super({
       ...props

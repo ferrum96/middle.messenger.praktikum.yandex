@@ -8,7 +8,7 @@ interface MessageProps {
   time: string;
 }
 
-export default class Message extends Block<MessageProps> {
+export default class Message extends Block {
   constructor(props: MessageProps) {
     super({
       ...props

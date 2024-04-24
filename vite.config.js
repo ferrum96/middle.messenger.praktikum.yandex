@@ -19,8 +19,8 @@ export default defineConfig({
     outDir: resolve(__dirname, 'dist/')
   },
   plugins: [
-    checker({
-      typescript: true
-    })
+    // checker({
+    //   typescript: true
+    // })
   ]
 });

@@ -1,0 +1,67 @@
+@import '../../sass/variables'
+
+.chats-list-item
+  cursor: pointer
+  display: flex
+  justify-content: center
+  transition: all .3s ease
+
+  &_active
+    background-color: $chat-list-current-bgcolor
+
+  &:hover
+    background-color: $chat-list-current-bgcolor
+
+  &__container
+    width: 29rem
+    display: flex
+    gap: 1rem
+    border-top: $divider-line-color
+    padding: .8rem 0
+
+  &__avatar
+    width: 2rem
+    height: 2rem
+
+  &__content
+    display: flex
+    flex: 1
+    justify-content: space-between
+    text-align: start
+    gap: 1.7rem
+
+  &__content-column
+    display: flex
+    flex-direction: column
+
+    &:nth-child(1)
+      gap: .8rem
+
+    &:nth-child(2)
+      gap: 1.4rem
+      align-items: end
+
+  &__unread-messages
+    height: 2rem
+    width: 2rem
+    cursor: default
+
+  &__last-message
+    height: 3rem
+    color: $text-light-color
+    overflow: hidden
+    line-height: 1.5rem
+
+  &__time
+    color: $text-light-color
+    line-height: 1.3rem
+
+  &__unread-message
+    display: flex
+    justify-content: center
+    align-items: center
+    width: 2rem
+    height: 2rem
+    border-radius: 50%
+    color: $text-bgcolor
+    background-color: $link-color

@@ -1,12 +1,20 @@
 import EventBus from './EventBus';
 import Handlebars from 'handlebars';
 import { v4 as uuid } from 'uuid';
+import isEqual from './isEqual.ts';
+import deepClone from './deepClone';
 
-export default abstract class Block<Props extends Record<string, any> = {}> {
+export interface Props {
+  [index: string]: any;
+  events?: {};
+}
+
+export default class Block {
   static EVENTS = {
     INIT: 'init',
     FLOW_CDM: 'flow:component-did-mount',
     FLOW_CDU: 'flow:component-did-update',
+    FLOW_CWU: 'flow:component-will-unmount',
     FLOW_RENDER: 'flow:render'
   } as const;
 
@@ -28,22 +36,22 @@ export default abstract class Block<Props extends Record<string, any> = {}> {
     eventBus.emit(Block.EVENTS.INIT);
   }
 
-  _makePropsProxy(props: Props): Props {
+  private _makePropsProxy(props: Props): Props {
     const self = this;
 
     return new Proxy(props, {
       get(target, key: keyof Props) {
-        if (typeof key === 'string' && (key as string).startsWith('_')) {
+        if ((key as string).startsWith('_')) {
           throw new Error('No access');
         }
         const value = target[key];
         return typeof value === 'function' ? value.bind(target) : value;
       },
       set(target, key: keyof Props, value) {
-        if (typeof key === 'string' && (key as string).startsWith('_')) {
+        if ((key as string).startsWith('_')) {
           throw new Error('No access');
         }
-        const oldTarget = { ...target };
+        const oldTarget = deepClone(target);
 
         target[key] = value;
 
@@ -60,6 +68,7 @@ export default abstract class Block<Props extends Record<string, any> = {}> {
     eventBus.on(Block.EVENTS.INIT, this.init.bind(this));
     eventBus.on(Block.EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
     eventBus.on(Block.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this));
+    eventBus.on(Block.EVENTS.FLOW_CWU, this._componentWillUnmount.bind(this));
     eventBus.on(Block.EVENTS.FLOW_RENDER, this._render.bind(this));
   }
 
@@ -69,7 +78,6 @@ export default abstract class Block<Props extends Record<string, any> = {}> {
 
   private _componentDidMount(): void {
     this.componentDidMount();
-    console.log('componentDidMount()');
 
     Object.values(this.children).forEach(child => {
       if (Array.isArray(child)) {
@@ -80,6 +88,7 @@ export default abstract class Block<Props extends Record<string, any> = {}> {
         child.dispatchComponentDidMount();
       }
     });
+    this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
   }
 
   componentDidMount(): void {}
@@ -90,14 +99,21 @@ export default abstract class Block<Props extends Record<string, any> = {}> {
 
   private _componentDidUpdate(oldProps: Props, newProps: Props): void {
     if (this.componentDidUpdate(oldProps, newProps)) {
-      console.log('componentDidUpdate');
       this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
     }
   }
 
   public componentDidUpdate(oldProps: Props, newProps: Props) {
-    return oldProps !== newProps;
+    return !isEqual(oldProps, newProps);
   }
+
+  protected _componentWillUnmount() {
+    this.eventBus().emit(Block.EVENTS.FLOW_CWU);
+    console.log('componentWillUnmount');
+    this.componentWillUnmount();
+  }
+
+  public componentWillUnmount() {}
 
   private _addEvents(): void {
     const { events = {} } = this.props as {
@@ -153,7 +169,9 @@ export default abstract class Block<Props extends Record<string, any> = {}> {
       const stubs = Array.isArray(child) ? child : [child];
       stubs.forEach(child => {
         const stub = fragment.content.querySelector(`[data-id="${child._id}"]`);
-        stub?.replaceWith(child.getContent());
+        if (stub) {
+          stub.replaceWith(child.getContent());
+        }
       });
     });
 
@@ -179,7 +197,7 @@ export default abstract class Block<Props extends Record<string, any> = {}> {
       return;
     }
 
-    Object.assign(this.props, nextProps);
+    Object.assign(this.props, deepClone(nextProps));
   }
 
   private _getChildrenPropsAndProps(
@@ -209,17 +227,17 @@ export default abstract class Block<Props extends Record<string, any> = {}> {
     return { children, props };
   }
 
-  show(): void {
-    const content = this.getContent();
-    if (content) {
-      content.style.display = 'block';
+  remove(): void {
+    if (this.element) {
+      this.element.remove();
     }
   }
 
-  hide(): void {
-    const content = this.getContent();
-    if (content) {
-      content.style.display = 'none';
-    }
+  show() {
+    this.getContent()!.style.removeProperty('display'); // .display = 'block';
+  }
+
+  hide() {
+    this.getContent()!.style.display = 'none';
   }
 }

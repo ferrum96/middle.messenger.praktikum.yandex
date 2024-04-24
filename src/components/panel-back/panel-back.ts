@@ -7,15 +7,17 @@ interface PanelBackProps {
   backButton: Button;
 }
 
-export default class PanelBack extends Block<PanelBackProps> {
+export default class PanelBack extends Block {
   constructor() {
-    super({
+    const props: PanelBackProps = {
       backButton: new Button({
         className: 'button_round',
-        text: '←',
-        page: '/chats'
+        icon: 'icons/Left-arrow.svg',
+        page: '/messenger'
       })
-    });
+    };
+
+    super(props);
   }
 
   render() {

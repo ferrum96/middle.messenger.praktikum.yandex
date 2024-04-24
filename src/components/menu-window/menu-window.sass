@@ -1,10 +1,16 @@
 @import "src/sass/variables"
 
 .menu-window
+  position: absolute
   display: flex
   flex-direction: column
-  gap: 1.6rem
+  gap: .8rem
   width: fit-content
   box-shadow: $box-shadow
   border-radius: 1.2rem
   padding: 1.5rem
+  background-color: $text-bgcolor
+  transition: all .5s ease
+
+  &_hide
+    display: none

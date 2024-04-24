@@ -1,5 +1,5 @@
 import './error-page.sass';
-import errorPage from './error-page.hbs?raw';
+import errorPageTemplate from './error-page.hbs?raw';
 import Block from '../../utils/Block';
 import Link from '../link/link';
 
@@ -10,18 +10,18 @@ interface ErrorPageProps {
   chatLink?: Link;
 }
 
-export default abstract class ErrorPage extends Block<ErrorPageProps> {
+export default abstract class ErrorPage extends Block {
   protected constructor(props: ErrorPageProps) {
     super({
       ...props,
       chatLink: new Link({
         text: 'Назад к чатам',
-        page: '/chats'
+        page: '/messenger'
       })
     });
   }
 
   render() {
-    return errorPage;
+    return errorPageTemplate;
   }
 }
