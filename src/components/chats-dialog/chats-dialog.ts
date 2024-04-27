@@ -99,7 +99,7 @@ export default class ChatsDialog extends Block {
           className: 'avatar_size-medium',
           src: currentChat.avatar
             ? buildPathToResource(currentChat.avatar)
-            : 'assets/icons/Default-avatar.svg',
+            : 'assets/Default-avatar.svg',
           alt: currentChat.avatar ? `${currentChat.id}` : 'default-avatar'
         }),
         title: currentChat.title,

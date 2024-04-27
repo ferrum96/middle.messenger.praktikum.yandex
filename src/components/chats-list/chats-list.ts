@@ -103,7 +103,7 @@ export default class ChatsList extends Block {
           className: 'avatar_size-medium',
           src: avatar
             ? buildPathToResource(avatar)
-            : 'assets/icons/Default-avatar.svg',
+            : 'assets/Default-avatar.svg',
           alt: avatar ? `${id}` : 'default-avatar'
         }),
         unreadCount: unread_count,
