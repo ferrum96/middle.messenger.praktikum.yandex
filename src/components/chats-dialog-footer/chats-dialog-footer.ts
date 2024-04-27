@@ -20,22 +20,22 @@ export default class ChatsDialogFooter extends Block {
     const props: ChatsDialogFooterProps = {
       uploadButton: new Button({
         className: 'chats-dialog-footer__upload-button',
-        icon: '/icons/Upload-menu.jpg',
+        icon: 'assets/icons/Upload-menu.jpg',
         onClick: () => {}
       }),
       uploadMenu: new MenuWindow({
         className: 'chats-dialog-footer__file-settings',
         menuItems: [
           new MenuItem({
-            icon: 'icons/Upload-photo.svg',
+            icon: 'assets/icons/Upload-photo.svg',
             title: 'Фото или Видео'
           }),
           new MenuItem({
-            icon: 'icons/Upload-file.svg',
+            icon: 'assets/icons/Upload-file.svg',
             title: 'Файл'
           }),
           new MenuItem({
-            icon: 'icons/Location.svg',
+            icon: 'assets/icons/Location.svg',
             title: 'Локация'
           })
         ]
@@ -52,7 +52,7 @@ export default class ChatsDialogFooter extends Block {
       }),
       sendMessageButton: new Button({
         className: 'button_round',
-        icon: '/icons/Right-arrow.svg',
+        icon: 'assets/icons/Right-arrow.svg',
         onClick: () => this._send()
       })
     };

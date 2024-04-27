@@ -12,7 +12,7 @@ export default class PanelBack extends Block {
     const props: PanelBackProps = {
       backButton: new Button({
         className: 'button_round',
-        icon: 'icons/Left-arrow.svg',
+        icon: 'assets/icons/Left-arrow.svg',
         page: '/messenger'
       })
     };
