@@ -25,14 +25,14 @@ export default class ChatsDialogHeader extends Block {
       usersCount,
       customUsersButton: new Button({
         className: 'button_round chats-dialog-header__custom-button',
-        icon: '/icons/Kebab-menu.svg',
+        icon: 'assets/icons/Kebab-menu.svg',
         onClick: () => this._toggleCustomUsers()
       }),
       customUsersMenu: new MenuWindow({
         className: 'chats-dialog-header__user-settings',
         menuItems: [
           new MenuItem({
-            icon: 'icons/Add.svg',
+            icon: 'assets/icons/Add.svg',
             title: 'Добавить пользователя',
             events: {
               click: () => {
@@ -42,7 +42,7 @@ export default class ChatsDialogHeader extends Block {
             }
           }),
           new MenuItem({
-            icon: 'icons/Delete.svg',
+            icon: 'assets/icons/Delete.svg',
             title: 'Удалить пользователя',
             events: {
               click: () => {
@@ -52,7 +52,7 @@ export default class ChatsDialogHeader extends Block {
             }
           }),
           new MenuItem({
-            icon: 'icons/Trash.svg',
+            icon: 'assets/icons/Trash.svg',
             title: 'Удалить чат',
             events: {
               click: () => {

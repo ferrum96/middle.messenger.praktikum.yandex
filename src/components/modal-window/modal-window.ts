@@ -27,7 +27,7 @@ export default class ModalWindow extends Block {
       fileName,
       closeButton: new Button({
         className: 'modal-window__close-button button_round',
-        icon: 'icons/Delete.svg',
+        icon: 'assets/icons/Delete.svg',
         onClick: () => this._onCloseWindow()
       }),
       actionButton
