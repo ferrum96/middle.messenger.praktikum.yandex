@@ -24,7 +24,7 @@ class Socket {
 
   protected _chatsUrl: string;
 
-  protected timeoutId: number = 0;
+  protected timeoutId: NodeJS.Timeout | number = 0;
 
   protected callbackMessages: (data: any) => void;
 
@@ -95,10 +95,7 @@ class Socket {
   protected sendPing() {
     if (this.socket?.readyState === STATE.OPEN) {
       this.send({ content: 'ping', type: 'ping' });
-      this.timeoutId = setTimeout(
-        this.sendPing.bind(this),
-        20000
-      ) as unknown as number;
+      this.timeoutId = setTimeout(this.sendPing.bind(this), 20000);
     }
   }
 }

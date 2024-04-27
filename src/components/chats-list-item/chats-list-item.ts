@@ -4,10 +4,10 @@ import Block from '../../utils/Block';
 import Avatar from '../avatar/avatar';
 import chatsController from '../../controllers/chats-controller.ts';
 import { LastMessage } from '../../utils/types.ts';
-// import MessageController from '../../controllers/message-controller.ts';
 import { EventHandlers } from '../../utils/EventHandlers.ts';
 
 interface ChatListItemProps {
+  className?: string;
   id: number;
   title: string;
   avatar: Avatar;
@@ -30,11 +30,6 @@ export default class ChatsListItem extends Block {
     EventHandlers.setActiveItem(this.props.id, '.chats-list-item');
     chatsController.setCurrentChat(this.props.id);
     chatsController.getChatUsers(this.props.id);
-
-    // const messageController = new MessageController();
-    //
-    // messageController.disconnect();
-    // messageController.connect();
   }
 
   render() {

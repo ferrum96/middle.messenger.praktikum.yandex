@@ -2,7 +2,7 @@ import router, { Routes } from '../utils/Router.ts';
 import usersApi from '../api/users-api.ts';
 import store from '../utils/Store.ts';
 import { ChangePassword, ChangeUser, Login } from '../api/types.ts';
-import { ChatUser, User } from '../utils/types.ts';
+import { ChatUser, User, UserDTCO } from '../utils/types.ts';
 
 class UsersController {
   public async changeData(data: ChangeUser) {
@@ -88,6 +88,29 @@ class UsersController {
       : [];
 
     store.set('currentUser', currentUser);
+  }
+
+  public getUserById(id: number): UserDTCO {
+    const { currentChatUsers } = store.getState();
+    const findUser: ChatUser | undefined | any[] = currentChatUsers
+      ? currentChatUsers.find(user => user.id === id)
+      : [];
+
+    return findUser as UserDTCO;
+  }
+
+  public itMe(id: number) {
+    const userById = this.getUserById(id);
+    const { user } = store.getState();
+    if (userById && user) {
+      return userById.id === user.id;
+    }
+    return undefined;
+  }
+
+  public getAvatar(id: number) {
+    const userById = this.getUserById(id);
+    return userById?.avatar;
   }
 }
 

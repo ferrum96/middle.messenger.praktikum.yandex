@@ -22,6 +22,7 @@ export type User = {
   phone: string;
   email: string;
   reason?: string;
+  role?: string;
 };
 
 export type ChatUser = Omit<User, 'phone' | 'email'>;

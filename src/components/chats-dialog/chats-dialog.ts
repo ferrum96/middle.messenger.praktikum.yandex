@@ -2,7 +2,6 @@ import chatsDialogTemplate from './chats-dialog.hbs?raw';
 import './chats-dialog.sass';
 import Block, { Props } from '../../utils/Block.ts';
 import Avatar from '../avatar/avatar.ts';
-import MessagesContainer from '../messages-container/messages-container.ts';
 import Message from '../message/message.ts';
 import { hoc } from '../../utils/hoc.ts';
 import { buildPathToResource } from '../../utils/buildPathToResource.ts';
@@ -16,6 +15,8 @@ import Button from '../button/button.ts';
 import { usersList } from '../users-list/users-list.ts';
 import chatsController from '../../controllers/chats-controller.ts';
 import { Chat, User } from '../../utils/types.ts';
+import getTimeFromDate from '../../utils/getTimeFromDate.ts';
+import usersController from '../../controllers/users-controller.ts';
 
 interface ChatsDialogProps {
   chatsDialogHeader?: ChatsDialogHeader;
@@ -90,11 +91,12 @@ export default class ChatsDialog extends Block {
   componentDidUpdate(oldProps: Props, newProps: Props): boolean {
     const currentChat = store.getState().currentChat;
     const currentChatUsers = store.getState().currentChatUsers || [];
+    const currentChatMessages = store.getState().currentChatMessages || [];
 
     if (currentChat !== null) {
       this.children.chatsDialogHeader = new ChatsDialogHeader({
         avatar: new Avatar({
-          className: 'chats-list-item__avatar',
+          className: 'avatar_size-medium',
           src: currentChat.avatar
             ? buildPathToResource(currentChat.avatar)
             : '/icons/Default-avatar.svg',
@@ -104,23 +106,26 @@ export default class ChatsDialog extends Block {
         usersCount: currentChatUsers.length
       });
 
-      this.children.chatMessages = [
-        new MessagesContainer({
-          date: '19 июня',
-          messagesList: [
-            new Message({
-              className: 'message_from',
-              content: `${currentChat.title}: ${currentChat.id}`,
-              time: '11:56'
-            }),
-            new Message({
-              className: 'message_to',
-              content: `${currentChat.title}: ${currentChat.id}`,
-              time: '12:56'
-            })
-          ]
-        })
-      ];
+      this.children.chatMessages = currentChatMessages.map(message => {
+        const { user_id, content, time } = message;
+        const user = usersController.getUserById(user_id);
+
+        return new Message({
+          className: usersController.itMe(user_id)
+            ? 'message_to'
+            : 'message_from',
+          name: `${user.first_name} ${user.second_name}`,
+          avatar: new Avatar({
+            className: 'message__avatar avatar_size-small',
+            src: user.avatar
+              ? buildPathToResource(user.avatar)
+              : '/icons/Default-avatar.svg',
+            alt: user.avatar ? `${user_id}` : 'default-avatar'
+          }),
+          content,
+          time: getTimeFromDate(time)
+        });
+      });
 
       this.children.chatsDialogFooter = new ChatsDialogFooter();
     }
@@ -136,5 +141,6 @@ export default class ChatsDialog extends Block {
 export const chatsDialog = hoc(state => ({
   currentChat: state.currentChat,
   currentChatUsers: state.currentChatUsers,
-  isSearchingUsers: state.isSearchingUsers
+  isSearchingUsers: state.isSearchingUsers,
+  currentChatMessages: state.currentChatMessages
 }))(ChatsDialog);

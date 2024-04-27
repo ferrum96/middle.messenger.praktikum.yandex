@@ -25,10 +25,10 @@ export default class MessageController {
     MessageController.__instance = this;
   }
 
-  async getUserToken(chatId: number) {
+  async getUserToken(chatId: number): Promise<string> {
     const { response } = await chatsApi.getUserToken(chatId);
 
-    return response;
+    return JSON.parse(response).token;
   }
 
   async connect() {
@@ -37,9 +37,7 @@ export default class MessageController {
       this.socketProps.userId = user.id;
       this.socketProps.chatId = currentChat.id;
 
-      const { token } = await this.getUserToken(currentChat.id);
-
-      this.socketProps.token = token;
+      this.socketProps.token = await this.getUserToken(currentChat.id);
 
       this.socket = new Socket(this.socketProps);
     }
@@ -53,14 +51,21 @@ export default class MessageController {
     this.socket?.send(mess);
   }
 
-  addMessage(message: MessageProps | MessageProps[]) {
+  async addMessage(message: MessageProps | MessageProps[]) {
     const { currentChatMessages } = store.getState();
     let newChatMessages: MessageProps[] = [];
+
     if (Array.isArray(message)) {
       newChatMessages = [...message].reverse();
     } else {
       newChatMessages = [...currentChatMessages, message];
     }
+
     store.set('currentChatMessages', newChatMessages);
+
+    const chatMessages = document.querySelector('.chats-dialog__content');
+    if (chatMessages !== null) {
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
   }
 }

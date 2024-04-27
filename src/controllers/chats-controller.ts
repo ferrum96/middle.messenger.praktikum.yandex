@@ -6,6 +6,9 @@ import store from '../utils/Store.ts';
 import { Chat, UserDTCO } from '../utils/types.ts';
 import { ChatData, CreateChat, DataAddingUsersToChat } from '../api/types.ts';
 import { EventHandlers } from '../utils/EventHandlers.ts';
+import MessageController from './message-controller.ts';
+
+const messageController = new MessageController();
 
 class ChatsController {
   public async getChats(): Promise<void> {
@@ -44,12 +47,6 @@ class ChatsController {
     }
   }
 
-  public async getToken(chatId: number): Promise<void> {
-    return chatsApi.getUserToken(chatId).then(resp => {
-      return JSON.parse(resp.response);
-    });
-  }
-
   public async setCurrentChat(chatId: number): Promise<void> {
     const chats: Chat[] | null | undefined = store?.getState()?.chats;
     const currentChat = chats
@@ -57,6 +54,9 @@ class ChatsController {
       : [];
 
     store.set('currentChat', currentChat);
+
+    messageController.disconnect();
+    await messageController.connect();
   }
 
   public async createChat(title: string): Promise<void> {
@@ -109,22 +109,27 @@ class ChatsController {
     }
   }
 
-  public async addUserToChat(chatId: number, userId: number): Promise<void> {
+  public async addUserToChat(
+    chatId: number | undefined,
+    userId: number | undefined
+  ): Promise<void> {
     try {
-      const { status, response } = await chatsApi.addUserToChat({
-        users: [userId],
-        chatId
-      } as DataAddingUsersToChat);
+      if (chatId !== undefined && userId !== undefined) {
+        const { status, response } = await chatsApi.addUserToChat({
+          users: [userId],
+          chatId
+        } as DataAddingUsersToChat);
 
-      if (status === 200) {
-        alert('Пользователь успешно добавлен!');
-        await this.getChatUsers(chatId);
-        router.go(Routes.MESSENGER);
-        EventHandlers.setActiveItem(chatId, '.chats-list-item');
-      } else if (status === 500) {
-        router.go(Routes.INTERNAL_SERVER_ERROR);
-      } else {
-        alert(JSON.parse(response).reason ?? 'Ошибочный запрос');
+        if (status === 200) {
+          alert('Пользователь успешно добавлен!');
+          await this.getChatUsers(chatId);
+          router.go(Routes.MESSENGER);
+          EventHandlers.setActiveItem(chatId, '.chats-list-item');
+        } else if (status === 500) {
+          router.go(Routes.INTERNAL_SERVER_ERROR);
+        } else {
+          alert(JSON.parse(response).reason ?? 'Ошибочный запрос');
+        }
       }
     } catch (e) {
       console.log(e);
@@ -132,33 +137,44 @@ class ChatsController {
   }
 
   public async deleteUserFromChat(
-    chatId: number,
-    userId: number
+    chatId: number | undefined,
+    userId: number | undefined
   ): Promise<void> {
     try {
-      const { status, response } = await chatsApi.deleteUserFromChat({
-        users: [userId],
-        chatId
-      } as DataAddingUsersToChat);
+      if (chatId !== undefined && userId !== undefined) {
+        const { status, response } = await chatsApi.deleteUserFromChat({
+          users: [userId],
+          chatId
+        } as DataAddingUsersToChat);
 
-      if (status === 200) {
-        alert('Пользователь успешно удалён!');
-        await this.getChatUsers(chatId);
-        router.go(Routes.MESSENGER);
-        if (store.getState().currentChatUsers === null) {
-          await this.getChats();
-          store.set('currentChat', null);
+        if (status === 200) {
+          alert('Пользователь успешно удалён!');
+          await this.getChatUsers(chatId);
+          router.go(Routes.MESSENGER);
+          if (store.getState().currentChatUsers === null) {
+            await this.getChats();
+            store.set('currentChat', null);
+          } else {
+            EventHandlers.setActiveItem(chatId, '.chats-list-item');
+          }
+        } else if (status === 500) {
+          router.go(Routes.INTERNAL_SERVER_ERROR);
         } else {
-          EventHandlers.setActiveItem(chatId, '.chats-list-item');
+          alert(JSON.parse(response).reason ?? 'Ошибочный запрос');
         }
-      } else if (status === 500) {
-        router.go(Routes.INTERNAL_SERVER_ERROR);
-      } else {
-        alert(JSON.parse(response).reason ?? 'Ошибочный запрос');
       }
     } catch (e) {
       console.log(e);
     }
+  }
+
+  public async sendTextMessage(message: string) {
+    const mess = {
+      content: message,
+      type: 'message'
+    };
+    messageController.sendMessage(mess);
+    await this.getChats();
   }
 }
 

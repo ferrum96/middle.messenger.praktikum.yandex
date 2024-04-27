@@ -8,8 +8,9 @@ export class EventHandlers {
       const pageAttribute = event.target.getAttribute('page') as string | null;
 
       if (pageAttribute !== null) {
-        router.go(pageAttribute);
+        event.stopPropagation();
         event.preventDefault();
+        router.go(pageAttribute);
       }
     }
   }
