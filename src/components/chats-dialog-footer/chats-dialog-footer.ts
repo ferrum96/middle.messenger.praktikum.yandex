@@ -44,8 +44,8 @@ export default class ChatsDialogFooter extends Block {
         name: 'sendMessage',
         className: 'chats-dialog-footer__send-message',
         placeholder: 'Сообщение',
-        onKeyDown: (event: KeyboardEvent) => {
-          if (event.key === 'Enter') {
+        onKeyDown: (event?: KeyboardEvent) => {
+          if (event?.key === 'Enter') {
             this._send();
           }
         }

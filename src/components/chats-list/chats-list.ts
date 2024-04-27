@@ -69,8 +69,8 @@ export default class ChatsList extends Block {
         text: ' Создать чат',
         onClick: () => {
           const modalWindow = this.children.modalWindow as ModalWindow;
-          const newChatInput = modalWindow?.children?.content[0]?.children
-            ?.input as Input;
+          const newChatInput = (modalWindow?.children?.content as Block[])[0]
+            ?.children?.input as Input;
 
           if (newChatInput.value === '') {
             alert('Название не может быть пустое');

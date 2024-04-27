@@ -24,7 +24,7 @@ class Socket {
 
   protected _chatsUrl: string;
 
-  protected timeoutId: number = 0;
+  protected timeoutId: NodeJS.Timeout | number = 0;
 
   protected callbackMessages: (data: any) => void;
 

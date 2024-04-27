@@ -2,7 +2,6 @@ import Block from '../../utils/Block';
 import button from './button.hbs?raw';
 import './button.sass';
 import { EventHandlers } from '../../utils/EventHandlers.ts';
-import MenuWindow from '../menu-window/menu-window.ts';
 
 interface ButtonProps {
   className?: string;

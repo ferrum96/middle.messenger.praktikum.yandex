@@ -2,7 +2,6 @@ import chatsDialogTemplate from './chats-dialog.hbs?raw';
 import './chats-dialog.sass';
 import Block, { Props } from '../../utils/Block.ts';
 import Avatar from '../avatar/avatar.ts';
-import MessagesContainer from '../messages-container/messages-container.ts';
 import Message from '../message/message.ts';
 import { hoc } from '../../utils/hoc.ts';
 import { buildPathToResource } from '../../utils/buildPathToResource.ts';
@@ -16,7 +15,6 @@ import Button from '../button/button.ts';
 import { usersList } from '../users-list/users-list.ts';
 import chatsController from '../../controllers/chats-controller.ts';
 import { Chat, User } from '../../utils/types.ts';
-import content from '*.hbs?raw';
 import getTimeFromDate from '../../utils/getTimeFromDate.ts';
 import usersController from '../../controllers/users-controller.ts';
 

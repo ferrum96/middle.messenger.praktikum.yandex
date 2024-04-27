@@ -1,11 +1,7 @@
 import Socket, { Message, WebSocketProps } from '../utils/Socket.ts';
 import store from '../utils/Store.ts';
-import { DataToken, MessageProps } from '../utils/types.ts';
+import { MessageProps } from '../utils/types.ts';
 import chatsApi from '../api/chats-api.ts';
-import { transformToLastMessage } from '../utils/apiTransformers.ts';
-import usersController from './users-controller.ts';
-import chatsController from './chats-controller.ts';
-import { EventHandlers } from '../utils/EventHandlers.ts';
 
 export default class MessageController {
   static __instance: MessageController | undefined;
@@ -56,7 +52,7 @@ export default class MessageController {
   }
 
   async addMessage(message: MessageProps | MessageProps[]) {
-    const { currentChatMessages, currentChat } = store.getState();
+    const { currentChatMessages } = store.getState();
     let newChatMessages: MessageProps[] = [];
 
     if (Array.isArray(message)) {
@@ -68,6 +64,8 @@ export default class MessageController {
     store.set('currentChatMessages', newChatMessages);
 
     const chatMessages = document.querySelector('.chats-dialog__content');
-    chatMessages.scrollTop = chatMessages.scrollHeight;
+    if (chatMessages !== null) {
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
   }
 }
