@@ -36,7 +36,7 @@ export default class UsersList extends Block {
           id,
           login,
           avatar: new Avatar({
-            className: 'chats-list-item__avatar',
+            className: 'avatar_size-medium',
             src: avatar
               ? buildPathToResource(avatar)
               : '/icons/Default-avatar.svg',
@@ -54,7 +54,7 @@ export default class UsersList extends Block {
               id,
               login,
               avatar: new Avatar({
-                className: 'chats-list-item__avatar',
+                className: 'avatar_size-medium',
                 src: avatar
                   ? buildPathToResource(avatar)
                   : '/icons/Default-avatar.svg',

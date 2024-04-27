@@ -14,6 +14,7 @@ interface ChatsDialogHeaderProps {
   title: string;
   usersCount?: number;
   customUsersButton?: Button;
+  customUsersMenu?: MenuWindow;
 }
 
 export default class ChatsDialogHeader extends Block {
@@ -25,45 +26,48 @@ export default class ChatsDialogHeader extends Block {
       customUsersButton: new Button({
         className: 'button_round chats-dialog-header__custom-button',
         icon: '/icons/Kebab-menu.svg',
-        menu: new MenuWindow({
-          className: 'chats-dialog-header__user-settings',
-          menuItems: [
-            new MenuItem({
-              icon: 'icons/Add.svg',
-              title: 'Добавить пользователя',
-              events: {
-                click: () => {
-                  store.set('isSearchingUsers', true);
-                  EventHandlers.setModalWindowActive('.modal-window_add-user');
-                }
+        onClick: () => this._toggleCustomUsers()
+      }),
+      customUsersMenu: new MenuWindow({
+        className: 'chats-dialog-header__user-settings',
+        menuItems: [
+          new MenuItem({
+            icon: 'icons/Add.svg',
+            title: 'Добавить пользователя',
+            events: {
+              click: () => {
+                store.set('isSearchingUsers', true);
+                EventHandlers.setModalWindowActive('.modal-window_add-user');
               }
-            }),
-            new MenuItem({
-              icon: 'icons/Delete.svg',
-              title: 'Удалить пользователя',
-              events: {
-                click: () => {
-                  store.set('isSearchingUsers', false);
-                  EventHandlers.setModalWindowActive(
-                    '.modal-window_delete-user'
-                  );
-                }
+            }
+          }),
+          new MenuItem({
+            icon: 'icons/Delete.svg',
+            title: 'Удалить пользователя',
+            events: {
+              click: () => {
+                store.set('isSearchingUsers', false);
+                EventHandlers.setModalWindowActive('.modal-window_delete-user');
               }
-            }),
-            new MenuItem({
-              icon: 'icons/Trash.svg',
-              title: 'Удалить чат',
-              events: {
-                click: () => {
-                  chatsController.deleteCurrentChat();
-                }
+            }
+          }),
+          new MenuItem({
+            icon: 'icons/Trash.svg',
+            title: 'Удалить чат',
+            events: {
+              click: () => {
+                chatsController.deleteCurrentChat();
               }
-            })
-          ]
-        })
+            }
+          })
+        ]
       })
     };
     super(props);
+  }
+
+  private _toggleCustomUsers() {
+    (this.children.customUsersMenu as MenuWindow).toggleMenu();
   }
 
   render() {

@@ -1,5 +1,6 @@
 import HTTP from '../utils/HTTP.ts';
 import { ChatData, CreateChat, DataAddingUsersToChat } from './types.ts';
+import { DataToken } from '../utils/types.ts';
 
 class ChatApi {
   private _chatApiInstance: HTTP = new HTTP('/chats');

@@ -14,6 +14,7 @@ import ModalWindow from '../modal-window/modal-window.ts';
 import InputField from '../input-field/input-field.ts';
 import { EventHandlers } from '../../utils/EventHandlers.ts';
 import chatsController from '../../controllers/chats-controller.ts';
+import store from '../../utils/Store.ts';
 
 interface ChatsListProps {
   profileLink: Link;
@@ -67,9 +68,7 @@ export default class ChatsList extends Block {
         className: 'modal-window__action-button',
         text: ' Создать чат',
         onClick: () => {
-          const modalWindow = (
-            this.children instanceof Array ? this.children[0] : this.children
-          )?.modalWindow;
+          const modalWindow = this.children.modalWindow as ModalWindow;
           const newChatInput = modalWindow?.children?.content[0]?.children
             ?.input as Input;
 
@@ -87,15 +86,21 @@ export default class ChatsList extends Block {
 
   componentDidUpdate(oldProps: Props, newProps: Props): boolean {
     const chats: Chat[] = newProps.chats;
+    const currentChat = store.getState().currentChat || 0;
 
     this.children.chatListItems = chats.map(chat => {
       const { id, title, avatar, unread_count, created_by, last_message } =
         chat;
+
       return new ChatsListItem({
+        className:
+          typeof currentChat !== 'number' && currentChat?.id === id
+            ? 'chats-list-item_active'
+            : '',
         id,
         title,
         avatar: new Avatar({
-          className: 'chats-list-item__avatar',
+          className: 'avatar_size-medium',
           src: avatar
             ? buildPathToResource(avatar)
             : '/icons/Default-avatar.svg',
