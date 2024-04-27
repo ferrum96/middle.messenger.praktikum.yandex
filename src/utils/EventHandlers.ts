@@ -1,7 +1,6 @@
 import Block from './Block.ts';
 import router from './Router.ts';
 import { getFormData } from './getFormData.ts';
-import MenuWindow from '../components/menu-window/menu-window.ts';
 
 export class EventHandlers {
   public static onClickRoute(event: Event): void {
@@ -23,7 +22,9 @@ export class EventHandlers {
 
   public static setModalWindowActive(selector: string) {
     const modalWindow = document.querySelector(selector);
-    modalWindow.classList.add('modal-window_active');
+    if (modalWindow !== null) {
+      modalWindow.classList.add('modal-window_active');
+    }
   }
 
   public static setActiveItem(chatId: number, selector: string) {
