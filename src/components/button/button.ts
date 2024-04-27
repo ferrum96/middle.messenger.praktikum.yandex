@@ -16,7 +16,6 @@ interface ButtonProps {
 export default class Button extends Block {
   constructor(props: ButtonProps) {
     super({
-      menu: props.menu,
       ...props,
       events: {
         mouseup: (event: Event) => {
