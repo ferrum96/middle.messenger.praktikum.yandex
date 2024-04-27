@@ -12,6 +12,7 @@ interface InputProps {
   readonly?: boolean;
   events?: {};
   onInput?: (event?: Event) => void;
+  onKeyDown?: (event?: KeyboardEvent) => void;
 }
 
 export default class Input extends Block {
@@ -19,6 +20,17 @@ export default class Input extends Block {
     super({
       ...props,
       events: {
+        keydown: (event?: KeyboardEvent) => {
+          const target = event?.target as HTMLInputElement;
+          if (target) {
+            this.setProps({
+              value: target.value
+            });
+          }
+          if (props.onKeyDown) {
+            props.onKeyDown(event);
+          }
+        },
         input: (event?: Event) => {
           if (props.onInput) {
             props.onInput(event);
@@ -41,6 +53,7 @@ export default class Input extends Block {
   }
 
   componentDidUpdate(oldProps: InputProps, newProps: InputProps): boolean {
+    oldProps.value = newProps.value;
     this._setErrorState();
     return super.componentDidUpdate(oldProps, newProps);
   }

@@ -95,10 +95,7 @@ class Socket {
   protected sendPing() {
     if (this.socket?.readyState === STATE.OPEN) {
       this.send({ content: 'ping', type: 'ping' });
-      this.timeoutId = setTimeout(
-        this.sendPing.bind(this),
-        20000
-      ) as unknown as number;
+      this.timeoutId = setTimeout(this.sendPing.bind(this), 20000);
     }
   }
 }
