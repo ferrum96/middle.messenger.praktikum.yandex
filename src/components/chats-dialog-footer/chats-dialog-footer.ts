@@ -21,7 +21,7 @@ export default class ChatsDialogFooter extends Block {
       uploadButton: new Button({
         className: 'chats-dialog-footer__upload-button',
         icon: 'assets/icons/Upload-menu.jpg',
-        onClick: () => {}
+        onClick: () => this._toggleUploadMenu()
       }),
       uploadMenu: new MenuWindow({
         className: 'chats-dialog-footer__file-settings',
@@ -67,6 +67,10 @@ export default class ChatsDialogFooter extends Block {
       chatsController.sendTextMessage(value);
       sendMessageInput.clearInput();
     }
+  }
+
+  private _toggleUploadMenu() {
+    (this.children.uploadMenu as MenuWindow).toggleMenu();
   }
 
   render() {
