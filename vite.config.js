@@ -1,6 +1,7 @@
 import { resolve } from 'path';
 import { defineConfig } from 'vite';
 import checker from 'vite-plugin-checker';
+import { viteStaticCopy } from 'vite-plugin-static-copy';
 
 export default defineConfig({
   server: {
@@ -23,6 +24,9 @@ export default defineConfig({
   plugins: [
     checker({
       typescript: true
+    }),
+    viteStaticCopy({
+      targets: [{ src: 'assets/icons/**/*', dest: 'assets/icons/' }]
     })
   ]
 });
