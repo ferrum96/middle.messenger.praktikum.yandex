@@ -88,32 +88,34 @@ export default class ChatsList extends Block {
     const chats: Chat[] = newProps.chats;
     const currentChat = store.getState().currentChat || 0;
 
-    this.children.chatListItems = chats.map(chat => {
-      const { id, title, avatar, unread_count, created_by, last_message } =
-        chat;
+    if (chats !== null) {
+      this.children.chatListItems = chats.map(chat => {
+        const { id, title, avatar, unread_count, created_by, last_message } =
+          chat;
 
-      return new ChatsListItem({
-        className:
-          typeof currentChat !== 'number' && currentChat?.id === id
-            ? 'chats-list-item_active'
-            : '',
-        id,
-        title,
-        avatar: new Avatar({
-          className: 'avatar_size-medium',
-          src: avatar
-            ? buildPathToResource(avatar)
-            : 'assets/icons/Default-avatar.svg',
-          alt: avatar ? `${id}` : 'default-avatar'
-        }),
-        unreadCount: unread_count,
-        createdBy: created_by,
-        lastMessage: {
-          ...last_message,
-          time: getTimeFromDate(last_message?.time)
-        } as LastMessage
+        return new ChatsListItem({
+          className:
+            typeof currentChat !== 'number' && currentChat?.id === id
+              ? 'chats-list-item_active'
+              : '',
+          id,
+          title,
+          avatar: new Avatar({
+            className: 'avatar_size-medium',
+            src: avatar
+              ? buildPathToResource(avatar)
+              : 'assets/icons/Default-avatar.svg',
+            alt: avatar ? `${id}` : 'default-avatar'
+          }),
+          unreadCount: unread_count,
+          createdBy: created_by,
+          lastMessage: {
+            ...last_message,
+            time: getTimeFromDate(last_message?.time)
+          } as LastMessage
+        });
       });
-    });
+    }
 
     return super.componentDidUpdate(oldProps, newProps);
   }

@@ -31,7 +31,7 @@ const props: SettingsPageProps = {
     profileForm: new profileForm({
       avatar: new Avatar({
         className: 'profile-form__avatar avatar_size-big',
-        src: '/icons/Default-avatar.svg',
+        src: 'assets/icons/Default-avatar.svg',
         alt: 'default-avatar'
       }),
       inputFields: [
