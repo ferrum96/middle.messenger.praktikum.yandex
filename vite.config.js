@@ -7,7 +7,6 @@ export default defineConfig({
     port: '3000',
     strictPort: true
   },
-  emptyOutDir: false,
   root: resolve(__dirname, 'src/'),
   build: {
     port: '3000',
@@ -17,7 +16,8 @@ export default defineConfig({
         main: resolve(__dirname, 'src/index.html')
       }
     },
-    outDir: resolve(__dirname, 'dist/')
+    outDir: resolve(__dirname, 'dist/'),
+    emptyOutDir: false
   },
   plugins: [
     checker({
