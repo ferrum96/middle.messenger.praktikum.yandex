@@ -39,7 +39,7 @@ export default class UsersList extends Block {
             className: 'avatar_size-medium',
             src: avatar
               ? buildPathToResource(avatar)
-              : '/icons/Default-avatar.svg',
+              : 'assets/icons/Default-avatar.svg',
             alt: avatar ? `${id}` : 'default-avatar'
           })
         });
@@ -57,7 +57,7 @@ export default class UsersList extends Block {
                 className: 'avatar_size-medium',
                 src: avatar
                   ? buildPathToResource(avatar)
-                  : '/icons/Default-avatar.svg',
+                  : 'assets/icons/Default-avatar.svg',
                 alt: avatar ? `${id}` : 'default-avatar'
               })
             });

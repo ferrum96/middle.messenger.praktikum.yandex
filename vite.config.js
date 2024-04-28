@@ -17,7 +17,8 @@ export default defineConfig({
         main: resolve(__dirname, 'src/index.html')
       }
     },
-    outDir: resolve(__dirname, 'dist/')
+    outDir: resolve(__dirname, 'dist/'),
+    emptyOutDir: true
   },
   plugins: [
     checker({
