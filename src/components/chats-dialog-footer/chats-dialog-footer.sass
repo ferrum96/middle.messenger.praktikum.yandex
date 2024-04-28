@@ -22,8 +22,17 @@
     color: $title-color
 
   &__upload-button
-    width: 3.2rem
-    height: 3.2rem
+    background-color: $text-bgcolor
+    padding: .5rem
+
+    color: #3369f3
+
+    &:hover
+      background-color: #3369f3
+      //color: #3369f3
+
+      & > img
+        filter: brightness(0) invert(1)
 
   &__file-settings
     position: absolute
