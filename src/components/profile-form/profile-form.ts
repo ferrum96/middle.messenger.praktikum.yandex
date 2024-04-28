@@ -56,7 +56,7 @@ export class ProfileForm extends Block {
       src:
         store.getState().user?.avatar !== null
           ? buildPathToResource(store.getState().user?.avatar ?? '')
-          : '/icons/Default-avatar.svg',
+          : 'assets/icons/Default-avatar.svg',
       alt: `${store.getState().user?.id}` ?? '',
       events: {
         click: () =>

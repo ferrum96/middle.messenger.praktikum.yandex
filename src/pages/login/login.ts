@@ -1,11 +1,11 @@
 import Block from '../../utils/Block';
 import './login.sass';
 import loginTemplate from './login.hbs?raw';
-import InputField from '../../components/input-field/input-field';
-import Button from '../../components/button/button';
-import Link from '../../components/link/link';
-import { ErrorText } from '../../utils/ErrorText.ts';
+import InputField from '../../components/input-field/input-field.ts';
 import Form from '../../components/form/form.ts';
+import Button from '../../components/button/button.ts';
+import Link from '../../components/link/link.ts';
+import { ErrorText } from '../../utils/ErrorText.ts';
 import Input from '../../components/input/input.ts';
 import authController from '../../controllers/auth-controller.ts';
 import store from '../../utils/Store.ts';
@@ -35,7 +35,6 @@ const props: LoginPageProps = {
         input: new Input({
           type: 'text',
           name: 'login',
-          value: 'qaz1qaz1',
           placeholder: 'Введите логин'
         }),
         error: ErrorText.LoginErrorText
@@ -46,7 +45,6 @@ const props: LoginPageProps = {
         input: new Input({
           type: 'password',
           name: 'password',
-          value: '12345678qQ',
           placeholder: 'Введите пароль'
         }),
         error: ErrorText.PasswordErrorText
@@ -60,7 +58,8 @@ const props: LoginPageProps = {
       text: 'Нет аккаунта?',
       page: '/sign-up'
     }),
-    onSubmit: () => {
+    onSubmit: (event?: Event) => {
+      event?.preventDefault();
       authController.login(store.getState().formData as LoginRequestData);
     }
   })

@@ -117,7 +117,7 @@ export default class HTTP {
       xhr.ontimeout = reject;
 
       if (method === Methods.GET || !data) {
-        xhr.send();
+        xhr.send(JSON.stringify(data));
       } else if (data instanceof FormData) {
         xhr.send(data);
       } else {

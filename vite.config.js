@@ -18,7 +18,7 @@ export default defineConfig({
       }
     },
     outDir: resolve(__dirname, 'dist/'),
-    emptyOutDir: false
+    emptyOutDir: true
   },
   plugins: [
     checker({
