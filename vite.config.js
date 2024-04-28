@@ -7,6 +7,7 @@ export default defineConfig({
     port: '3000',
     strictPort: true
   },
+  emptyOutDir: false,
   root: resolve(__dirname, 'src/'),
   build: {
     port: '3000',

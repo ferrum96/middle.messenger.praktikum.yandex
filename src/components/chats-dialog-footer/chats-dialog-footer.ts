@@ -20,7 +20,7 @@ export default class ChatsDialogFooter extends Block {
     const props: ChatsDialogFooterProps = {
       uploadButton: new Button({
         className: 'chats-dialog-footer__upload-button',
-        icon: 'assets/icons/Upload-menu.jpg',
+        icon: 'assets/icons/Upload-menu.svg',
         onClick: () => this._toggleUploadMenu()
       }),
       uploadMenu: new MenuWindow({
