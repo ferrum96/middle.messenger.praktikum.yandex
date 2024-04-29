@@ -1,5 +1,5 @@
-import Socket, { Message, WebSocketProps } from '../utils/Socket.ts';
-import store from '../utils/Store.ts';
+import Socket, { Message, WebSocketProps } from '../core/Socket.ts';
+import store from '../core/Store.ts';
 import { MessageProps } from '../utils/types.ts';
 import chatsApi from '../api/chats-api.ts';
 
@@ -12,7 +12,7 @@ export default class MessageController {
     userId: 0,
     chatId: 0,
     token: '',
-    callbackMessages: (data: MessageProps | MessageProps[]) => {
+    callbackMessages: (data: MessageProps | MessageProps[]): void => {
       this.addMessage(data);
     }
   };
@@ -51,9 +51,9 @@ export default class MessageController {
     this.socket?.send(mess);
   }
 
-  async addMessage(message: MessageProps | MessageProps[]) {
+  async addMessage(message: MessageProps | MessageProps[]): Promise<void> {
     const { currentChatMessages } = store.getState();
-    let newChatMessages: MessageProps[] = [];
+    let newChatMessages: MessageProps[];
 
     if (Array.isArray(message)) {
       newChatMessages = [...message].reverse();

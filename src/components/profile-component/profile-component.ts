@@ -1,13 +1,13 @@
 import './profile-component.sass';
 import profileComponentTemplate from './profile-component.hbs?raw';
 import PanelBack from '../panel-back/panel-back';
-import Block from '../../utils/Block';
+import Block from '../../core/Block.ts';
 import ModalWindow from '../modal-window/modal-window.ts';
 import Link from '../link/link.ts';
 import Button from '../button/button.ts';
 import usersController from '../../controllers/users-controller.ts';
-import { hoc } from '../../utils/hoc.ts';
-import store, { State } from '../../utils/Store.ts';
+import { hoc } from '../../core/hoc.ts';
+import store, { State } from '../../core/Store.ts';
 import { ProfileForm } from '../profile-form/profile-form.ts';
 
 export interface ProfileComponentProps {

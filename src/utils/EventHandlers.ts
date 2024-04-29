@@ -1,5 +1,5 @@
-import Block from './Block.ts';
-import router from './Router.ts';
+import Block from '../core/Block.ts';
+import router from '../core/Router.ts';
 import { getFormData } from './getFormData.ts';
 
 export class EventHandlers {

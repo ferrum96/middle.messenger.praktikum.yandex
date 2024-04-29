@@ -1,5 +1,5 @@
 import Block, { Props } from './Block.ts';
-import isEqual from './isEqual.ts';
+import isEqual from '../utils/isEqual.ts';
 import store, { State, StoreEvents } from './Store.ts';
 
 export function hoc(mapStateToProps: (state: State) => Props) {

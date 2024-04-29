@@ -1,13 +1,12 @@
 import './users-list.sass';
 import chatListTemplate from './users-list.hbs?raw';
-import Block, { Props } from '../../utils/Block';
-import { hoc } from '../../utils/hoc.ts';
-import { ChatUser, User } from '../../utils/types.ts';
+import Block, { Props } from '../../core/Block.ts';
+import { hoc } from '../../core/hoc.ts';
 import UsersListItem from '../users-list-item/users-list-item.ts';
 import Avatar from '../avatar/avatar.ts';
 import { buildPathToResource } from '../../utils/buildPathToResource.ts';
 import usersController from '../../controllers/users-controller.ts';
-import store from '../../utils/Store.ts';
+import store from '../../core/Store.ts';
 
 interface UsersListProps {
   usersListItems?: UsersListItem[];
@@ -23,11 +22,12 @@ export default class UsersList extends Block {
   }
 
   componentDidUpdate(oldProps: Props, newProps: Props): boolean {
-    const searchingLogin: string | null = store.getState().searchingLogin;
-    const searchingUsers: User[] | null = store.getState().searchingUsers;
-    const currentChatUsers: ChatUser[] | null =
-      store.getState().currentChatUsers;
-    const isSearchingUsers = store.getState().isSearchingUsers;
+    const {
+      searchingLogin,
+      searchingUsers,
+      currentChatUsers,
+      isSearchingUsers
+    } = store.getState();
 
     const currentChatUsersList: UsersListItem[] = (currentChatUsers || []).map(
       user => {

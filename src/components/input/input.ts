@@ -1,6 +1,6 @@
 import './input.sass';
 import inputTemplate from './input.hbs?raw';
-import Block from '../../utils/Block';
+import Block from '../../core/Block.ts';
 import { ValidatePattern } from '../../utils/ValidatePattern.ts';
 
 interface InputProps {

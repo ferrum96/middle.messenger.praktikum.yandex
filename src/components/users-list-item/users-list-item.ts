@@ -1,6 +1,6 @@
 import './users-list-item.sass';
 import usersListItemTemplate from './users-list-item.hbs?raw';
-import Block from '../../utils/Block';
+import Block from '../../core/Block.ts';
 import Avatar from '../avatar/avatar';
 import { EventHandlers } from '../../utils/EventHandlers.ts';
 import usersController from '../../controllers/users-controller.ts';

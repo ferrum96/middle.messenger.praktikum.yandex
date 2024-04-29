@@ -1,13 +1,13 @@
 import chatsDialogHeaderTemplate from './chats-dialog-header.hbs?raw';
 import './chats-dialog-header.sass';
-import Block from '../../utils/Block.ts';
+import Block from '../../core/Block.ts';
 import Avatar from '../avatar/avatar.ts';
 import Button from '../button/button.ts';
 import MenuWindow from '../menu-window/menu-window.ts';
 import MenuItem from '../menu-item/menu-item.ts';
 import chatsController from '../../controllers/chats-controller.ts';
 import { EventHandlers } from '../../utils/EventHandlers.ts';
-import store from '../../utils/Store.ts';
+import store from '../../core/Store.ts';
 
 interface ChatsDialogHeaderProps {
   avatar: Avatar;

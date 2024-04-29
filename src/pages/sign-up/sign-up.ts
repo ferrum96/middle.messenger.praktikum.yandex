@@ -1,6 +1,6 @@
 import './sign-up.sass';
 import signUpTemplate from './sign-up.hbs?raw';
-import Block from '../../utils/Block';
+import Block from '../../core/Block.ts';
 import InputField from '../../components/input-field/input-field';
 import Button from '../../components/button/button';
 import Link from '../../components/link/link';
@@ -8,7 +8,7 @@ import { ErrorText } from '../../utils/ErrorText.ts';
 import Form from '../../components/form/form.ts';
 import Input from '../../components/input/input.ts';
 import authController from '../../controllers/auth-controller.ts';
-import store from '../../utils/Store.ts';
+import store from '../../core/Store.ts';
 import { CreateUser } from '../../api/types.ts';
 
 interface SignUpPageProps {

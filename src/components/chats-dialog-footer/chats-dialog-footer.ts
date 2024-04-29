@@ -1,6 +1,6 @@
 import chatsDialogFooterTemplate from './chats-dialog-footer.hbs?raw';
 import './chats-dialog-footer.sass';
-import Block from '../../utils/Block.ts';
+import Block from '../../core/Block.ts';
 import Button from '../button/button.ts';
 import MenuWindow from '../menu-window/menu-window.ts';
 import MenuItem from '../menu-item/menu-item.ts';

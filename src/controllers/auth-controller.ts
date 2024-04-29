@@ -1,6 +1,6 @@
-import router, { Routes } from '../utils/Router.ts';
+import router, { Routes } from '../core/Router.ts';
 import authApi from '../api/auth-api.ts';
-import store from '../utils/Store.ts';
+import store from '../core/Store.ts';
 import chatsController from './chats-controller.ts';
 import { CreateUser, LoginRequestData } from '../api/types.ts';
 import { User } from '../utils/types.ts';

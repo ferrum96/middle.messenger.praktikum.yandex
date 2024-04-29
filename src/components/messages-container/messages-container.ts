@@ -1,6 +1,6 @@
 import './messages-container.sass';
-import messagesContainer from './messages-container.hbs?raw';
-import Block from '../../utils/Block';
+import messagesContainerTemplate from './messages-container.hbs?raw';
+import Block from '../../core/Block.ts';
 import Message from '../message/message.ts';
 
 interface MessagesContainerProps {
@@ -16,6 +16,6 @@ export default class MessagesContainer extends Block {
   }
 
   render() {
-    return messagesContainer;
+    return messagesContainerTemplate;
   }
 }

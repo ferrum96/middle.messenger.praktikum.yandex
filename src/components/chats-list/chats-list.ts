@@ -1,10 +1,10 @@
 import './chats-list.sass';
 import chatListTemplate from './chats-list.hbs?raw';
-import Block, { Props } from '../../utils/Block';
+import Block, { Props } from '../../core/Block.ts';
 import Link from '../link/link';
 import ChatsListItem from '../chats-list-item/chats-list-item.ts';
 import Input from '../input/input.ts';
-import { hoc } from '../../utils/hoc.ts';
+import { hoc } from '../../core/hoc.ts';
 import { Chat, LastMessage } from '../../utils/types.ts';
 import Avatar from '../avatar/avatar.ts';
 import { buildPathToResource } from '../../utils/buildPathToResource.ts';
@@ -14,7 +14,7 @@ import ModalWindow from '../modal-window/modal-window.ts';
 import InputField from '../input-field/input-field.ts';
 import { EventHandlers } from '../../utils/EventHandlers.ts';
 import chatsController from '../../controllers/chats-controller.ts';
-import store from '../../utils/Store.ts';
+import store from '../../core/Store.ts';
 
 interface ChatsListProps {
   profileLink: Link;

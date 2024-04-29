@@ -1,5 +1,5 @@
 import './messenger.sass';
-import Block from '../../utils/Block';
+import Block from '../../core/Block.ts';
 import messengerTemplate from './messenger.hbs?raw';
 import ChatsList, { chatList } from '../../components/chats-list/chats-list.ts';
 import ChatsDialog, {

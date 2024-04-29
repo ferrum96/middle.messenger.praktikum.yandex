@@ -1,13 +1,13 @@
 import './form.sass';
-import form from './form.hbs?raw';
-import Block from '../../utils/Block';
+import formTemplate from './form.hbs?raw';
+import Block from '../../core/Block.ts';
 import Button from '../button/button.ts';
 import InputField from '../input-field/input-field.ts';
 import Link from '../link/link.ts';
 import { EventHandlers } from '../../utils/EventHandlers.ts';
 import validateForm from '../../utils/validateForm.ts';
 import { getFormData } from '../../utils/getFormData.ts';
-import store from '../../utils/Store.ts';
+import store from '../../core/Store.ts';
 
 interface FormProps {
   formTitle: string;
@@ -35,6 +35,6 @@ export default class Form extends Block {
   }
 
   render() {
-    return form;
+    return formTemplate;
   }
 }

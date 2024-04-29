@@ -6,15 +6,15 @@ import { ErrorText } from '../../utils/ErrorText.ts';
 import InputField from '../../components/input-field/input-field.ts';
 import Input from '../../components/input/input.ts';
 import usersController from '../../controllers/users-controller.ts';
-import store from '../../utils/Store.ts';
+import store from '../../core/Store.ts';
 import { ChangeUser } from '../../api/types.ts';
 import { profileForm } from '../../components/profile-form/profile-form.ts';
-import router from '../../utils/Router.ts';
+import router from '../../core/Router.ts';
 import {
   profileComponent,
   ProfileComponent
 } from '../../components/profile-component/profile-component.ts';
-import Block from '../../utils/Block.ts';
+import Block from '../../core/Block.ts';
 
 interface EditProfilePageProps {
   profileComponent: ProfileComponent;

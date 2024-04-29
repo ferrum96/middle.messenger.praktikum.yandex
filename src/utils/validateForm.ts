@@ -1,4 +1,4 @@
-import Block from './Block.ts';
+import Block from '../core/Block.ts';
 import InputField from '../components/input-field/input-field.ts';
 import Input from '../components/input/input.ts';
 

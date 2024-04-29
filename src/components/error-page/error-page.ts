@@ -1,6 +1,6 @@
 import './error-page.sass';
 import errorPageTemplate from './error-page.hbs?raw';
-import Block from '../../utils/Block';
+import Block from '../../core/Block.ts';
 import Link from '../link/link';
 
 interface ErrorPageProps {
