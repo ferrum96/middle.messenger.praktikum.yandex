@@ -14,7 +14,7 @@ import Input from '../input/input.ts';
 import Button from '../button/button.ts';
 import { usersList } from '../users-list/users-list.ts';
 import chatsController from '../../controllers/chats-controller.ts';
-import { Chat, User, UserDTCO } from '../../utils/types.ts';
+import { UserDTCO } from '../../utils/types.ts';
 import getTimeFromDate from '../../utils/getTimeFromDate.ts';
 import usersController from '../../controllers/users-controller.ts';
 
@@ -36,8 +36,7 @@ export default class ChatsDialog extends Block {
         actionButton: new Button({
           text: 'Удалить',
           onClick: () => {
-            const currentChat: Chat | null = store.getState().currentChat;
-            const currentUser: User | null = store.getState().currentUser;
+            const { currentChat, currentUser } = store.getState();
 
             if (currentUser !== null && currentChat !== null) {
               chatsController.deleteUserFromChat(
@@ -75,8 +74,7 @@ export default class ChatsDialog extends Block {
       actionButton: new Button({
         text: 'Добавить',
         onClick: () => {
-          const currentChat: Chat | null = store.getState().currentChat;
-          const currentUser: User | null = store.getState().currentUser;
+          const { currentChat, currentUser } = store.getState();
 
           if (currentUser !== null && currentChat !== null) {
             chatsController.addUserToChat(currentChat?.id, currentUser?.id);
@@ -89,9 +87,8 @@ export default class ChatsDialog extends Block {
   }
 
   componentDidUpdate(oldProps: Props, newProps: Props): boolean {
-    const currentChat = store.getState().currentChat;
-    const currentChatUsers = store.getState().currentChatUsers || [];
-    const currentChatMessages = store.getState().currentChatMessages || [];
+    const { currentChat, currentChatUsers, currentChatMessages } =
+      store.getState();
 
     if (currentChat !== null) {
       this.children.chatsDialogHeader = new ChatsDialogHeader({
@@ -103,7 +100,7 @@ export default class ChatsDialog extends Block {
           alt: currentChat.avatar ? `${currentChat.id}` : 'default-avatar'
         }),
         title: currentChat.title,
-        usersCount: currentChatUsers.length
+        usersCount: currentChatUsers ? currentChatUsers.length : 0
       });
 
       this.children.chatMessages = currentChatMessages.map(message => {

@@ -53,7 +53,7 @@ export default class MessageController {
 
   async addMessage(message: MessageProps | MessageProps[]): Promise<void> {
     const { currentChatMessages } = store.getState();
-    let newChatMessages: MessageProps[] = [];
+    let newChatMessages: MessageProps[];
 
     if (Array.isArray(message)) {
       newChatMessages = [...message].reverse();
