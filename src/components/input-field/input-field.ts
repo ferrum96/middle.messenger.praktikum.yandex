@@ -1,6 +1,6 @@
 import './input-field.sass';
-import Block from '../../utils/Block';
-import inputField from './input-field.hbs?raw';
+import Block from '../../core/Block.ts';
+import inputFieldTemplate from './input-field.hbs?raw';
 import './input-field.sass';
 import Input from '../input/input.ts';
 
@@ -20,6 +20,6 @@ export default class InputField extends Block {
   }
 
   render() {
-    return inputField;
+    return inputFieldTemplate;
   }
 }

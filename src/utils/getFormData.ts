@@ -1,5 +1,5 @@
 import InputField from '../components/input-field/input-field.ts';
-import Block from './Block.ts';
+import Block from '../core/Block.ts';
 import Input from '../components/input/input.ts';
 
 export function getFormData(form: Block): {} {

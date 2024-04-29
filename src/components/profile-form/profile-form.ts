@@ -1,15 +1,15 @@
 import './profile-form.sass';
 import profileFormTemplate from './profile-form.hbs?raw';
 import Button from '../button/button';
-import Block from '../../utils/Block';
+import Block from '../../core/Block.ts';
 import Avatar from '../avatar/avatar';
 import Link from '../link/link';
 import InputField from '../input-field/input-field.ts';
 import { EventHandlers } from '../../utils/EventHandlers.ts';
 import validateForm from '../../utils/validateForm.ts';
 import { getFormData } from '../../utils/getFormData.ts';
-import store from '../../utils/Store.ts';
-import { hoc } from '../../utils/hoc.ts';
+import store from '../../core/Store.ts';
+import { hoc } from '../../core/hoc.ts';
 import Input from '../input/input.ts';
 import { buildPathToResource } from '../../utils/buildPathToResource.ts';
 import { User } from '../../utils/types.ts';

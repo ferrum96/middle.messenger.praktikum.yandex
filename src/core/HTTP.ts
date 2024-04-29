@@ -1,4 +1,4 @@
-import queryStringify from './queryStringfy.ts';
+import queryStringify from '../utils/queryStringfy.ts';
 
 enum Methods {
   GET = 'GET',

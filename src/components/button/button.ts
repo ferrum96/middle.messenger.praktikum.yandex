@@ -1,5 +1,5 @@
-import Block from '../../utils/Block';
-import button from './button.hbs?raw';
+import Block from '../../core/Block.ts';
+import buttonTemplate from './button.hbs?raw';
 import './button.sass';
 import { EventHandlers } from '../../utils/EventHandlers.ts';
 
@@ -32,6 +32,6 @@ export default class Button extends Block {
   }
 
   render() {
-    return button;
+    return buttonTemplate;
   }
 }

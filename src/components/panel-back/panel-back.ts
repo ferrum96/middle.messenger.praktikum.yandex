@@ -1,6 +1,6 @@
 import './panel-back.sass';
-import Block from '../../utils/Block';
-import panelBack from './panel-back.hbs?raw';
+import Block from '../../core/Block.ts';
+import panelBackTemplate from './panel-back.hbs?raw';
 import Button from '../button/button';
 
 interface PanelBackProps {
@@ -21,6 +21,6 @@ export default class PanelBack extends Block {
   }
 
   render() {
-    return panelBack;
+    return panelBackTemplate;
   }
 }

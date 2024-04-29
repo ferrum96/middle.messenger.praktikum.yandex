@@ -1,6 +1,6 @@
 import './menu-item.sass';
-import menuItem from './menu-item.hbs?raw';
-import Block from '../../utils/Block';
+import menuItemTemplate from './menu-item.hbs?raw';
+import Block from '../../core/Block.ts';
 
 interface MenuItemProps {
   icon: string;
@@ -16,6 +16,6 @@ export default class MenuItem extends Block {
   }
 
   render() {
-    return menuItem;
+    return menuItemTemplate;
   }
 }

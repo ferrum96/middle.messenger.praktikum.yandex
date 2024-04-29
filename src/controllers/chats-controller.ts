@@ -1,8 +1,6 @@
-// import MessageController from './MessageController';
-
-import router, { Routes } from '../utils/Router.ts';
+import router, { Routes } from '../core/Router.ts';
 import chatsApi from '../api/chats-api.ts';
-import store from '../utils/Store.ts';
+import store from '../core/Store.ts';
 import { Chat, UserDTCO } from '../utils/types.ts';
 import { ChatData, CreateChat, DataAddingUsersToChat } from '../api/types.ts';
 import { EventHandlers } from '../utils/EventHandlers.ts';
@@ -168,7 +166,7 @@ class ChatsController {
     }
   }
 
-  public async sendTextMessage(message: string) {
+  public async sendTextMessage(message: string): Promise<void> {
     const mess = {
       content: message,
       type: 'message'

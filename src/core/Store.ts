@@ -1,5 +1,5 @@
 import EventBus from './EventBus.ts';
-import { Chat, ChatUser, MessageProps, User } from './types.ts';
+import { Chat, ChatUser, MessageProps, User } from '../utils/types.ts';
 
 export enum StoreEvents {
   Updated = 'updated'
@@ -32,7 +32,6 @@ function set<K extends keyof State>(
   return object;
 }
 
-// наследуем Store от EventBus, чтобы его методы были сразу доступны у экземпляра Store
 class Store extends EventBus {
   private _state: State = {
     auth: false,

@@ -1,7 +1,7 @@
 import './modal-window.sass';
-import modalWindow from './modal-window.hbs?raw';
+import modalWindowTemplate from './modal-window.hbs?raw';
 import Button from '../button/button';
-import Block from '../../utils/Block';
+import Block from '../../core/Block.ts';
 
 interface ModalWindowProps {
   className?: string;
@@ -39,6 +39,6 @@ export default class ModalWindow extends Block {
   }
 
   render() {
-    return modalWindow;
+    return modalWindowTemplate;
   }
 }

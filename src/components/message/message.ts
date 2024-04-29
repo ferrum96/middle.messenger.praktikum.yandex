@@ -1,6 +1,6 @@
 import './message.sass';
-import message from './message.hbs?raw';
-import Block from '../../utils/Block';
+import messageTemplate from './message.hbs?raw';
+import Block from '../../core/Block.ts';
 import Avatar from '../avatar/avatar.ts';
 
 interface MessageProps {
@@ -19,6 +19,6 @@ export default class Message extends Block {
   }
 
   render() {
-    return message;
+    return messageTemplate;
   }
 }

@@ -1,6 +1,6 @@
 import './chats-list-item.sass';
-import chatListItem from './chats-list-item.hbs?raw';
-import Block from '../../utils/Block';
+import chatListItemTemplate from './chats-list-item.hbs?raw';
+import Block from '../../core/Block.ts';
 import Avatar from '../avatar/avatar';
 import chatsController from '../../controllers/chats-controller.ts';
 import { LastMessage } from '../../utils/types.ts';
@@ -33,6 +33,6 @@ export default class ChatsListItem extends Block {
   }
 
   render() {
-    return chatListItem;
+    return chatListItemTemplate;
   }
 }

@@ -1,8 +1,8 @@
-import EventBus from './EventBus';
+import EventBus from './EventBus.ts';
 import Handlebars from 'handlebars';
 import { v4 as uuid } from 'uuid';
-import isEqual from './isEqual.ts';
-import deepClone from './deepClone';
+import isEqual from '../utils/isEqual.ts';
+import deepClone from '../utils/deepClone.ts';
 
 export interface Props {
   [index: string]: any;

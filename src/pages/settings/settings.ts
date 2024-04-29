@@ -6,7 +6,7 @@ import {
 } from '../../components/profile-component/profile-component.ts';
 import { profileForm } from '../../components/profile-form/profile-form.ts';
 import Avatar from '../../components/avatar/avatar.ts';
-import Block from '../../utils/Block.ts';
+import Block from '../../core/Block.ts';
 import authController from '../../controllers/auth-controller.ts';
 import Link from '../../components/link/link.ts';
 import Input from '../../components/input/input.ts';

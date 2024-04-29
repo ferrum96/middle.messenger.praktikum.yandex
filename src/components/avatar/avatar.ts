@@ -1,6 +1,6 @@
 import './avatar.sass';
-import Block from '../../utils/Block';
-import avatar from './avatar.hbs?raw';
+import Block from '../../core/Block.ts';
+import avatarTemplate from './avatar.hbs?raw';
 
 interface AvatarProps {
   className?: string;
@@ -17,6 +17,6 @@ export default class Avatar extends Block {
   }
 
   render() {
-    return avatar;
+    return avatarTemplate;
   }
 }

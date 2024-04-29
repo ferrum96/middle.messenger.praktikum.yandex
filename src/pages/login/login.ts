@@ -1,4 +1,4 @@
-import Block from '../../utils/Block';
+import Block from '../../core/Block.ts';
 import './login.sass';
 import loginTemplate from './login.hbs?raw';
 import InputField from '../../components/input-field/input-field.ts';
@@ -8,7 +8,7 @@ import Link from '../../components/link/link.ts';
 import { ErrorText } from '../../utils/ErrorText.ts';
 import Input from '../../components/input/input.ts';
 import authController from '../../controllers/auth-controller.ts';
-import store from '../../utils/Store.ts';
+import store from '../../core/Store.ts';
 import { LoginRequestData } from '../../api/types.ts';
 
 interface LoginPageProps {

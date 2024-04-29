@@ -1,6 +1,6 @@
 import './menu-window.sass';
-import menuWindow from './menu-window.hbs?raw';
-import Block from '../../utils/Block';
+import menuWindowTemplate from './menu-window.hbs?raw';
+import Block from '../../core/Block.ts';
 import MenuItem from '../menu-item/menu-item';
 
 interface MenuWindowProps {
@@ -21,6 +21,6 @@ export default class MenuWindow extends Block {
   }
 
   render() {
-    return menuWindow;
+    return menuWindowTemplate;
   }
 }
