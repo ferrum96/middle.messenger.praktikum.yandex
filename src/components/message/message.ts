@@ -1,14 +1,17 @@
 import './message.sass';
-import message from './message.hbs?raw';
-import Block from '../../utils/Block';
+import messageTemplate from './message.hbs?raw';
+import Block from '../../core/Block.ts';
+import Avatar from '../avatar/avatar.ts';
 
 interface MessageProps {
   className?: string;
+  name: string;
+  avatar: Avatar;
   content: string;
   time: string;
 }
 
-export default class Message extends Block<MessageProps> {
+export default class Message extends Block {
   constructor(props: MessageProps) {
     super({
       ...props
@@ -16,6 +19,6 @@ export default class Message extends Block<MessageProps> {
   }
 
   render() {
-    return message;
+    return messageTemplate;
   }
 }

@@ -1,0 +1,58 @@
+@import "../../sass/variables"
+
+.chat-list
+  height: 100vh
+  width: 31rem
+  background-color: $chat-list-bgcolor
+  overflow: auto
+  scrollbar-width: none
+  -ms-overflow-style: none
+
+  border-right: $divider-line-color
+
+  &__header
+    text-align: end
+    width: 29rem
+    height: 16rem
+    padding: 0 1rem
+    background-color: $chat-list-bgcolor
+    position: fixed
+    z-index: 2
+
+  &__profile-link
+    display: inline-block
+    width: fit-content
+    color: $text-light-color
+    margin: 2.1rem 0 2.3rem 0
+
+  &__search-container
+    position: relative
+
+  &__search-input
+    background-color: $gray-light-color
+    height: 3.2rem
+    margin-bottom: 1.4rem
+    padding: .5rem .5rem .5rem 45%
+    border-radius: .5rem
+    font-size: 1.2rem
+    font-weight: 500
+    transition: all .3s
+
+    &:focus
+      padding-left: 10%
+
+      & + .chat-list__search-icon
+        transform: translate(20%, 35%)
+
+  &__search-icon
+    position: absolute
+    left: 0
+    top: 0
+    transform: translate(520%, 35%)
+    transition: all .3s
+
+  &__add-chat-button
+    height: 3rem
+
+  &__messages
+    margin-top: 16rem

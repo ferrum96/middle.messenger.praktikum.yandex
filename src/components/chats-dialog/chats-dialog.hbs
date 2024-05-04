@@ -1,0 +1,13 @@
+<div class="chats-dialog">
+  {{#if currentChat}}
+    {{{chatsDialogHeader}}}
+    {{{addUserModalWindow}}}
+    {{{deleteUserModalWindow}}}
+    <div class="chats-dialog__content">
+      {{{chatMessages}}}
+    </div>
+    {{{chatsDialogFooter}}}
+  {{else}}
+    <h3 class="chats-dialog__choose-chat"> Выберите чат, чтобы отправить сообщение </h3>
+  {{/if}}
+</div>

@@ -1,24 +1,41 @@
 import './input.sass';
-import input from './input.hbs?raw';
-import Block from '../../utils/Block';
+import inputTemplate from './input.hbs?raw';
+import Block from '../../core/Block.ts';
 import { ValidatePattern } from '../../utils/ValidatePattern.ts';
 
 interface InputProps {
   className?: string;
   type?: string;
   name?: string;
-  value?: string;
+  value?: string | null;
   placeholder?: string;
   readonly?: boolean;
-  error?: string;
   events?: {};
+  onInput?: (event?: Event) => void;
+  onKeyDown?: (event?: KeyboardEvent) => void;
 }
 
-export default class Input extends Block<InputProps> {
+export default class Input extends Block {
   constructor(props: InputProps) {
     super({
       ...props,
       events: {
+        keydown: (event?: KeyboardEvent) => {
+          const target = event?.target as HTMLInputElement;
+          if (target) {
+            this.setProps({
+              value: target.value
+            });
+          }
+          if (props.onKeyDown) {
+            props.onKeyDown(event);
+          }
+        },
+        input: (event?: Event) => {
+          if (props.onInput) {
+            props.onInput(event);
+          }
+        },
         change: (event: Event) => {
           const target = event.target as HTMLInputElement;
           if (target) {
@@ -28,10 +45,17 @@ export default class Input extends Block<InputProps> {
           }
         },
         blur: () => {
-          this._setState();
+          this._onSearchFocus();
+          this._setErrorState();
         }
       }
     });
+  }
+
+  componentDidUpdate(oldProps: InputProps, newProps: InputProps): boolean {
+    oldProps.value = newProps.value;
+    this._setErrorState();
+    return super.componentDidUpdate(oldProps, newProps);
   }
 
   public get value(): string {
@@ -48,20 +72,28 @@ export default class Input extends Block<InputProps> {
     return '';
   }
 
+  public clearInput(): void {
+    this.setProps({
+      value: ''
+    });
+  }
+
   private _validate(value: string, pattern: RegExp | string): boolean {
     return typeof pattern === 'object'
       ? new RegExp(pattern).test(value)
       : pattern === value;
   }
 
-  componentDidUpdate(_oldProps: InputProps, newProps: InputProps): boolean {
-    return this.value !== newProps.value;
+  private _onSearchFocus() {
+    if (this.value !== '' && this.name === 'search') {
+      this.getContent().focus();
+    }
   }
 
   public get isValid(): boolean {
     const value = this.value.trim();
     const passwordInput = document.querySelector(
-      'input[name="password"], input[name="new_password"]'
+      'input[name="password"], input[name="newPassword"]'
     );
     const passwordValue = passwordInput
       ? (passwordInput as HTMLInputElement).value
@@ -78,10 +110,10 @@ export default class Input extends Block<InputProps> {
       case 'display_name':
         return this._validate(value, ValidatePattern.LoginPattern);
       case 'password':
-      case 'old_password':
-      case 'new_password':
+      case 'oldPassword':
+      case 'newPassword':
         return this._validate(value, ValidatePattern.PasswordPattern);
-      case 'repeat_password':
+      case 'repeatPassword':
         return this._validate(value, passwordValue);
       case 'phone':
         return this._validate(value, ValidatePattern.PhonePattern);
@@ -90,7 +122,7 @@ export default class Input extends Block<InputProps> {
     }
   }
 
-  private _setState(): void {
+  private _setErrorState(): void {
     const parentElement = this.getContent().parentElement;
 
     if (!this.isValid) {
@@ -107,6 +139,6 @@ export default class Input extends Block<InputProps> {
   }
 
   render() {
-    return input;
+    return inputTemplate;
   }
 }

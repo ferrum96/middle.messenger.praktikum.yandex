@@ -2,6 +2,17 @@
   display: flex
   gap: 1.5rem
   align-items: center
+  cursor: pointer
+  padding: .6rem
+  border-radius: .5rem
+  transition: all .4s ease
+
+  &:hover
+    background-color: #3369f3
+    color: white
+
+    & .menu-item__icon
+      filter: brightness(0) invert(1)
 
   &__icon
     display: flex
@@ -10,3 +21,4 @@
     width: 2.2rem
     height: 2.2rem
     text-align: center
+    transition: all .4s ease
