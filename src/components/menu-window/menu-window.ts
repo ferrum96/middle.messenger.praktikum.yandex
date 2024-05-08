@@ -16,7 +16,6 @@ export default class MenuWindow extends Block {
   }
 
   public toggleMenu() {
-    console.log(this);
     this.getContent().classList.toggle('menu-window_hide');
   }
 
