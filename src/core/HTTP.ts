@@ -7,14 +7,18 @@ enum Methods {
   DELETE = 'DELETE'
 }
 
-export interface RequestOptions {
-  method: Methods;
+interface RequestOptions {
+  method?: Methods;
   headers?: Record<string, string>;
   data?: Record<string, unknown> | FormData;
   timeout?: number;
 }
 
-type OptionsWithoutMethod = Omit<RequestOptions, 'method'>;
+type HTTPMethod<R = XMLHttpRequest> = (
+  endpoint: string,
+  options?: RequestOptions,
+  timeout?: number
+) => Promise<R>;
 
 export const HOST = 'https://ya-praktikum.tech/api/v2';
 
@@ -27,51 +31,23 @@ export default class HTTP {
     }
   }
 
-  get = (
-    endpoint: string,
-    options: OptionsWithoutMethod = {}
-  ): Promise<XMLHttpRequest> =>
-    this.request(
-      endpoint,
-      { ...options, method: Methods.GET },
-      options.timeout
-    );
+  get: HTTPMethod = (endpoint, options = {}) =>
+    this.request(endpoint, { ...options, method: Methods.GET });
 
-  post = (
-    endpoint: string,
-    options: OptionsWithoutMethod = {}
-  ): Promise<XMLHttpRequest> =>
-    this.request(
-      endpoint,
-      { ...options, method: Methods.POST },
-      options.timeout
-    );
+  post: HTTPMethod = (endpoint, options = {}) =>
+    this.request(endpoint, { ...options, method: Methods.POST });
 
-  put = (
-    endpoint: string,
-    options: OptionsWithoutMethod = {}
-  ): Promise<XMLHttpRequest> =>
-    this.request(
-      endpoint,
-      { ...options, method: Methods.PUT },
-      options.timeout
-    );
+  put: HTTPMethod = (endpoint, options = {}) =>
+    this.request(endpoint, { ...options, method: Methods.PUT });
 
-  delete = (
-    endpoint: string,
-    options: OptionsWithoutMethod = {}
-  ): Promise<XMLHttpRequest> =>
-    this.request(
-      endpoint,
-      { ...options, method: Methods.DELETE },
-      options.timeout
-    );
+  delete: HTTPMethod = (endpoint, options = {}) =>
+    this.request(endpoint, { ...options, method: Methods.DELETE });
 
-  request = (
-    endpoint: string,
-    options: RequestOptions = { method: Methods.GET },
-    timeout: number = 5000
-  ): Promise<XMLHttpRequest> => {
+  request: HTTPMethod = (
+    endpoint,
+    options = { method: Methods.GET },
+    timeout = 5000
+  ) => {
     const {
       headers = {
         'Access-Control-Allow-Origin': 'http://localhost:3000'
@@ -86,7 +62,7 @@ export default class HTTP {
         return;
       }
 
-      const xhr: XMLHttpRequest = new XMLHttpRequest();
+      const xhr = new XMLHttpRequest();
       const isGet = method === Methods.GET;
 
       xhr.open(
@@ -96,12 +72,6 @@ export default class HTTP {
           : `${HOST}${this._path}${endpoint}`
       );
       xhr.withCredentials = true;
-
-      // if (data instanceof FormData) {
-      //   // xhr.setRequestHeader('Accept', 'application/json');
-      // } else {
-      //   xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
-      // }
 
       Object.keys(headers).forEach(key => {
         xhr.setRequestHeader(key, headers[key]);
