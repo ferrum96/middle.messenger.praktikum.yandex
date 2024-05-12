@@ -60,10 +60,10 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged"
+      "pre-commit": "npx lint-staged"
     }
   },
   "lint-staged": {
-    "{*.ts, *.js}": ["eslint --fix", "git add ."]
+    "{*.ts, *.js}": ["npx eslint --fix", "git add ."]
   }
 }
