@@ -50,19 +50,10 @@
     "vite-plugin-vue": "^0.0.1"
   },
   "dependencies": {
-    "chai": "^5.1.1",
     "css-modules-require-hook": "^1.0.11",
     "express": "^4.18.3",
     "jsdom": "^24.0.0",
-    "lodash": "^4.17.21",
-    "normalize.css": "^8.0.1",
-    "uuid": "^9.0.1",
-    "vite-plugin-checker": "^0.6.4",
-    "vite-plugin-eslint": "^1.8.1",
-    "vite-plugin-handlebars": "^2.0.0",
-    "vite-plugin-static-copy": "^1.0.1",
-    "vite-plugin-stylelint": "^5.3.1",
-    "vite-plugin-vue": "^0.0.1"
+    "normalize.css": "^8.0.1"
   },
   "engines": {
     "node": ">=16"
