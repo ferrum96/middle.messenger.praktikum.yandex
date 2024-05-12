@@ -1,6 +1,4 @@
-import Block from '../../core/Block.ts';
-import buttonTemplate from './button.hbs?raw';
-import './button.sass';
+import Block from '../../core/block/Block.ts';
 import { EventHandlers } from '../../utils/EventHandlers.ts';
 
 interface ButtonProps {
@@ -12,6 +10,15 @@ interface ButtonProps {
   events?: {};
   onClick?: () => void;
 }
+
+// language=hbs
+const buttonTemplate = `
+    <button class="button{{#if className}} {{className}} {{/if}}" {{#if page}}page="{{page}}" {{/if}} {{#if
+            type}}type={{type}}{{/if}}>
+        {{text}}
+        {{#if icon}}<img class="button__icon" src={{icon}} alt={{icon}}>{{/if}}
+    </button>
+`;
 
 export default class Button extends Block {
   constructor(props: ButtonProps) {

@@ -1,7 +1,5 @@
-import './users-list-item.sass';
-import usersListItemTemplate from './users-list-item.hbs?raw';
-import Block from '../../core/Block.ts';
-import Avatar from '../avatar/avatar';
+import Block from '../../core/block/Block.ts';
+import Avatar from '../avatar/avatar.ts';
 import { EventHandlers } from '../../utils/EventHandlers.ts';
 import usersController from '../../controllers/users-controller.ts';
 
@@ -10,6 +8,14 @@ interface UsersListItemProps {
   login: string;
   avatar: Avatar;
 }
+
+// language=hbs
+const usersListItemTemplate = `
+    <div id="{{id}}" class="users-list-item">
+        {{{avatar}}}
+        <h3 class="users-list-item__login">{{login}}</h3>
+    </div>
+`;
 
 export default class UsersListItem extends Block {
   constructor(props: UsersListItemProps) {

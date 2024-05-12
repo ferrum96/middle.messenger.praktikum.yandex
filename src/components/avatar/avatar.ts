@@ -1,6 +1,4 @@
-import './avatar.sass';
-import Block from '../../core/Block.ts';
-import avatarTemplate from './avatar.hbs?raw';
+import Block from '../../core/block/Block.ts';
 
 interface AvatarProps {
   className?: string;
@@ -8,6 +6,13 @@ interface AvatarProps {
   alt: string;
   events?: {};
 }
+
+// language=hbs
+const avatarTemplate = `
+    <figure class="avatar{{#if className}} {{className}} {{/if}}">
+        {{#if src}} <img src={{{src}}} alt={{{alt}}}>{{/if}}
+    </figure>
+`;
 
 export default class Avatar extends Block {
   constructor(props: AvatarProps) {

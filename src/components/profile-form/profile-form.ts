@@ -1,14 +1,12 @@
-import './profile-form.sass';
-import profileFormTemplate from './profile-form.hbs?raw';
-import Button from '../button/button';
-import Block from '../../core/Block.ts';
-import Avatar from '../avatar/avatar';
-import Link from '../link/link';
+import Button from '../button/button.ts';
+import Block from '../../core/block/Block.ts';
+import Avatar from '../avatar/avatar.ts';
+import Link from '../link/link.ts';
 import InputField from '../input-field/input-field.ts';
 import { EventHandlers } from '../../utils/EventHandlers.ts';
 import validateForm from '../../utils/validateForm.ts';
 import { getFormData } from '../../utils/getFormData.ts';
-import store from '../../core/Store.ts';
+import store from '../../core/store/Store.ts';
 import { hoc } from '../../core/hoc.ts';
 import Input from '../input/input.ts';
 import { buildPathToResource } from '../../utils/buildPathToResource.ts';
@@ -22,6 +20,22 @@ interface ProfileFormProps {
   events?: {};
   onSubmit?: (event?: Event | undefined) => void;
 }
+
+// language=hbs
+const profileFormTemplate = `
+    <form class="profile-form">
+        <div class="profile-form__content">
+            {{{avatar}}}
+            {{#if userName}}<h2 class="profile-form__name">{{{userName}}}</h2> {{/if}}
+            <div class="profile-form__list">
+                {{{inputFields}}}
+            </div>
+            <div class="profile-form__panel-control">
+                {{#if controlPanel}} {{{controlPanel}}} {{/if}}
+            </div>
+        </div>
+    </form>
+`;
 
 export class ProfileForm extends Block {
   constructor(props: ProfileFormProps) {

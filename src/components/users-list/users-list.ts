@@ -1,16 +1,21 @@
-import './users-list.sass';
-import chatListTemplate from './users-list.hbs?raw';
-import Block, { Props } from '../../core/Block.ts';
+import Block, { Props } from '../../core/block/Block.ts';
 import { hoc } from '../../core/hoc.ts';
 import UsersListItem from '../users-list-item/users-list-item.ts';
 import Avatar from '../avatar/avatar.ts';
 import { buildPathToResource } from '../../utils/buildPathToResource.ts';
 import usersController from '../../controllers/users-controller.ts';
-import store from '../../core/Store.ts';
+import store from '../../core/store/Store.ts';
 
 interface UsersListProps {
   usersListItems?: UsersListItem[];
 }
+
+// language=hbs
+const usersListTemplate = `
+    <div class="users-list">
+        {{{usersListItems}}}
+    </div>
+`;
 
 export default class UsersList extends Block {
   constructor() {
@@ -76,7 +81,7 @@ export default class UsersList extends Block {
   }
 
   render() {
-    return chatListTemplate;
+    return usersListTemplate;
   }
 }
 

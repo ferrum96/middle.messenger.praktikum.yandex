@@ -1,6 +1,4 @@
-import chatsDialogFooterTemplate from './chats-dialog-footer.hbs?raw';
-import './chats-dialog-footer.sass';
-import Block from '../../core/Block.ts';
+import Block from '../../core/block/Block.ts';
 import Button from '../button/button.ts';
 import MenuWindow from '../menu-window/menu-window.ts';
 import MenuItem from '../menu-item/menu-item.ts';
@@ -14,6 +12,16 @@ interface ChatsDialogFooterProps {
   sendMessageButton: Button;
   events?: {};
 }
+
+// language=hbs
+const chatsDialogFooterTemplate = `
+    <div class="chats-dialog-footer">
+        {{{uploadButton}}}
+        {{{uploadMenu}}}
+        {{{sendMessageInput}}}
+        {{{sendMessageButton}}}
+    </div>
+`;
 
 export default class ChatsDialogFooter extends Block {
   constructor() {

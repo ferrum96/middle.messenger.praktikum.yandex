@@ -1,7 +1,5 @@
-import './chats-list.sass';
-import chatListTemplate from './chats-list.hbs?raw';
-import Block, { Props } from '../../core/Block.ts';
-import Link from '../link/link';
+import Block, { Props } from '../../core/block/Block.ts';
+import Link from '../link/link.ts';
 import ChatsListItem from '../chats-list-item/chats-list-item.ts';
 import Input from '../input/input.ts';
 import { hoc } from '../../core/hoc.ts';
@@ -14,7 +12,7 @@ import ModalWindow from '../modal-window/modal-window.ts';
 import InputField from '../input-field/input-field.ts';
 import { EventHandlers } from '../../utils/EventHandlers.ts';
 import chatsController from '../../controllers/chats-controller.ts';
-import store from '../../core/Store.ts';
+import store from '../../core/store/Store.ts';
 
 interface ChatsListProps {
   profileLink: Link;
@@ -23,6 +21,24 @@ interface ChatsListProps {
   chatListItems?: ChatsListItem[];
   modalWindow?: ModalWindow;
 }
+
+// language=hbs
+const chatListTemplate = `
+    <div class="chat-list">
+        {{{modalWindow}}}
+        <div class="chat-list__header">
+            {{{profileLink}}}
+            <div class="chat-list__search-container">
+                {{{searchInput}}}
+                <img src="../../assets/icons/Search.svg" class="chat-list__search-icon" alt="иконка">
+            </div>
+            {{{addChatButton}}}
+        </div>
+        <div class="chat-list__messages">
+            {{{chatListItems}}}
+        </div>
+    </div>
+`;
 
 export default class ChatsList extends Block {
   constructor() {
