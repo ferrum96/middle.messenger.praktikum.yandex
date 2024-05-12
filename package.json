@@ -18,18 +18,14 @@
   },
   "lint-staged": {
     "*.js": [
-      "eslint --fix",
-      "git add"
+      "eslint --fix"
     ],
     "*.ts": [
       "eslint --ext .ts --fix",
-      "tsc --noEmit",
-      "git add"
+      "tsc --noEmit"
     ],
     "*.{js,ts}": [
-      "npm test",
-      "git add"
-
+      "npm test"
     ]
   },
   "devDependencies": {
