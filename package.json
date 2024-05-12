@@ -9,12 +9,12 @@
     "prebuild": "tsc --noEmit",
     "build": "npm run prebuild && vite build",
     "server": "node server.js",
-    "start": "npm run build && npm run server"
+    "start": "npm run build && npm run server",
+    "prepare": "husky"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm-run-all test lint:all"
-
+      "pre-commit": "lint-staged"
     }
   },
   "lint-staged": {
