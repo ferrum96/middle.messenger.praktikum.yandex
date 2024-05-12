@@ -1,4 +1,4 @@
-import HTTP from '../core/HTTP.ts';
+import HTTP from '../core/http/HTTP.ts';
 import { ChangePassword, ChangeUser, Login } from './types.ts';
 
 class UsersApi {

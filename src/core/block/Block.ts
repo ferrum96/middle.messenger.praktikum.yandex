@@ -1,8 +1,8 @@
-import EventBus from './EventBus.ts';
+import EventBus from '../EventBus.ts';
 import Handlebars from 'handlebars';
 import { v4 as uuid } from 'uuid';
-import isEqual from '../utils/isEqual.ts';
-import deepClone from '../utils/deepClone.ts';
+import isEqual from '../../utils/isEqual.ts';
+import deepClone from '../../utils/deepClone.ts';
 
 export interface Props {
   [index: string]: any;
@@ -24,7 +24,7 @@ export default class Block {
   protected props: Props;
   children: Record<string, Block | Block[]> = {};
 
-  protected constructor(propsWithChildren: Props) {
+  constructor(propsWithChildren: Props) {
     const eventBus = new EventBus();
     const { props, children } =
       this._getChildrenPropsAndProps(propsWithChildren);
@@ -184,7 +184,7 @@ export default class Block {
     this._addEvents();
   }
 
-  protected render(): string {
+  render(): string {
     return '';
   }
 

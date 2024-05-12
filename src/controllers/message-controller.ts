@@ -1,5 +1,5 @@
 import Socket, { Message, WebSocketProps } from '../core/Socket.ts';
-import store from '../core/Store.ts';
+import store from '../core/store/Store.ts';
 import { MessageProps } from '../utils/types.ts';
 import chatsApi from '../api/chats-api.ts';
 

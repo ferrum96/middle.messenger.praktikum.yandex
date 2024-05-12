@@ -1,6 +1,6 @@
-import queryStringify from '../utils/queryStringfy.ts';
+import queryStringify from '../../utils/queryStringfy.ts';
 
-enum Methods {
+export enum Methods {
   GET = 'GET',
   POST = 'POST',
   PUT = 'PUT',

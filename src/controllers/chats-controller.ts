@@ -1,6 +1,6 @@
-import router, { Routes } from '../core/Router.ts';
+import router, { Routes } from '../core/router/Router.ts';
 import chatsApi from '../api/chats-api.ts';
-import store from '../core/Store.ts';
+import store from '../core/store/Store.ts';
 import { Chat, UserDTCO } from '../utils/types.ts';
 import { ChatData, CreateChat, DataAddingUsersToChat } from '../api/types.ts';
 import { EventHandlers } from '../utils/EventHandlers.ts';
