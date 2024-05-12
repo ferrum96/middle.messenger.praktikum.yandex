@@ -3,6 +3,7 @@ import Handlebars from 'handlebars';
 import { v4 as uuid } from 'uuid';
 import isEqual from '../../utils/isEqual.ts';
 import deepClone from '../../utils/deepClone.ts';
+import DOMPurify from 'dompurify';
 
 export interface Props {
   [index: string]: any;
@@ -145,10 +146,13 @@ export default class Block {
     Object.entries(this.children).forEach(([key, child]) => {
       if (Array.isArray(child)) {
         propsAndStubs[key] = child
-          .map(child => `<div data-id="${child._id}"></div>`)
+          .map(
+            child => `<div data-id="${DOMPurify.sanitize(child._id)}"></div>`
+          )
           .join('');
       } else {
-        propsAndStubs[key] = `<div data-id="${child._id}"></div>`;
+        propsAndStubs[key] =
+          `<div data-id="${DOMPurify.sanitize(child._id)}"></div>`;
       }
     });
 
@@ -159,7 +163,9 @@ export default class Block {
     Object.values(this.children).forEach(child => {
       const stubs = Array.isArray(child) ? child : [child];
       stubs.forEach(child => {
-        const stub = fragment.content.querySelector(`[data-id="${child._id}"]`);
+        const stub = fragment.content.querySelector(
+          `[data-id="${DOMPurify.sanitize(child._id)}"]`
+        );
         if (stub) {
           stub.replaceWith(child.getContent());
         }
