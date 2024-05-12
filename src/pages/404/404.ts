@@ -1,5 +1,4 @@
-import './404.sass';
-import ErrorPage from '../../components/error-page/error-page';
+import ErrorPage from '../../components/error-page/error-page.ts';
 
 class NotFoundPage extends ErrorPage {
   constructor() {

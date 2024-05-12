@@ -1,24 +1,29 @@
-import './edit-password.sass';
-import editPasswordTemplate from './edit-password.hbs?raw';
-import Avatar from '../../components/avatar/avatar';
-import Button from '../../components/button/button';
+import Avatar from '../../components/avatar/avatar.ts';
+import Button from '../../components/button/button.ts';
 import { ErrorText } from '../../utils/ErrorText.ts';
 import InputField from '../../components/input-field/input-field.ts';
 import Input from '../../components/input/input.ts';
 import usersController from '../../controllers/users-controller.ts';
-import store from '../../core/Store.ts';
+import store from '../../core/store/Store.ts';
 import { ChangePassword } from '../../api/types.ts';
 import { profileForm } from '../../components/profile-form/profile-form.ts';
-import router from '../../core/Router.ts';
+import router from '../../core/router/Router.ts';
 import {
   profileComponent,
   ProfileComponent
 } from '../../components/profile-component/profile-component.ts';
-import Block from '../../core/Block.ts';
+import Block from '../../core/block/Block.ts';
 
 interface EditProfilePageProps {
   profileComponent: ProfileComponent;
 }
+
+// language=hbs
+const editPasswordTemplate = `
+    <div class="edit-password">
+        {{{profileComponent}}}
+    </div>
+`;
 
 class EditPasswordPage extends Block {
   constructor(props: EditProfilePageProps) {

@@ -1,6 +1,4 @@
-import './messenger.sass';
-import Block from '../../core/Block.ts';
-import messengerTemplate from './messenger.hbs?raw';
+import Block from '../../core/block/Block.ts';
 import ChatsList, { chatList } from '../../components/chats-list/chats-list.ts';
 import ChatsDialog, {
   chatsDialog
@@ -10,6 +8,14 @@ interface ChatsPageProps {
   chatsList: ChatsList;
   chatsDialog?: ChatsDialog;
 }
+
+// language=hbs
+const messengerTemplate = `
+    <div class="chats">
+        {{{chatsList}}}
+        {{{chatsDialog}}}
+    </div>
+`;
 
 class MessengerPage extends Block {
   constructor() {
