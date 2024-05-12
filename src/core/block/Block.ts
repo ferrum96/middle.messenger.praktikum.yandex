@@ -21,7 +21,7 @@ export default class Block {
   private _element: HTMLElement | null = null;
   public readonly eventBus: () => EventBus;
   private _id: string = uuid();
-  protected props: Props;
+  public props: Props;
   children: Record<string, Block | Block[]> = {};
 
   constructor(propsWithChildren: Props) {
@@ -68,7 +68,6 @@ export default class Block {
     eventBus.on(Block.EVENTS.INIT, this.init.bind(this));
     eventBus.on(Block.EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
     eventBus.on(Block.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this));
-    eventBus.on(Block.EVENTS.FLOW_CWU, this._componentWillUnmount.bind(this));
     eventBus.on(Block.EVENTS.FLOW_RENDER, this._render.bind(this));
   }
 
@@ -106,14 +105,6 @@ export default class Block {
   public componentDidUpdate(oldProps: Props, newProps: Props) {
     return !isEqual(oldProps, newProps);
   }
-
-  protected _componentWillUnmount() {
-    this.eventBus().emit(Block.EVENTS.FLOW_CWU);
-    console.log('componentWillUnmount');
-    this.componentWillUnmount();
-  }
-
-  public componentWillUnmount() {}
 
   private _addEvents(): void {
     const { events = {} } = this.props as {
@@ -234,10 +225,10 @@ export default class Block {
   }
 
   show() {
-    this.getContent()!.style.removeProperty('display'); // .display = 'block';
+    this.getContent().style.removeProperty('display'); // .display = 'block';
   }
 
   hide() {
-    this.getContent()!.style.display = 'none';
+    this.getContent().style.display = 'none';
   }
 }
