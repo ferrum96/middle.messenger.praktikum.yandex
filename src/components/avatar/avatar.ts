@@ -14,9 +14,6 @@ const avatarTemplate = `
     </figure>
 `;
 
-let a = '';
-console.log(a);
-
 export default class Avatar extends Block {
   constructor(props: AvatarProps) {
     super({
