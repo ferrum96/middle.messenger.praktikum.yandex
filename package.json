@@ -12,23 +12,6 @@
     "start": "npm run build && npm run server",
     "prepare": "husky"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "lint-staged": {
-    "*.js": [
-      "eslint --fix"
-    ],
-    "*.ts": [
-      "eslint --ext .ts --fix",
-      "tsc --noEmit"
-    ],
-    "*.{js,ts}": [
-      "npm test"
-    ]
-  },
   "devDependencies": {
     "@types/chai": "^4.3.16",
     "@types/dompurify": "^3.0.5",
