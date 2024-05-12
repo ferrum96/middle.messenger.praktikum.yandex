@@ -1,13 +1,11 @@
-import chatsDialogTemplate from './chats-dialog.hbs?raw';
-import './chats-dialog.sass';
-import Block, { Props } from '../../core/Block.ts';
+import Block, { Props } from '../../core/block/Block.ts';
 import Avatar from '../avatar/avatar.ts';
 import Message from '../message/message.ts';
 import { hoc } from '../../core/hoc.ts';
 import { buildPathToResource } from '../../utils/buildPathToResource.ts';
 import ChatsDialogHeader from '../chats-dialog-header/chats-dialog-header.ts';
 import ChatsDialogFooter from '../chats-dialog-footer/chats-dialog-footer.ts';
-import store from '../../core/Store.ts';
+import store from '../../core/store/Store.ts';
 import ModalWindow from '../modal-window/modal-window.ts';
 import InputField from '../input-field/input-field.ts';
 import Input from '../input/input.ts';
@@ -25,6 +23,23 @@ interface ChatsDialogProps {
   addUserModalWindow?: ModalWindow;
   deleteUserModalWindow?: ModalWindow;
 }
+
+// language=hbs
+const chatsDialogTemplate = `
+    <div class="chats-dialog">
+        {{#if currentChat}}
+            {{{chatsDialogHeader}}}
+            {{{addUserModalWindow}}}
+            {{{deleteUserModalWindow}}}
+            <div class="chats-dialog__content">
+                {{{chatMessages}}}
+            </div>
+            {{{chatsDialogFooter}}}
+        {{else}}
+            <h3 class="chats-dialog__choose-chat"> Выберите чат, чтобы отправить сообщение </h3>
+        {{/if}}
+    </div>
+`;
 
 export default class ChatsDialog extends Block {
   constructor() {

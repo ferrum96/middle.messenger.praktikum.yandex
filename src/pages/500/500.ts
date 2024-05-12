@@ -1,4 +1,3 @@
-import './500.sass';
 import ErrorPage from '../../components/error-page/error-page';
 
 class InternalServerErrorPage extends ErrorPage {

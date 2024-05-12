@@ -1,4 +1,4 @@
-import Block from './Block.ts';
+import Block from './block/Block.ts';
 import { renderDOM } from '../utils/renderDOM.ts';
 
 export default class Route {
@@ -28,6 +28,6 @@ export default class Route {
   }
 
   render(): void {
-    renderDOM('#app', this._page as unknown as Block);
+    renderDOM('#app', this._page);
   }
 }

@@ -1,7 +1,7 @@
-import Route from './Route.ts';
-import Block from './Block.ts';
-import { notFoundPage } from '../pages/404/404.ts';
-import store from './Store.ts';
+import Route from '../Route.ts';
+import Block from '../block/Block.ts';
+import { notFoundPage } from '../../pages/404/404.ts';
+import store from '../store/Store.ts';
 
 export enum Routes {
   AUTH = '/',

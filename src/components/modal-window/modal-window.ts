@@ -1,7 +1,5 @@
-import './modal-window.sass';
-import modalWindowTemplate from './modal-window.hbs?raw';
-import Button from '../button/button';
-import Block from '../../core/Block.ts';
+import Button from '../button/button.ts';
+import Block from '../../core/block/Block.ts';
 
 interface ModalWindowProps {
   className?: string;
@@ -11,6 +9,19 @@ interface ModalWindowProps {
   actionButton?: Button;
   closeButton?: Button;
 }
+
+// language=hbs
+const modalWindowTemplate = `
+    <div class="modal-window {{#if className}} {{className}} {{/if}}">
+        <div class="modal-window__container">
+            <h2 class="modal-window__title">{{title}}</h2>
+            {{{closeButton}}}
+            <div class="modal-window__filename">{{{fileName}}}</div>
+            {{{content}}}
+            {{{actionButton}}}
+        </div>
+    </div>
+`;
 
 export default class ModalWindow extends Block {
   constructor({

@@ -3,7 +3,7 @@
 ## Дизайн прототипа
 ### Дизайн можно найти по ссылке:
 - Ссылка на макет [Figma](https://www.figma.com/file/jF5fFFzgGOxQeB4CmKWTiE/Chat_external_link?node-id=0%3A1).
-- Ссылка на деплой [Netlify](https://eclectic-haupia-dd3faf.netlify.app/login)
+- Ссылка на деплой [Netlify](https://eclectic-haupia-dd3faf.netlify.app/)
 
 ## Установка проекта локально
 1.  Склонируйте репозиторий в любое место с помощью команды:    

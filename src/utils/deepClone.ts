@@ -1,4 +1,4 @@
-import Block from '../core/Block.ts';
+import Block from '../core/block/Block.ts';
 
 export default function deepClone(value: any): any {
   if (value instanceof Block) {

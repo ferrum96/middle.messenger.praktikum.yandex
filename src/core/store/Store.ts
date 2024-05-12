@@ -1,5 +1,5 @@
-import EventBus from './EventBus.ts';
-import { Chat, ChatUser, MessageProps, User } from '../utils/types.ts';
+import EventBus from '../EventBus.ts';
+import { Chat, ChatUser, MessageProps, User } from '../../utils/types.ts';
 
 export enum StoreEvents {
   Updated = 'updated'

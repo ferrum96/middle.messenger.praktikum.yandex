@@ -1,13 +1,11 @@
-import chatsDialogHeaderTemplate from './chats-dialog-header.hbs?raw';
-import './chats-dialog-header.sass';
-import Block from '../../core/Block.ts';
+import Block from '../../core/block/Block.ts';
 import Avatar from '../avatar/avatar.ts';
 import Button from '../button/button.ts';
 import MenuWindow from '../menu-window/menu-window.ts';
 import MenuItem from '../menu-item/menu-item.ts';
 import chatsController from '../../controllers/chats-controller.ts';
 import { EventHandlers } from '../../utils/EventHandlers.ts';
-import store from '../../core/Store.ts';
+import store from '../../core/store/Store.ts';
 
 interface ChatsDialogHeaderProps {
   avatar: Avatar;
@@ -16,6 +14,22 @@ interface ChatsDialogHeaderProps {
   customUsersButton?: Button;
   customUsersMenu?: MenuWindow;
 }
+
+// language=hbs
+const chatsDialogHeaderTemplate = `
+    <div class="chats-dialog-header">
+        <div class="chats-dialog-header__avatar-group">
+            {{{avatar}}}
+            <div class="chats-dialog-header__column">
+                <h3 class="chats-dialog-header__username">{{{title}}}</h3>
+                <h5 class="chats-dialog-header__users-count">Количество участников: {{{usersCount}}}</h5>
+            </div>
+
+        </div>
+        {{{customUsersButton}}}
+        {{{customUsersMenu}}}
+    </div>
+`;
 
 export default class ChatsDialogHeader extends Block {
   constructor({ avatar, title, usersCount }: ChatsDialogHeaderProps) {

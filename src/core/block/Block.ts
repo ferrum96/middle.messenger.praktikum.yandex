@@ -1,8 +1,9 @@
-import EventBus from './EventBus.ts';
+import EventBus from '../EventBus.ts';
 import Handlebars from 'handlebars';
 import { v4 as uuid } from 'uuid';
-import isEqual from '../utils/isEqual.ts';
-import deepClone from '../utils/deepClone.ts';
+import isEqual from '../../utils/isEqual.ts';
+import deepClone from '../../utils/deepClone.ts';
+import DOMPurify from 'dompurify';
 
 export interface Props {
   [index: string]: any;
@@ -21,10 +22,10 @@ export default class Block {
   private _element: HTMLElement | null = null;
   public readonly eventBus: () => EventBus;
   private _id: string = uuid();
-  protected props: Props;
+  public props: Props;
   children: Record<string, Block | Block[]> = {};
 
-  protected constructor(propsWithChildren: Props) {
+  constructor(propsWithChildren: Props) {
     const eventBus = new EventBus();
     const { props, children } =
       this._getChildrenPropsAndProps(propsWithChildren);
@@ -68,7 +69,6 @@ export default class Block {
     eventBus.on(Block.EVENTS.INIT, this.init.bind(this));
     eventBus.on(Block.EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
     eventBus.on(Block.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this));
-    eventBus.on(Block.EVENTS.FLOW_CWU, this._componentWillUnmount.bind(this));
     eventBus.on(Block.EVENTS.FLOW_RENDER, this._render.bind(this));
   }
 
@@ -106,14 +106,6 @@ export default class Block {
   public componentDidUpdate(oldProps: Props, newProps: Props) {
     return !isEqual(oldProps, newProps);
   }
-
-  protected _componentWillUnmount() {
-    this.eventBus().emit(Block.EVENTS.FLOW_CWU);
-    console.log('componentWillUnmount');
-    this.componentWillUnmount();
-  }
-
-  public componentWillUnmount() {}
 
   private _addEvents(): void {
     const { events = {} } = this.props as {
@@ -154,10 +146,13 @@ export default class Block {
     Object.entries(this.children).forEach(([key, child]) => {
       if (Array.isArray(child)) {
         propsAndStubs[key] = child
-          .map(child => `<div data-id="${child._id}"></div>`)
+          .map(
+            child => `<div data-id="${DOMPurify.sanitize(child._id)}"></div>`
+          )
           .join('');
       } else {
-        propsAndStubs[key] = `<div data-id="${child._id}"></div>`;
+        propsAndStubs[key] =
+          `<div data-id="${DOMPurify.sanitize(child._id)}"></div>`;
       }
     });
 
@@ -168,7 +163,9 @@ export default class Block {
     Object.values(this.children).forEach(child => {
       const stubs = Array.isArray(child) ? child : [child];
       stubs.forEach(child => {
-        const stub = fragment.content.querySelector(`[data-id="${child._id}"]`);
+        const stub = fragment.content.querySelector(
+          `[data-id="${DOMPurify.sanitize(child._id)}"]`
+        );
         if (stub) {
           stub.replaceWith(child.getContent());
         }
@@ -184,7 +181,7 @@ export default class Block {
     this._addEvents();
   }
 
-  protected render(): string {
+  render(): string {
     return '';
   }
 
@@ -234,10 +231,10 @@ export default class Block {
   }
 
   show() {
-    this.getContent()!.style.removeProperty('display'); // .display = 'block';
+    this.getContent().style.removeProperty('display'); // .display = 'block';
   }
 
   hide() {
-    this.getContent()!.style.display = 'none';
+    this.getContent().style.display = 'none';
   }
 }

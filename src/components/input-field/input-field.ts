@@ -1,7 +1,4 @@
-import './input-field.sass';
-import Block from '../../core/Block.ts';
-import inputFieldTemplate from './input-field.hbs?raw';
-import './input-field.sass';
+import Block from '../../core/block/Block.ts';
 import Input from '../input/input.ts';
 
 interface InputFieldProps {
@@ -11,6 +8,15 @@ interface InputFieldProps {
   error?: string;
   events?: {};
 }
+
+// language=hbs
+const inputFieldTemplate = `
+    <div class="input-field{{#if className}} {{ className }}{{/if}}">
+        <label class="input-field__title">{{title}}</label>
+        {{{ input }}}
+        {{#if error}}<h5 class="input-field__error-text">{{error}}</h5>{{/if}}
+    </div>
+`;
 
 export default class InputField extends Block {
   constructor(props: InputFieldProps) {
