@@ -21,7 +21,7 @@ export default class EventBus {
     }
 
     this.listeners[event] = this.listeners[event].filter(
-      (listener: any) => listener !== callback
+      listener => listener !== callback
     );
   }
 

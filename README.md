@@ -3,7 +3,7 @@
 ## Дизайн прототипа
 ### Дизайн можно найти по ссылке:
 - Ссылка на макет [Figma](https://www.figma.com/file/jF5fFFzgGOxQeB4CmKWTiE/Chat_external_link?node-id=0%3A1).
-- Ссылка на деплой [Netlify](https://eclectic-haupia-dd3faf.netlify.app/login)
+- Ссылка на деплой [Netlify](https://eclectic-haupia-dd3faf.netlify.app/)
 
 ## Установка проекта локально
 1.  Склонируйте репозиторий в любое место с помощью команды:    
@@ -40,7 +40,7 @@ npm run start
 - [/login](http://localhost:3000/login)
 #### Страница "Регистрация"
 - [/sign_up](http://localhost:3000/sign_up)
-#### Страница "Чат" (Заглушка)
+#### Страница "Чат"
 - [/chat](http://localhost:3000/chat)
 #### Страница "Профиль"
 - [/profile](http://localhost:3000/profile)
@@ -66,3 +66,7 @@ npm run start
 - API и контроллеры для взаимодействия с backend
 - Компонент высшего порядка (HOC)
 - Websocket для работы с real-time сообщениями
+
+## На текущем этапе разработки (спринт №4) реализовано:
+- Покрытие тестами основного функционала(роутер, компонент, модуль отправки запросов)
+- Настроен pre-commit с проверкой кода линтерами и тестами

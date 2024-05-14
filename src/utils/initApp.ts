@@ -1,6 +1,6 @@
 import authController from '../controllers/auth-controller.ts';
-import router, { Routes } from '../core/Router.ts';
-import store from '../core/Store.ts';
+import router, { Routes } from '../core/router/Router.ts';
+import store from '../core/store/Store.ts';
 import chatsController from '../controllers/chats-controller.ts';
 
 const initApp = async () => {

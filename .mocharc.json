@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json.schemastore.org/mocharc",
+  "require": ["./mochaSetup.cjs"],
+  "extension": ["ts"],
+  "loader": "ts-node/esm",
+  "spec": "src/**/*.test.ts",
+  "node-option": [
+    "loader=ts-node/esm",
+    "experimental-specifier-resolution=node",
+    "es-module-specifier-resolution=node"
+  ]
+}

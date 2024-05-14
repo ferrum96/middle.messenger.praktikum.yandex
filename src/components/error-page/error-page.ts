@@ -1,14 +1,24 @@
-import './error-page.sass';
-import errorPageTemplate from './error-page.hbs?raw';
-import Block from '../../core/Block.ts';
-import Link from '../link/link';
+import Block from '../../core/block/Block.ts';
+import Link from '../link/link.ts';
 
 interface ErrorPageProps {
   className?: string;
   title: string;
   subtitle: string;
   chatLink?: Link;
+  events?: {};
 }
+
+// language=hbs
+const errorPageTemplate = `
+    <div class="center-container">
+        <div class="error-page">
+            <h1 class="error-page__title">{{title}}</h1>
+            <h2 class="error-page__subtitle">{{subtitle}}</h2>
+            {{{ chatLink }}}
+        </div>
+    </div>
+`;
 
 export default abstract class ErrorPage extends Block {
   protected constructor(props: ErrorPageProps) {

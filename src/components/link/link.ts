@@ -1,6 +1,4 @@
-import './link.sass';
-import Block from '../../core/Block.ts';
-import linkTemplate from './link.hbs?raw';
+import Block from '../../core/block/Block.ts';
 import { EventHandlers } from '../../utils/EventHandlers.ts';
 
 interface LinkProps {
@@ -11,6 +9,11 @@ interface LinkProps {
   events?: {};
   onClick?: (event?: Event) => void;
 }
+
+// language=hbs
+const linkTemplate = `
+    <a href="{{url}}" class="link{{#if className}} {{className}}{{/if}}" page="{{page}}">{{text}} </a>
+`;
 
 export default class Link extends Block {
   constructor(props: LinkProps) {

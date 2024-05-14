@@ -1,19 +1,24 @@
-import './sign-up.sass';
-import signUpTemplate from './sign-up.hbs?raw';
-import Block from '../../core/Block.ts';
-import InputField from '../../components/input-field/input-field';
-import Button from '../../components/button/button';
-import Link from '../../components/link/link';
+import Block from '../../core/block/Block.ts';
+import InputField from '../../components/input-field/input-field.ts';
+import Button from '../../components/button/button.ts';
+import Link from '../../components/link/link.ts';
 import { ErrorText } from '../../utils/ErrorText.ts';
 import Form from '../../components/form/form.ts';
 import Input from '../../components/input/input.ts';
 import authController from '../../controllers/auth-controller.ts';
-import store from '../../core/Store.ts';
+import store from '../../core/store/Store.ts';
 import { CreateUser } from '../../api/types.ts';
 
 interface SignUpPageProps {
   signUpForm: Form;
 }
+
+// language=hbs
+const signUpTemplate = `
+    <div class="center-container">
+        {{{signUpForm}}}
+    </div>
+`;
 
 class SignUpPage extends Block {
   constructor(props: SignUpPageProps) {

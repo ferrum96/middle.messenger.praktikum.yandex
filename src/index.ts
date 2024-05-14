@@ -6,7 +6,7 @@ import { settingsPage } from './pages/settings/settings.ts';
 import { editProfilePage } from './pages/edit-profile/edit-profile.ts';
 import { editPasswordPage } from './pages/edit-password/edit-password.ts';
 import { internalServerErrorPage } from './pages/500/500.ts';
-import router, { Routes } from './core/Router.ts';
+import router, { Routes } from './core/router/Router.ts';
 import { initApp } from './utils/initApp.ts';
 
 router

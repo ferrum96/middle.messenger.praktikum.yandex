@@ -1,8 +1,10 @@
+import { MessageProps } from '../utils/types.ts';
+
 export type WebSocketProps = {
   userId: number;
   chatId: number;
   token: string;
-  callbackMessages: (data: any) => void;
+  callbackMessages: (data: MessageProps | MessageProps[]) => void;
 };
 
 export type Message = {
@@ -26,7 +28,7 @@ class Socket {
 
   protected timeoutId: NodeJS.Timeout | number = 0;
 
-  protected callbackMessages: (data: any) => void;
+  protected callbackMessages: (data: MessageProps | MessageProps[]) => void;
 
   chatId: number;
 

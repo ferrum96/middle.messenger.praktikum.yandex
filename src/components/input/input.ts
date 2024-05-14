@@ -1,6 +1,4 @@
-import './input.sass';
-import inputTemplate from './input.hbs?raw';
-import Block from '../../core/Block.ts';
+import Block from '../../core/block/Block.ts';
 import { ValidatePattern } from '../../utils/ValidatePattern.ts';
 
 interface InputProps {
@@ -14,6 +12,16 @@ interface InputProps {
   onInput?: (event?: Event) => void;
   onKeyDown?: (event?: KeyboardEvent) => void;
 }
+
+// language=hbs
+const inputTemplate = `
+    <input class="input{{#if className}} {{className}}{{/if}}{{#if readonly}} input_readonly{{/if}}"
+        {{#if type}}type="{{type}}" {{/if}}
+           name="{{name}}"
+        {{#if value}}value="{{value}}" {{/if}}
+        {{#if placeholder}}placeholder="{{placeholder}}" {{/if}}
+           autocomplete="off">
+`;
 
 export default class Input extends Block {
   constructor(props: InputProps) {

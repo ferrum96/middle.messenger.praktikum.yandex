@@ -1,6 +1,6 @@
-import router, { Routes } from '../core/Router.ts';
+import router, { Routes } from '../core/router/Router.ts';
 import usersApi from '../api/users-api.ts';
-import store from '../core/Store.ts';
+import store from '../core/store/Store.ts';
 import { ChangePassword, ChangeUser, Login } from '../api/types.ts';
 import { ChatUser, User, UserDTCO } from '../utils/types.ts';
 
@@ -83,9 +83,8 @@ class UsersController {
       .isSearchingUsers
       ? store?.getState()?.searchingUsers
       : store.getState().currentChatUsers;
-    const currentUser = users
-      ? users.filter(user => user.id === userId)[0]
-      : [];
+    const currentUser: User | ChatUser | undefined | null =
+      users !== null ? users.find(user => user.id === userId) : null;
 
     store.set('currentUser', currentUser);
   }

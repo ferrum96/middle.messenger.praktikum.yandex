@@ -1,11 +1,16 @@
-import './panel-back.sass';
-import Block from '../../core/Block.ts';
-import panelBackTemplate from './panel-back.hbs?raw';
-import Button from '../button/button';
+import Block from '../../core/block/Block.ts';
+import Button from '../button/button.ts';
 
 interface PanelBackProps {
   backButton: Button;
 }
+
+// language=hbs
+const panelBackTemplate = `
+    <div class="panel-back">
+        {{{backButton}}}
+    </div>
+`;
 
 export default class PanelBack extends Block {
   constructor() {

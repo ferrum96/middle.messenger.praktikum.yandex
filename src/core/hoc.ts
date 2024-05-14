@@ -1,6 +1,6 @@
-import Block, { Props } from './Block.ts';
+import Block, { Props } from './block/Block.ts';
 import isEqual from '../utils/isEqual.ts';
-import store, { State, StoreEvents } from './Store.ts';
+import store, { State, StoreEvents } from './store/Store.ts';
 
 export function hoc(mapStateToProps: (state: State) => Props) {
   return function <T extends typeof Block>(Component: T): T {

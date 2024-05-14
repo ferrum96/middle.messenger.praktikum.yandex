@@ -1,12 +1,10 @@
-import './settings.sass';
-import settingsTemplate from './settings.hbs?raw';
 import {
   profileComponent,
   ProfileComponent
 } from '../../components/profile-component/profile-component.ts';
 import { profileForm } from '../../components/profile-form/profile-form.ts';
 import Avatar from '../../components/avatar/avatar.ts';
-import Block from '../../core/Block.ts';
+import Block from '../../core/block/Block.ts';
 import authController from '../../controllers/auth-controller.ts';
 import Link from '../../components/link/link.ts';
 import Input from '../../components/input/input.ts';
@@ -16,12 +14,19 @@ interface SettingsPageProps {
   profileComponent: ProfileComponent;
 }
 
+// language=hbs
+const settingsTemplate = `
+    <div class="settings">
+        {{{profileComponent}}}
+    </div>
+`;
+
 class SettingsPage extends Block {
   constructor(props: SettingsPageProps) {
     super(props);
   }
 
-  protected render(): string {
+  render(): string {
     return settingsTemplate;
   }
 }
