@@ -11,9 +11,8 @@
     "server": "node server.js",
     "start": "npm run build && npm run server",
     "prepare": "chmod ug+x .husky/* && husky install",
-    "lint:stylelint": "stylelint \"src/**/*.{css,sass}\"",
-    "lint:eslint": "eslint \"src/**/*.{ts,js}\"",
-    "pre-commit": "npm run lint:stylelint && npm run lint:eslint && npm run test"
+    "lint-staged": "lint-staged",
+    "pre-commit": "npm run lint-staged && npm run test"
   },
   "devDependencies": {
     "@types/chai": "^4.3.16",
@@ -62,5 +61,15 @@
   },
   "engines": {
     "node": ">=16"
+  },
+  "lint-staged": {
+    "{*.ts, *.js}": [
+      "eslint --fix",
+      "git add ."
+    ],
+    "{*.css, *.sass}": [
+      "stylelint --fix",
+      "git add ."
+    ]
   }
 }
