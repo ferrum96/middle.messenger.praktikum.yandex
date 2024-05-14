@@ -10,10 +10,10 @@
     "build": "npm run prebuild && vite build",
     "server": "node server.js",
     "start": "npm run build && npm run server",
-    "prepare": "husky install",
-    "lint:stylelint": "stylelint --fix \"src/**/*.{css,sass}\"",
-    "lint:eslint": "eslint --fix \"src/**/*.{ts,js}\"",
-    "lint": "npm run lint:stylelint && npm run lint:eslint"
+    "prepare": "chmod ug+x .husky/* && husky install",
+    "lint:stylelint": "stylelint \"src/**/*.{css,sass}\"",
+    "lint:eslint": "eslint \"src/**/*.{ts,js}\"",
+    "pre-commit": "npm run lint:stylelint && npm run lint:eslint && npm run test"
   },
   "devDependencies": {
     "@types/chai": "^4.3.16",
