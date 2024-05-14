@@ -1,7 +1,7 @@
 import router, { Routes } from '../core/router/Router.ts';
 import chatsApi from '../api/chats-api.ts';
 import store from '../core/store/Store.ts';
-import { Chat, UserDTCO } from '../utils/types.ts';
+import { Chat, ChatUser } from '../utils/types.ts';
 import { ChatData, CreateChat, DataAddingUsersToChat } from '../api/types.ts';
 import { EventHandlers } from '../utils/EventHandlers.ts';
 import MessageController from './message-controller.ts';
@@ -32,7 +32,7 @@ class ChatsController {
       const { status, response } = await chatsApi.getChatUsers(id);
 
       if (status === 200) {
-        store.set('currentChatUsers', JSON.parse(response) as UserDTCO);
+        store.set('currentChatUsers', JSON.parse(response) as ChatUser[]);
       } else if (status === 400) {
         store.set('currentChatUsers', null);
       } else if (status === 500) {
@@ -47,9 +47,8 @@ class ChatsController {
 
   public async setCurrentChat(chatId: number): Promise<void> {
     const chats: Chat[] | null | undefined = store?.getState()?.chats;
-    const currentChat = chats
-      ? chats.filter(chat => chat.id === chatId)[0]
-      : [];
+    const currentChat =
+      chats !== null ? chats.filter(chat => chat.id === chatId)[0] : null;
 
     store.set('currentChat', currentChat);
 

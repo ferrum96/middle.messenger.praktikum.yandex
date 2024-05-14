@@ -13,10 +13,10 @@ export type State = {
   currentChatUsers: ChatUser[] | null;
   currentChatMessages: MessageProps[];
   searchingUsers: User[] | null;
-  currentUser: User | null;
+  currentUser: User | ChatUser | null | undefined;
   isLoadedFile: boolean;
   fileName: string;
-  formData: {};
+  formData: {} | null;
   searchingLogin: string | null;
   isSearchingUsers: boolean;
 };
@@ -53,32 +53,28 @@ class Store extends EventBus {
     return this._state;
   }
 
-  public set(path: any, value: any) {
+  public set<K extends keyof State>(path: K, value: State[K]): void {
     set(this._state, path, value);
     this.emit(StoreEvents.Updated);
   }
 
   public setResetState(): void {
-    try {
-      this._state = {
-        auth: false,
-        user: null,
-        chats: null,
-        currentChat: null,
-        currentChatUsers: [],
-        searchingUsers: null,
-        currentUser: null,
-        formData: {},
-        currentChatMessages: [],
-        isLoadedFile: false,
-        fileName: '',
-        searchingLogin: null,
-        isSearchingUsers: false
-      };
-      this.emit(StoreEvents.Updated);
-    } catch (e) {
-      console.log(e);
-    }
+    this._state = {
+      auth: false,
+      user: null,
+      chats: null,
+      currentChat: null,
+      currentChatUsers: [],
+      searchingUsers: null,
+      currentUser: null,
+      formData: {},
+      currentChatMessages: [],
+      isLoadedFile: false,
+      fileName: '',
+      searchingLogin: null,
+      isSearchingUsers: false
+    };
+    this.emit(StoreEvents.Updated);
   }
 }
 

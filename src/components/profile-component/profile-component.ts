@@ -7,9 +7,10 @@ import usersController from '../../controllers/users-controller.ts';
 import { hoc } from '../../core/hoc.ts';
 import store, { State } from '../../core/store/Store.ts';
 import { ProfileForm } from '../profile-form/profile-form.ts';
+import { EventHandlers } from '../../utils/EventHandlers.ts';
 
 export interface ProfileComponentProps {
-  modalWindow?: ModalWindow;
+  uploadAvatarModalWindow?: ModalWindow;
   panelBack?: PanelBack;
   profileForm: ProfileForm;
 }
@@ -17,7 +18,7 @@ export interface ProfileComponentProps {
 // language=hbs
 const profileComponentTemplate = `
     <div class="profile-component">
-        {{{modalWindow}}}
+        {{{uploadAvatarModalWindow}}}
         {{{panelBack}}}
         {{{profileForm}}}
     </div>
@@ -27,14 +28,14 @@ export class ProfileComponent extends Block {
   constructor({ profileForm }: ProfileComponentProps) {
     super({
       panelBack: new PanelBack(),
-      modalWindow: new ModalWindow({
+      uploadAvatarModalWindow: new ModalWindow({
         className: 'modal-window_upload-avatar',
         title: 'Загрузите файл',
         fileName: '',
         content: [
           new Link({
             text: 'Выбрать файл на компьютере',
-            onClick: (event?: Event) => this._onChangeAvatar(event)
+            onClick: (event?: Event) => EventHandlers.onChangeAvatar(event)
           })
         ],
         actionButton: new Button({
@@ -53,38 +54,16 @@ export class ProfileComponent extends Block {
     oldProps: ProfileComponentProps,
     newProps: ProfileComponentProps
   ): boolean {
-    (this.children.modalWindow as ModalWindow).setProps({
+    (this.children.uploadAvatarModalWindow as ModalWindow).setProps({
       title: store.getState().isLoadedFile ? 'Файл загружен' : 'Загрузите файл',
       fileName: store.getState().fileName
     });
 
-    (this.children.modalWindow as ModalWindow)
+    (this.children.uploadAvatarModalWindow as ModalWindow)
       .getContent()
       .classList.add('modal-window_active');
 
     return super.componentDidUpdate(oldProps, newProps);
-  }
-
-  private _onChangeAvatar(event?: Event) {
-    if (event === undefined) return;
-    event.preventDefault();
-
-    const fileInput = document.createElement('input');
-    fileInput.type = 'file';
-    fileInput.accept = 'image/*';
-
-    fileInput.addEventListener('change', async event => {
-      const files = (event.target as HTMLInputElement).files;
-      if (files && files.length > 0) {
-        const formData = new FormData();
-        formData.append('avatar', files[0]);
-        store.set('fileName', files[0].name);
-        store.set('isLoadedFile', true);
-        store.set('formData', formData);
-      }
-    });
-
-    fileInput.click();
   }
 
   render() {

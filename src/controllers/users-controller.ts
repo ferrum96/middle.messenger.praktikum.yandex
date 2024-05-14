@@ -83,9 +83,8 @@ class UsersController {
       .isSearchingUsers
       ? store?.getState()?.searchingUsers
       : store.getState().currentChatUsers;
-    const currentUser = users
-      ? users.filter(user => user.id === userId)[0]
-      : [];
+    const currentUser: User | ChatUser | undefined | null =
+      users !== null ? users.find(user => user.id === userId) : null;
 
     store.set('currentUser', currentUser);
   }

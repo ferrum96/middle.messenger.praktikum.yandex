@@ -2,12 +2,22 @@ import { expect } from 'chai';
 import sinon, { SinonSpy } from 'sinon';
 import store from './Store.ts';
 import { beforeEach, afterEach } from 'mocha';
+import { User } from '../../utils/types.ts';
 
 describe('Store', () => {
   let emitSpy: SinonSpy;
   let setSpy: SinonSpy;
   let getSpy: SinonSpy;
-  const user = { id: 1, name: 'John' };
+  const user: User = {
+    id: 1,
+    login: 'John',
+    first_name: 'John',
+    second_name: 'John',
+    display_name: null,
+    avatar: null,
+    phone: '',
+    email: ''
+  };
 
   beforeEach(() => {
     store.set('user', user);
@@ -40,7 +50,16 @@ describe('Store', () => {
     expect(getSpy.calledOnce).to.be.true;
     expect(state).to.deep.equal({
       auth: false,
-      user: { id: 1, name: 'John' },
+      user: {
+        id: 1,
+        login: 'John',
+        first_name: 'John',
+        second_name: 'John',
+        display_name: null,
+        avatar: null,
+        phone: '',
+        email: ''
+      },
       chats: null,
       currentChat: null,
       currentChatUsers: [],
