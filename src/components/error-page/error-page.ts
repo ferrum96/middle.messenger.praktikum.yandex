@@ -6,6 +6,7 @@ interface ErrorPageProps {
   title: string;
   subtitle: string;
   chatLink?: Link;
+  events?: {};
 }
 
 // language=hbs
